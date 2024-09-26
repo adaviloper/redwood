@@ -17,6 +17,7 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@formkit/vue": "^1.6.7",
     "@kitbag/router": "^0.9.0",
     "@unhead/vue": "1.11.2",
     "pinia": "2.2.0",
