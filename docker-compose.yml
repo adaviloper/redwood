@@ -1,0 +1,49 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    container_name: redwood-api
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8000:80"
+    networks:
+      - laravel
+  db:
+    image: bitnami/mariadb
+    container_name: redwood_db
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: laravel
+      MARIADB_USER: laravel
+      MARIADB_PASSWORD: password    
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    networks:
+      - laravel
+    volumes:
+      - './docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'
+      - db_data:/bitnami/mariadb
+  frontend:
+    container_name: redwood-ui
+    build:
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    command: >
+      /bin/bash -c "npm i && npm run dev"
+    volumes:
+      - './frontend:/app'
+    ports:
+      - '3000:5173'
+      - '9000:8000'
+    networks:
+      - laravel
+networks:
+  laravel:
+    driver: bridge
+volumes:
+  db_data:  
