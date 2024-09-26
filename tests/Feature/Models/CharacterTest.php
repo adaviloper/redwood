@@ -8,13 +8,11 @@ use Tests\TestCase;
 
 class CharacterTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function testAllCharactersCanBeRetrieved(): void
     {
-        $response = $this->get('/');
+        $response = $this->getJson('/characters');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+            ->content();
     }
 }

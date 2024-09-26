@@ -19,6 +19,9 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /var/www/html
 
+# Get latest Composer for this version of PHP
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Set permissions for Laravel storage and bootstrap cache directories
 # RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
