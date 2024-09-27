@@ -26,7 +26,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Copy site-specific Nginx configuration to the conf.d directory
-COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./docker/nginx/api.conf /etc/nginx/conf.d/api.conf
 
 # Expose port 80 for Nginx
 EXPOSE 80

@@ -10,15 +10,21 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    Components({
-      dts: 'components.d.ts',
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    plugins: [
+        vue(),
+        Components({
+            dts: 'components.d.ts',
+        }),
+    ],
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+        },
     },
-  },
+    publicDir: './public',
+    base: '/',
+    server: {
+        host: '127.0.0.1',
+        port: 8080,
+    }
 })
