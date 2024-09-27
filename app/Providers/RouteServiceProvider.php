@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Route::prefix('api')->group(base_path('routes/api.php'));
-        Route::prefix('auth')->group(base_path('routes/auth.php'));
+        Route::prefix('auth')->middleware(['web'])->group(base_path('routes/auth.php'));
         Route::prefix('console')->group(base_path('routes/console.php'));
     }
 }
