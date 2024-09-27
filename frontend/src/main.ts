@@ -1,7 +1,7 @@
 import { createHead } from '@unhead/vue'
 import { createPinia } from 'pinia'
 import { plugin, defaultConfig } from '@formkit/vue'
-import formkitConfig from '../formkit.config.ts'
+import formkitConfig from '../formkit.config'
 import { createApp } from 'vue'
 import './assets/index.postcss'
 import { router } from './router'

@@ -2,7 +2,7 @@
 import { useRoute } from '@kitbag/router';
 import { useHead } from '@unhead/vue';
 // See vite.config.ts for details about automatic imports
-const route = useRoute()
+const route = useRoute();
 
 useHead({
   title: () => route.meta?.title || 'Vite + Vue Template',

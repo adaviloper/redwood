@@ -20,6 +20,7 @@
     "@formkit/vue": "^1.6.7",
     "@kitbag/router": "^0.9.0",
     "@unhead/vue": "1.11.2",
+    "axios": "^1.7.7",
     "pinia": "2.2.0",
     "vue": "3.5.3"
   },
@@ -57,6 +58,7 @@
     "eslint-plugin-promise": "7.1.0",
     "eslint-plugin-security": "3.0.1",
     "eslint-plugin-vue": "9.28.0",
+    "js-cookie": "^3.0.5",
     "jsdom": "25.0.0",
     "lodash-es": "4.17.21",
     "npm-run-all2": "6.2.0",
