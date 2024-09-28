@@ -1,23 +1,23 @@
 <template>
-    <div>
-        <FormKit
-            type="form"
-            @submit="login"
-        >
-            <FormKit
-                type="text"
-                name="username"
-                label="Username"
-                validation="required"
-            />
-            <FormKit
-                type="password"
-                name="password"
-                label="Password"
-                validation="required"
-            />
-        </FormKit>
-    </div>
+  <div>
+    <FormKit
+      type="form"
+      @submit="login"
+    >
+      <FormKit
+        type="text"
+        name="username"
+        label="Username"
+        validation="required"
+      />
+      <FormKit
+        type="password"
+        name="password"
+        label="Password"
+        validation="required"
+      />
+    </FormKit>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -34,13 +34,13 @@ interface LoginPayload {
 const router = useRouter();
 
 const login = async (payload: LoginPayload) => {
-    axiosInstance.post('auth/login', {
-        ...payload,
-    })
-        .then((response: AxiosResponse) => {
-            console.log('LoginPage.vue:40', response);
-            router.push('root')
-        });
+  axiosInstance.post('auth/login', {
+    ...payload,
+  })
+    .then((response: AxiosResponse) => {
+      console.log('LoginPage.vue:40', response);
+      router.push('root')
+    });
 };
 
 </script>

@@ -37,7 +37,7 @@ const thisYear = new Date().getFullYear()
           <a href="https://github.com/Uninen/vite-ts-tailwind-starter">available on GitHub</a>.
         </p>
       </header>
-      <main>
+      <main class="container px-6">
         <router-view />
       </main>
       <footer class="py-6 text-sm text-center text-gray-700">
