@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Character\StoreCharacterRequest;
 use App\Http\Requests\Character\UpdateCharacterRequest;
+use App\Http\Resources\CharacterResource;
 use App\Models\Character;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CharacterController extends Controller
@@ -14,7 +16,9 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        return Character::query()->get();
+        return [
+            'characters' => CharacterResource::collection(Character::query()->get()),
+        ];
     }
 
     /**
@@ -47,5 +51,15 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         return $character->delete();
+    }
+
+    public function select(Request $request, Character $character)
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        $user->characters()->attach($character);
+        return response([
+            'character' => $character,
+        ]);
     }
 }

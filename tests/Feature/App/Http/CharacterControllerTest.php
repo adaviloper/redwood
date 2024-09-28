@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http;
 
 use App\Models\Character;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -21,6 +22,25 @@ class CharacterControllerTest extends TestCase
         $response = $this->getJson(route('characters.index'));
 
         $response->assertStatus(200)
-            ->assertJson($characters->toArray());
+            ->assertJson([
+                'characters' => $characters->toArray()
+            ]);
+    }
+
+    public function testAUserCanSelectACharacter(): void
+    {
+        $this->withoutExceptionHandling();
+        /** @var User $user */
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        /** @var Character $character */
+        $character = Character::factory()->create();
+
+        $this->postJson(route('characters.select', ['character' => $character->id]));
+
+        $this->assertDatabaseHas('character_user', [
+            'user_id' => $user->id,
+            'character_id' => $character->id,
+        ]);
     }
 }

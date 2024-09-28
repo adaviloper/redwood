@@ -1,33 +1,30 @@
 import { createRoute, createRouter } from '@kitbag/router'
 
-import CharacterView from '@/pages/CharacterView.vue'
+import CharacterDetailPage from '@/pages/CharacterDetailPage.vue'
 import IndexPage from '@/pages/IndexPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
+import CharacterSelectPage from '@/pages/CharacterSelectPage.vue'
 
 export const router = createRouter([
   createRoute({
     path: '/',
     name: 'root',
     component: IndexPage,
-    meta: {
-      title: 'Vite + Vue + TypeScript + Tailwind Starter Template',
-    },
   }),
   createRoute({
     path: '/login',
     name: 'login',
     component: LoginPage,
-    meta: {
-      title: 'Login',
-    },
+  }),
+  createRoute({
+    path: '/character-select',
+    name: 'character-select',
+    component: CharacterSelectPage,
   }),
   createRoute({
     path: '/character',
     name: 'character',
-    component: CharacterView,
-    meta: {
-      title: 'Demo title',
-    },
+    component: CharacterDetailPage,
   }),
 ])
 

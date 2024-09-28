@@ -35,15 +35,13 @@ const onRequest = (config: InternalAxiosRequestConfig) => {
   // If http method is `post | put | delete` and XSRF-TOKEN cookie is
   // not present, call '/sanctum/csrf-cookie' to set CSRF token, then
   // proceed with the initial response
-  console.log('typescript', config);
   if ((
     config.method == 'post' ||
       config.method == 'put' ||
       config.method == 'delete'
   ) && !Cookies.get('XSRF-TOKEN')) {
     return setCSRFToken()
-      .then(response => {
-        console.log('typescript', response.data);
+      .then(_ => {
         return config;
       });
   }

@@ -1,11 +1,11 @@
 import { createHead } from '@unhead/vue'
 import { createPinia } from 'pinia'
-import { plugin, defaultConfig } from '@formkit/vue'
-import formkitConfig from '../formkit.config'
 import { createApp } from 'vue'
 import './assets/index.postcss'
 import { router } from './router'
 import App from './App.vue'
+import { plugin, defaultConfig } from '@formkit/vue'
+import formkitConfig from '../formkit.config'
 
 const head = createHead()
 const app = createApp(App)

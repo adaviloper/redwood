@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('name');
+            $table->string('class');
             $table->unsignedInteger('level');
             $table->unsignedInteger('strength');
             $table->unsignedInteger('constitution');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('wisdom');
             $table->unsignedInteger('intelligence');
             $table->unsignedInteger('charisma');
+            $table->string('image_url');
             $table->timestamps();
         });
     }

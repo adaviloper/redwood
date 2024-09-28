@@ -20,6 +20,7 @@ class CharacterFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => $this->faker->name,
+            'class' => $this->faker->randomElement(['Ranger', 'Fighter', 'Druid', 'Monk', 'Cleric', 'Paladin', 'Barbarian']),
             'level' => 1,
             'strength' => $this->faker->numberBetween(1, 20),
             'constitution' => $this->faker->numberBetween(1, 20),
@@ -27,6 +28,7 @@ class CharacterFactory extends Factory
             'wisdom' => $this->faker->numberBetween(1, 20),
             'intelligence' => $this->faker->numberBetween(1, 20),
             'charisma' => $this->faker->numberBetween(1, 20),
+            'image_url' => $this->faker->imageUrl(400),
         ];
     }
 }
