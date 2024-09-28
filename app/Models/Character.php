@@ -21,4 +21,40 @@ use Illuminate\Database\Eloquent\Model;
 class Character extends Model
 {
     use HasFactory;
+
+    public function stats(): array
+    {
+        return [
+            [
+                'name' => 'strength',
+                'type' => 'physical',
+                'value' => $this->strength,
+            ],
+            [
+                'name' => 'constitution',
+                'type' => 'physical',
+                'value' => $this->constitution,
+            ],
+            [
+                'name' => 'dexterity',
+                'type' => 'physical',
+                'value' => $this->dexterity,
+            ],
+            [
+                'name' => 'wisdom',
+                'type' => 'mental',
+                'value' => $this->wisdom,
+            ],
+            [
+                'name' => 'intelligence',
+                'type' => 'mental',
+                'value' => $this->intelligence,
+            ],
+            [
+                'name' => 'charisma',
+                'type' => 'mental',
+                'value' => $this->charisma,
+            ],
+        ];
+    }
 }

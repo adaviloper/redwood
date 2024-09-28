@@ -82,4 +82,9 @@ class LoginRequest extends FormRequest
     {
         return Str::transliterate(Str::lower($this->input('username')).'|'.$this->ip());
     }
+
+    public function username(): string
+    {
+        return 'username';
+    }
 }
