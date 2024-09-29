@@ -15,6 +15,5 @@ declare module 'vue' {
     ImageCard: typeof import('./src/components/layout/ImageCard.vue')['default']
     Inventory: typeof import('./src/components/Inventory.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
-    StatsBlock: typeof import('./src/components/StatsBlock.vue')['default']
   }
 }

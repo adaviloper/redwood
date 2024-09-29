@@ -51,7 +51,7 @@ const onRequest = (config: InternalAxiosRequestConfig) => {
 
 // A function that calls '/api/csrf-cookie' to set the CSRF cookies. The
 // default is 'sanctum/csrf-cookie' but you can configure it to be anything.
-const setCSRFToken = () => {
+export const setCSRFToken = () => {
   return axiosInstance.get('/sanctum/csrf-cookie'); // resolves to '/api/csrf-cookie'.
 }
 

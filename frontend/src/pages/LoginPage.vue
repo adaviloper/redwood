@@ -21,28 +21,30 @@
 </template>
 
 <script setup lang="ts">
-import axiosInstance from '@/utilities/api';
 import { FormKit } from '@formkit/vue';
 import { type AxiosResponse } from 'axios';
 import { useRouter } from '@kitbag/router';
+import { useMainStore } from '@/store';
+import type { User } from '@/types/User';
 
-interface LoginPayload {
+interface LoginRequest {
     username: string;
     email: string;
 }
 
+interface LoginResponse {
+  user: User
+}
+
+const store = useMainStore();
 const router = useRouter();
 
-const login = async (payload: LoginPayload) => {
-  axiosInstance.post('auth/login', {
-    ...payload,
-  })
-    .then((response: AxiosResponse) => {
-      console.log('LoginPage.vue:40', response);
-      router.push('root')
+const login = (payload: LoginRequest) => {
+  store.login(payload)
+    .then((_: AxiosResponse<LoginResponse>) => {
+      router.push('home')
     });
 };
-
 </script>
 
 <style scoped>

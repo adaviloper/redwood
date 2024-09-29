@@ -1,20 +1,74 @@
+import { type AxiosResponse } from 'axios';
+import Cookies from 'js-cookie';
+import type { User } from '@/types/User'
+import type { Nullable } from '@/types/utilities'
+import axiosInstance, { setCSRFToken } from '../utilities/api';
 import { defineStore } from 'pinia'
+import { useRouter } from '@kitbag/router';
 
 const versionString =
-  import.meta.env.MODE === 'development' ? import.meta.env.VITE_APP_VERSION + '-dev' : import.meta.env.VITE_APP_VERSION
+  import.meta.env.MODE === 'development' ? import.meta.env.VITE_APP_VERSION + '-dev' : import.meta.env.VITE_APP_VERSION;
 
-export const useStore = defineStore('main', {
-  state: () => ({
+interface LoginRequest {
+    username: string;
+    email: string;
+}
+
+interface State {
+  debug: boolean;
+  version: string;
+  isInitialized: boolean;
+  count: number;
+  user: Nullable<User>;
+}
+
+interface AuthParams {
+  redirectTo: string;
+}
+
+export const useMainStore = defineStore('main', {
+  state: (): State => ({
     debug: import.meta.env.MODE === 'development',
     version: versionString,
     isInitialized: false,
     count: 0,
+    user: null,
   }),
 
   actions: {
     initApp() {
+      this.authenticate();
+
+      // this.setUser(user);
       this.isInitialized = true
       console.log('app initialized!')
+    },
+
+    authenticate() {
+      const router = useRouter();
+
+      if (!Cookies.get('XSRF-TOKEN')) {
+        setCSRFToken();
+      }
+
+      axiosInstance.get('/user')
+        .then(({ data }: AxiosResponse<User>) => {
+          this.setUser(data)
+
+        })
+        .catch(_ => {
+          router.push('login');
+        });
+    },
+
+    login(payload: LoginRequest) {
+      return axiosInstance.post('auth/login', {
+        ...payload,
+      });
+    },
+
+    setUser(user: User) {
+      this.user = user;
     },
 
     increment(value = 1) {
@@ -30,6 +84,14 @@ export const useStore = defineStore('main', {
   getters: {
     isReady: (state) => {
       return !state.isInitialized
+    },
+
+    isGuest: (state) => {
+      return state.user === null;
+    },
+
+    isAuthenticated: (state) => {
+      return state.user !== null;
     },
   },
 })
