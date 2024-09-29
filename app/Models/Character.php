@@ -35,37 +35,5 @@ class Character extends Model
     public function abilities(): HasMany
     {
         return $this->hasMany(Ability::class);
-        return [
-            [
-                'name' => 'strength',
-                'type' => 'physical',
-                'value' => $this->strength,
-            ],
-            [
-                'name' => 'constitution',
-                'type' => 'physical',
-                'value' => $this->constitution,
-            ],
-            [
-                'name' => 'dexterity',
-                'type' => 'physical',
-                'value' => $this->dexterity,
-            ],
-            [
-                'name' => 'wisdom',
-                'type' => 'mental',
-                'value' => $this->wisdom,
-            ],
-            [
-                'name' => 'intelligence',
-                'type' => 'mental',
-                'value' => $this->intelligence,
-            ],
-            [
-                'name' => 'charisma',
-                'type' => 'mental',
-                'value' => $this->charisma,
-            ],
-        ];
     }
 }
