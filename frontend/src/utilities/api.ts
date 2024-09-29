@@ -1,7 +1,6 @@
 import axios, { type InternalAxiosRequestConfig } from "axios";
 import Cookies from 'js-cookie';
 import camelcaseKeys from "camelcase-keys";
-import snakecaseKeys from "snakecase-keys";
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
