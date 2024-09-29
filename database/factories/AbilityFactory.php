@@ -48,7 +48,7 @@ class AbilityFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'name' => Abilities::STRENGTH->value,
+                'name' => Abilities::DEXTERITY->value,
                 'type' => 'physical',
             ];
         });
@@ -78,7 +78,7 @@ class AbilityFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'name' => Abilities::INTELLIGENCE->value,
+                'name' => Abilities::CHARISMA->value,
                 'type' => 'mental',
             ];
         });
