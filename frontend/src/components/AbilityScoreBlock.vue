@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { Stat } from '@/types/Character';
+import type { Ability } from '@/types/Character';
 
 interface Props {
-  stats: Stat[];
+  ability: Ability[];
 }
 
 const props = defineProps<Props>();
 
 const physicalStats = computed(() => {
-  return props.stats.filter(stat => stat.type === 'physical');
+  return props.ability.filter(stat => stat.type === 'physical');
 });
 const mentalStats = computed(() => {
-  return props.stats.filter(stat => stat.type === 'mental');
+  return props.ability.filter(stat => stat.type === 'mental');
 });
 
 </script>
@@ -21,7 +21,7 @@ const mentalStats = computed(() => {
   <div>
     <h3>Stats</h3>
       <ul class="columns-6">
-        <li v-for="stat in stats" :key="`stat-${stat.name}`">
+        <li v-for="stat in ability" :key="`stat-${stat.name}`">
           {{ stat.name.substring(0, 3) }}: {{ stat.value }}
         </li>
       </ul>

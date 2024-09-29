@@ -10,7 +10,6 @@ interface CharacterResponse {
 }
 
 const characters = ref<Character[]>([] as Character[]);
-console.log('CharacterSelectPage.vue:12', characters.value);
 
 onMounted(() => {
   axiosInstance.get('/characters')

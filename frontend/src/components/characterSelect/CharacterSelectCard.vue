@@ -36,8 +36,8 @@ const selectCharacter = () => {
           {{ character.name }}
         </a>
 
-        <StatsBlock
-          :stats="character.stats"
+        <AbilityScoreBlock
+          :ability="character.abilities"
         />
       </div>
       </FormKit>

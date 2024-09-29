@@ -3,7 +3,7 @@ export interface Item {
   quantity: number;
 }
 
-export interface Stat {
+export interface Ability {
   name: string;
   type: string;
   value: number;
@@ -15,6 +15,6 @@ export interface Character {
   class: string;
   hp: number;
   maxHp: number;
-  stats: Stat[];
+  abilities: Ability[];
   inventory: Item[];
 }
