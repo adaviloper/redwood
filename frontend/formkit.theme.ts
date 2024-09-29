@@ -6,7 +6,7 @@ import type { FormKitNode } from '@formkit/core'
   * edited unless you’d like to "eject" from the CLI’s ability to update it.
   *
   * @checksum - 68db9025d7e84b20a1f30374a7200ae6686651c6c3fb2f3fb24f0aaaff7e58d3
-  * @variables - 
+  * @variables -
   * @theme - regenesis
   **/
 
