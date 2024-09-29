@@ -21,41 +21,12 @@ class CharacterResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'class' => $this->class,
-            'imageUrl' => $this->image_url,
-            'stats' => [
-                [
-                    'name' => 'strength',
-                    'type' => 'physical',
-                    'value' => $this->strength,
-                ],
-                [
-                    'name' => 'constitution',
-                    'type' => 'physical',
-                    'value' => $this->constitution,
-                ],
-                [
-                    'name' => 'dexterity',
-                    'type' => 'physical',
-                    'value' => $this->dexterity,
-                ],
-                [
-                    'name' => 'wisdom',
-                    'type' => 'mental',
-                    'value' => $this->wisdom,
-                ],
-                [
-                    'name' => 'intelligence',
-                    'type' => 'mental',
-                    'value' => $this->intelligence,
-                ],
-                [
-                    'name' => 'charisma',
-                    'type' => 'mental',
-                    'value' => $this->charisma,
-                ],
-            ],
+            'level' => $this->level,
+            'image_url' => $this->image_url,
+            'abilities' => $this->abilities,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'user_id' => $this->user_id,
         ];
     }
 }

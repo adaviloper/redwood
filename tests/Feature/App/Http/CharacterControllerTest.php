@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\App\Http;
 
-use App\Http\Resources\CharacterResource;
+use App\Models\Ability;
 use App\Models\Character;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 
@@ -19,14 +18,17 @@ class CharacterControllerTest extends TestCase
      */
     public function testCharactersCanBeFetched(): void
     {
+        $this->withExceptionHandling();
+        $user = User::factory()->create();
         /** @var Collection $characters */
-        $characters = Character::factory()->count(2)->create();
+        $characters = Character::factory()->create();
+        $abilities = Ability::factory()->create(['character_id' => $characters->id]);
         $response = $this->getJson(route('characters.index'));
 
         $response->assertStatus(200)
-            ->assertJsonFragment(
-                CharacterResource::make($characters->first())->toArray($request),
-            );
+            ->assertJson([
+                'characters' => [$characters->load('abilities')->toArray()]
+            ]);
     }
 
     public function testAUserCanSelectACharacter(): void
