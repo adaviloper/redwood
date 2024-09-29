@@ -8,7 +8,7 @@ import CharacterSelectPage from '@/pages/CharacterSelectPage.vue'
 export const router = createRouter([
   createRoute({
     path: '/',
-    name: 'root',
+    name: 'home',
     component: IndexPage,
   }),
   createRoute({
