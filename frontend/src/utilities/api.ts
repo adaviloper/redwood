@@ -1,5 +1,7 @@
 import axios, { type InternalAxiosRequestConfig } from "axios";
 import Cookies from 'js-cookie';
+import camelcaseKeys from "camelcase-keys";
+import snakecaseKeys from "snakecase-keys";
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
@@ -56,5 +58,21 @@ const setCSRFToken = () => {
 
 // attach your interceptor
 axiosInstance.interceptors.request.use(onRequest, null);
+
+axiosInstance.interceptors.response.use(
+  function(response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return {
+      ...response,
+      data: camelcaseKeys(response.data, { deep: true }),
+    }
+  },
+  function(error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    return Promise.reject(error)
+  }
+)
 
 export default axiosInstance;
