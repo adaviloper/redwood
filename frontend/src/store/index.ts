@@ -4,7 +4,7 @@ import type { User } from '@/types/User'
 import type { Nullable } from '@/types/utilities'
 import axiosInstance, { setCSRFToken } from '../utilities/api';
 import { defineStore } from 'pinia'
-import { useRouter } from '@kitbag/router';
+import { useRouter } from 'vue-router';
 
 const versionString =
   import.meta.env.MODE === 'development' ? import.meta.env.VITE_APP_VERSION + '-dev' : import.meta.env.VITE_APP_VERSION;
@@ -12,6 +12,10 @@ const versionString =
 interface LoginRequest {
     username: string;
     email: string;
+}
+
+interface LoginResponse {
+    user: User;
 }
 
 interface State {
@@ -61,10 +65,17 @@ export const useMainStore = defineStore('main', {
         });
     },
 
-    login(payload: LoginRequest) {
-      return axiosInstance.post('auth/login', {
+    async login(payload: LoginRequest) {
+      const { data }: AxiosResponse<LoginResponse> = await axiosInstance.post('auth/login', {
         ...payload,
       });
+      this.setUser(data.user)
+      return this.user;
+    },
+
+    async logout() {
+      await axiosInstance.post('auth/logout');
+      this.setUser(null);
     },
 
     setUser(user: User) {

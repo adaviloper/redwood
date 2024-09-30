@@ -22,28 +22,23 @@
 
 <script setup lang="ts">
 import { FormKit } from '@formkit/vue';
-import { type AxiosResponse } from 'axios';
-import { useRouter } from '@kitbag/router';
+import { useRouter } from 'vue-router';
 import { useMainStore } from '@/store';
-import type { User } from '@/types/User';
 
 interface LoginRequest {
     username: string;
     email: string;
 }
 
-interface LoginResponse {
-  user: User
-}
-
 const store = useMainStore();
 const router = useRouter();
 
-const login = (payload: LoginRequest) => {
-  store.login(payload)
-    .then((_: AxiosResponse<LoginResponse>) => {
-      router.push('home')
-    });
+const login = async (payload: LoginRequest) => {
+  await store.login(payload);
+
+  if (store.isAuthenticated) {
+    router.push({ name: 'character-select' });
+  }
 };
 </script>
 

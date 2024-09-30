@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from '@kitbag/router';
+import { useRoute } from 'vue-router';
 import { useHead } from '@unhead/vue';
 import { onMounted } from 'vue';
 import NavBar from './components/NavBar.vue';
