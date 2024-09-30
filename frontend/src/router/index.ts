@@ -5,18 +5,6 @@ import IndexPage from '@/pages/IndexPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import { useMainStore } from '@/store'
 
-const authGuard = () => {
-  const store = useMainStore();
-
-  return !store.isAuthenticated;
-}
-
-const authGuest = () => {
-  const store = useMainStore();
-
-  return !store.isGuest;
-}
-
 const routes = [
   {
     path: '/',
@@ -27,20 +15,41 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginPage,
+    meta: {
+      requiresGuest: true
+    },
   },
   {
     path: '/character-select',
     name: 'character-select',
     component: CharacterSelectPage,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/character',
     name: 'character',
     component: CharacterDetailPage,
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 
-export const router = createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, _) => {
+  const store = useMainStore();
+  if (to.meta.requiresAuth && !store.isAuthenticated) {
+    return { name: 'login' };
+  }
+  if (to.meta.requiresGuest && !store.isGuest) {
+    return { name: 'home' };
+  }
+})
+
+export { router }

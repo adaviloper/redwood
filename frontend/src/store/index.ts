@@ -78,7 +78,7 @@ export const useMainStore = defineStore('main', {
       this.setUser(null);
     },
 
-    setUser(user: User) {
+    setUser(user: Nullable<User>) {
       this.user = user;
     },
 

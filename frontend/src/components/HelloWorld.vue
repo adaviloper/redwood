@@ -1,28 +1,15 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useMainStore } from '@/store';
-
-const store = useMainStore()
-const count = computed(() => store.count)
 const props = defineProps<{
   msg: string
   optionalProp?: number
 }>()
-
-function increment() {
-  store.increment()
-}
 
 defineExpose(props)
 </script>
 
 <template>
   <h2 class="!mt-0">
-    {{ msg }}
+    Welcome
   </h2>
-  <button class="px-3 py-2 bg-white border border-gray-300 rounded-md shadow flex items-center" @click="increment">
-    <span class="i-mdi-plus-circle-outline w-5 h-5" />
-    <span class="h-7 pl-1">count is: {{ count }}</span>
-  </button>
-  <p>Edit <code>components/HelloWorld.vue</code> to test hot module replacement.</p>
+  <p>Kukiloka, ka'ka kinoka'kah agamasha m'm'thnorolg zukago'aganu reroshr zazag noga ukash'g ta'resh. K'ka th'a kashr lahragagog l'as mogomokaagot th'kara nolokazzu zuk'go l'a'i'. Kazr omav'aga reshnagugaz ro'inol gakazi kahres kazin r'kash't mal'k mogol nogosh. Osh'ma kosh mmaa umovarilo' gotage gara. Maz'maznar, khnah mazari gulog'athreg, loro' mazamaz mo'rah ggggog'a aak'aro'bovaz, gok'bo'a gazu, thro'nugg.</p>
 </template>

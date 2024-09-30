@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { computed } from 'vue';
 import { useMainStore } from '@/store';
 
+const router = useRouter();
 const store = useMainStore();
 
 const isAuthenticated = computed(() => {
@@ -13,8 +14,11 @@ const isGuest = computed(() => {
   return store.isGuest;
 })
 
-const logout = () => {
-  store.logout()
+const logout = async () => {
+  await store.logout()
+  if (store.isGuest) {
+    router.push({ name: 'home' })
+  }
 };
 </script>
 
