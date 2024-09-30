@@ -64,7 +64,8 @@ axiosInstance.interceptors.response.use(
     // Do something with response data
     return {
       ...response,
-      data: camelcaseKeys(response.data, { deep: true }),
+      // data: camelcaseKeys(response.data, { deep: true }),
+      data: response.data,
     }
   },
   function(error) {

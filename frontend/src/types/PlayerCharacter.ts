@@ -1,14 +1,14 @@
 import type { Ability } from "./Ability";
+import type { Character } from "./Character";
 import type { Item } from "./Item";
 
-export interface Character {
+export interface PlayerCharacter {
   id: number;
-  name: string;
-  image_url: string;
-  class: string;
+  user_id: number;
+  character_id: number;
+  character: Character;
   hp: number;
   max_hp: number;
   abilities: Ability[];
   inventory: Item[];
-  description: string;
 }

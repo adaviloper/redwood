@@ -9,7 +9,7 @@ defineProps<Props>();
 
 <template>
   <div
-class="card-component my-4 max-w-2xl overflow-hidden bg-white rounded-lg">
+    class="mb-4 overflow-hidden bg-white rounded-lg">
     <img
       v-if="imageUrl"
       class="object-cover w-full h-64"
@@ -23,7 +23,4 @@ class="card-component my-4 max-w-2xl overflow-hidden bg-white rounded-lg">
 </template>
 
 <style lang="postcss">
-.card-component {
-  @apply my-4
-}
 </style>

@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import type { AxiosResponse } from 'axios';
 import { onMounted, ref } from 'vue';
+import type { AxiosResponse } from "axios"
 import type { Character } from '@/types/Character';
-import axiosInstance from '@/utilities/api';
 import CharacterSelectCard from '@/components/characterSelect/CharacterSelectCard.vue';
-
-interface CharacterResponse {
-  characters: Character[];
-}
+import { useCharacterRequests, type CharacterResponse } from '@/composables/useCharacterRequests';
 
 const characters = ref<Character[]>([] as Character[]);
 
 onMounted(() => {
-  axiosInstance.get('/characters')
-  .then(({ data }: AxiosResponse<CharacterResponse>) => {
+  const characterRequests = useCharacterRequests();
+  characterRequests.all()
+    .then(({ data }: AxiosResponse<CharacterResponse>) => {
       characters.value = data.characters;
     });
 });
@@ -21,14 +18,16 @@ onMounted(() => {
 
 <template>
   <div class="px-6">
-    <h1>Characters</h1>
-    <div
-      v-for="character in characters"
-      :key="`character-${character.name}`"
-    >
-      <CharacterSelectCard
-        :character="character"
-      />
+    <h1 class="text-4xl">Characters</h1>
+    <div class="columns-3">
+      <div
+        v-for="character in characters"
+        :key="`character-${character.name}`"
+      >
+        <CharacterSelectCard
+          :character="character"
+        />
+      </div>
     </div>
   </div>
 </template>

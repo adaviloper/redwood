@@ -28,8 +28,9 @@ const routes = [
     },
   },
   {
-    path: '/character',
-    name: 'character',
+    path: '/my-characters/:id',
+    name: 'player-character-detail',
+    props: true,
     component: CharacterDetailPage,
     meta: {
       requiresAuth: true,
@@ -42,8 +43,12 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, _) => {
+router.beforeEach(async (to, _) => {
   const store = useMainStore();
+  if (!store.isInitialized) {
+    await store.initApp()
+  }
+  console.log('typescript', store.isAuthenticated, store.user);
   if (to.meta.requiresAuth && !store.isAuthenticated) {
     return { name: 'login' };
   }

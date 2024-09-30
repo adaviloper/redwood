@@ -40,25 +40,24 @@ export const useMainStore = defineStore('main', {
   }),
 
   actions: {
-    initApp() {
-      this.authenticate();
+    async initApp() {
+      await this.authenticate();
 
-      // this.setUser(user);
       this.isInitialized = true
       console.log('app initialized!')
+      return true;
     },
 
-    authenticate() {
+    async authenticate() {
       const router = useRouter();
 
       if (!Cookies.get('XSRF-TOKEN')) {
         setCSRFToken();
       }
 
-      axiosInstance.get('/user')
+      await axiosInstance.get('/user')
         .then(({ data }: AxiosResponse<User>) => {
           this.setUser(data)
-
         })
         .catch(_ => {
           router.push('login');
