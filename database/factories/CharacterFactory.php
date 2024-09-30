@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Ability;
-use App\Models\Character;
-use App\Models\User;
+use App\Enums\CharacterClasses;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,36 +18,11 @@ class CharacterFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
             'name' => $this->faker->name,
-            'class' => $this->faker->randomElement(['Ranger', 'Fighter', 'Druid', 'Monk', 'Cleric', 'Paladin', 'Barbarian']),
-            'level' => 1,
+            'class' => $this->faker->randomElement(CharacterClasses::values()),
             'image_url' => $this->faker->imageUrl(400),
+            'description' => $this->faker->paragraph(),
         ];
     }
-
-    public function configure(): static
-    {
-        return $this->afterMaking(function (Character $character) {
-                //
-            })->afterCreating(function (Character $character) {
-                $character->abilities()->saveMany([
-                    Ability::factory()->strength()->make(),
-                    Ability::factory()->constitution()->create(['character_id' => $character->id]),
-                    Ability::factory()->dexterity()->create(['character_id' => $character->id]),
-                    Ability::factory()->wisdom()->create(['character_id' => $character->id]),
-                    Ability::factory()->intelligence()->create(['character_id' => $character->id]),
-                    Ability::factory()->charisma()->create(['character_id' => $character->id]),
-                ]);
-            });
-    }
-
-    public function forUser(User $user): Factory
-    {
-        return $this->state(function (array $attributes) use ($user) {
-            return [
-                'user_id' => $user->id,
-            ];
-        });
-    }
 }
+

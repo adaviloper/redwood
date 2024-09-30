@@ -52,14 +52,4 @@ class CharacterController extends Controller
     {
         return $character->delete();
     }
-
-    public function select(Request $request, Character $character)
-    {
-        /** @var User $user */
-        $user = auth()->user();
-        $user->characters()->attach($character);
-        return response([
-            'character' => $character,
-        ]);
-    }
 }

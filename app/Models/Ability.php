@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Character;
+use App\Models\PlayerCharacter;
 use Database\Factories\AbilityFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,11 +16,11 @@ class Ability extends Model
     use HasFactory;
 
     public $fillable = [
-        'character_id',
+        'player_character_id',
     ];
 
     public function character(): BelongsTo
     {
-        return $this->belongsTo(Character::class);
+        return $this->belongsTo(PlayerCharacter::class);
     }
 }

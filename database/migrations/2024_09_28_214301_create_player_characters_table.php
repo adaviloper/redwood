@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('character_user', function (Blueprint $table) {
+        Schema::create('player_characters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('character_id');
+            $table->foreignId('user_id')->index()->constrained();
+            $table->foreignId('character_id')->index()->constrained();
+            $table->unsignedInteger('hp');
+            $table->unsignedInteger('max_hp');
+            $table->unsignedInteger('level');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('character_user');
+        Schema::dropIfExists('player_characters');
     }
 };

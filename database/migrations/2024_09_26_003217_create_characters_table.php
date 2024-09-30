@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('class');
-            $table->unsignedInteger('level');
             $table->string('image_url');
+            $table->string('description');
             $table->timestamps();
         });
     }
