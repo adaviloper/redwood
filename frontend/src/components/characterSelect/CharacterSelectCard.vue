@@ -18,7 +18,7 @@ const selectCharacter = () => {
       router.push({
         name: 'player-character-detail',
         params: {
-          id: response.data.character.id
+          id: response.data.player_character.id
         }
       });
     })

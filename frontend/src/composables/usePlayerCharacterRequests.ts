@@ -3,11 +3,11 @@ import axiosInstance from "@/utilities/api"
 import type { AxiosResponse } from "axios"
 
 export interface PlayerCharacterIndexResponse {
-  characters: PlayerCharacter[];
+  player_characters: PlayerCharacter[];
 }
 
 export interface ShowPlayerCharacterResponse {
-  character: PlayerCharacter;
+  player_character: PlayerCharacter;
 }
 
 export interface StorePlayerCharacterRequest {
@@ -15,7 +15,7 @@ export interface StorePlayerCharacterRequest {
 }
 
 export interface StorePlayerCharacterResponse {
-  character: PlayerCharacter;
+  player_character: PlayerCharacter;
 }
 
 export function usePlayerCharacterRequests() {

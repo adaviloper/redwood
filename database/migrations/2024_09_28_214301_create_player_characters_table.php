@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->index()->constrained();
             $table->foreignId('character_id')->index()->constrained();
+            $table->string('type')->default('default');
             $table->unsignedInteger('hp');
             $table->unsignedInteger('max_hp');
             $table->unsignedInteger('level');

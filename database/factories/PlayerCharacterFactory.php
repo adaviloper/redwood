@@ -26,19 +26,19 @@ class PlayerCharacterFactory extends Factory
         ];
     }
 
-    public function configure(): static
-    {
-        return $this->afterMaking(function (PlayerCharacter $playerCharacter) {
-                //
-            })->afterCreating(function (PlayerCharacter $playerCharacter) {
-                $playerCharacter->abilities()->saveMany([
-                    Ability::factory()->strength()->make(),
-                    Ability::factory()->constitution()->create(['player_character_id' => $playerCharacter->id]),
-                    Ability::factory()->dexterity()->create(['player_character_id' => $playerCharacter->id]),
-                    Ability::factory()->wisdom()->create(['player_character_id' => $playerCharacter->id]),
-                    Ability::factory()->intelligence()->create(['player_character_id' => $playerCharacter->id]),
-                    Ability::factory()->charisma()->create(['player_character_id' => $playerCharacter->id]),
-                ]);
-            });
-    }
+    // public function configure(): static
+    // {
+    //     return $this->afterMaking(function (PlayerCharacter $playerCharacter) {
+    //             //
+    //         })->afterCreating(function (PlayerCharacter $playerCharacter) {
+    //             $playerCharacter->abilities()->saveMany([
+    //                 Ability::factory()->strength()->make(),
+    //                 Ability::factory()->constitution()->create(['player_character_id' => $playerCharacter->id]),
+    //                 Ability::factory()->dexterity()->create(['player_character_id' => $playerCharacter->id]),
+    //                 Ability::factory()->wisdom()->create(['player_character_id' => $playerCharacter->id]),
+    //                 Ability::factory()->intelligence()->create(['player_character_id' => $playerCharacter->id]),
+    //                 Ability::factory()->charisma()->create(['player_character_id' => $playerCharacter->id]),
+    //             ]);
+    //         });
+    // }
 }

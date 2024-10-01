@@ -16,7 +16,10 @@ class Ability extends Model
     use HasFactory;
 
     public $fillable = [
+        'name',
         'player_character_id',
+        'type',
+        'value',
     ];
 
     public function character(): BelongsTo

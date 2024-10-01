@@ -6,7 +6,7 @@ import type { Character } from '@/types/Character';
 import type { AxiosResponse } from 'axios';
 import type { Nullable } from '@/types/utilities';
 import { useRouter } from 'vue-router';
-import { usePlayerCharacterRequests, type ShowCharacterResponse } from '@/composables/usePlayerCharacterRequests';
+import { usePlayerCharacterRequests, type ShowPlayerCharacterResponse } from '@/composables/usePlayerCharacterRequests';
 import type { PlayerCharacter } from '@/types/PlayerCharacter';
 
 interface Props {
@@ -21,8 +21,8 @@ onMounted(() => {
   console.log('CharacterDetailPage.vue:19');
   const playerCharacterRequests = usePlayerCharacterRequests();
   playerCharacterRequests.find(parseInt(props.id))
-    .then(({ data }: AxiosResponse<ShowCharacterResponse>) => {
-      playerCharacter.value = data.character;
+    .then(({ data }: AxiosResponse<ShowPlayerCharacterResponse>) => {
+      playerCharacter.value = data.player_character;
     })
     .catch(_ => {
       router.push({ name: 'home' })

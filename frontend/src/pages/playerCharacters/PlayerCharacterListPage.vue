@@ -1,0 +1,39 @@
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import type { AxiosResponse } from "axios"
+import CharacterSelectCard from '@/components/characterSelect/CharacterSelectCard.vue';
+import { usePlayerCharacterRequests, type PlayerCharacterIndexResponse } from '@/composables/usePlayerCharacterRequests';
+import type { PlayerCharacter } from '@/types/PlayerCharacter';
+
+const playerCharacters = ref<PlayerCharacter[]>([]);
+
+onMounted(() => {
+  const characterRequests = usePlayerCharacterRequests();
+  characterRequests.all()
+    .then(({ data }: AxiosResponse<PlayerCharacterIndexResponse>) => {
+      playerCharacters.value = data.player_characters;
+    });
+});
+</script>
+
+<template>
+  <div class="px-6">
+    <h1 class="text-4xl">Characters</h1>
+    <div class="columns-3">
+      <div
+        v-for="playerCharacter in playerCharacters"
+        :key="`character-${playerCharacter.character.name}`"
+      >
+        <CharacterSelectCard
+          :character="playerCharacter"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
+.card-component + .card-component {
+  @apply my-4 dark:bg-gray-800
+}
+</style>

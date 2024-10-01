@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CharacterDetailPage from '@/pages/CharacterDetailPage.vue'
-import CharacterSelectPage from '@/pages/CharacterSelectPage.vue'
+import CharacterDetailPage from '@/pages/characters/CharacterDetailPage.vue'
+import CharacterSelectPage from '@/pages/characters/CharacterSelectPage.vue'
+import PlayerCharacterListPage from '@/pages/playerCharacters/PlayerCharacterListPage.vue'
 import IndexPage from '@/pages/IndexPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import { useMainStore } from '@/store'
@@ -23,6 +24,14 @@ const routes = [
     path: '/character-select',
     name: 'character-select',
     component: CharacterSelectPage,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/my-characters',
+    name: 'player-character-list',
+    component: PlayerCharacterListPage,
     meta: {
       requiresAuth: true,
     },

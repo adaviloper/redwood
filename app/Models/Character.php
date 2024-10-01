@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CharacterClasses;
 use Database\Factories\CharacterFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property string $name
- * @property string $class
+ * @property CharacterClasses $class
  * @property int $level
  * @property int $strength
  * @property int $constitution
@@ -25,4 +26,15 @@ use Illuminate\Database\Eloquent\Model;
 class Character extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'class',
+        'image_url',
+        'description',
+    ];
+
+    protected $casts = [
+        'class' => CharacterClasses::class,
+    ];
 }

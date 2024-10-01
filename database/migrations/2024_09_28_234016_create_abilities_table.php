@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('player_character_id')->constrained();
             $table->enum('name', Abilities::values());
             $table->string('type');
-            $table->unsignedInteger('value');
+            $table->integer('value');
             $table->timestamps();
         });
     }

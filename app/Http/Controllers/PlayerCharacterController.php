@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PlayerCharacter\StorePlayerCharacterRequest;
+use App\Models\Character;
 use App\Models\PlayerCharacter;
 use Illuminate\Http\Request;
 
@@ -11,9 +12,14 @@ class PlayerCharacterController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return response([
+            'player_characters' => PlayerCharacter::query()
+                ->where('user_id', $request->user()->id)
+                ->with(['character', 'abilities'])
+                ->get()
+        ]);
     }
 
     /**
@@ -21,16 +27,22 @@ class PlayerCharacterController extends Controller
      */
     public function store(StorePlayerCharacterRequest $request)
     {
+        $character = Character::query()->find($request->input('character_id'));
         $playerCharacter = PlayerCharacter::query()->create([
             'user_id' => $request->user()->id,
             'character_id' => $request->character_id,
+            'type' => $character->class->slug(),
             'hp' => 10,
             'max_hp' => 10,
             'level' => 1,
         ]);
 
+
         return response([
-            'character' => $playerCharacter->load(['character', 'abilities'])
+            'player_character' => $playerCharacter->load([
+                'abilities',
+                'character',
+            ])
         ]);
     }
 
@@ -40,7 +52,7 @@ class PlayerCharacterController extends Controller
     public function show(PlayerCharacter $playerCharacter)
     {
         return response([
-            'character' => $playerCharacter->load('character'),
+            'player_character' => $playerCharacter->load(['abilities', 'character']),
         ]);
     }
 
