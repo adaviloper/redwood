@@ -12,6 +12,13 @@ class SpellKeeper extends PlayerCharacter
     use HasFactory;
     use HasParent;
 
+    const LEVEL_1_MAX_HEALTH = 11;
+    const LEVEL_2_MAX_HEALTH = 16;
+    const LEVEL_3_MAX_HEALTH = 21;
+    const LEVEL_4_MAX_HEALTH = 26;
+    const LEVEL_5_MAX_HEALTH = 31;
+    const LEVEL_6_MAX_HEALTH = 36;
+
     public function abilityValueFor(Abilities $ability): int
     {
         return match($ability) {
@@ -26,13 +33,13 @@ class SpellKeeper extends PlayerCharacter
 
     public function maxHealthAtLevel(int $level): int
     {
-        return match($level) {
-            1 => 11,
-            2 => 16,
-            3 => 21,
-            4 => 26,
-            5 => 31,
-            6 => 36,
+       return match($level) {
+            1 => self::LEVEL_1_MAX_HEALTH,
+            2 => self::LEVEL_2_MAX_HEALTH,
+            3 => self::LEVEL_3_MAX_HEALTH,
+            4 => self::LEVEL_4_MAX_HEALTH,
+            5 => self::LEVEL_5_MAX_HEALTH,
+            6 => self::LEVEL_6_MAX_HEALTH,
         };
     }
 }
