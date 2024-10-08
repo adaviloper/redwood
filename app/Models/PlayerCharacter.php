@@ -70,25 +70,11 @@ class PlayerCharacter extends Model implements NewPlayerContract
 
     public function abilityValueFor(Abilities $ability): int
     {
-        return match($ability) {
-            Abilities::STRENGTH => 0,
-            Abilities::DEXTERITY => 0,
-            Abilities::CONSTITUTION => 0,
-            Abilities::INTELLIGENCE => 0,
-            Abilities::WISDOM => 0,
-            Abilities::CHARISMA => 0,
-        };
+        throw new Exception('Method [abilityValueFor] must be defined in [' . get_class(self::class) . ']');
     }
 
     public function maxHealthAtLevel(int $level): int
     {
-        return match($level) {
-            1 => 10,
-            2 => 14,
-            3 => 18,
-            4 => 23,
-            5 => 27,
-            6 => 32,
-        };
+        throw new Exception('Method [maxHealthAtLevel] must be defined in [' . get_class(self::class) . ']');
     }
 }
