@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import type { AxiosResponse } from "axios"
-import CharacterSelectCard from '@/components/characterSelect/CharacterSelectCard.vue';
 import { usePlayerCharacterRequests, type PlayerCharacterIndexResponse } from '@/composables/usePlayerCharacterRequests';
 import type { PlayerCharacter } from '@/types/PlayerCharacter';
+import PlayerCharacterSelectCard from '@/components/playerCharacterSelect/PlayerCharacterSelectCard.vue';
 
 const playerCharacters = ref<PlayerCharacter[]>([]);
 
@@ -24,8 +24,8 @@ onMounted(() => {
         v-for="playerCharacter in playerCharacters"
         :key="`character-${playerCharacter.character.name}`"
       >
-        <CharacterSelectCard
-          :character="playerCharacter"
+        <PlayerCharacterSelectCard
+          :player-character="playerCharacter"
         />
       </div>
     </div>
