@@ -36,13 +36,13 @@ const items = ref([
   {
     label: 'Logout',
     icon: 'pi pi-palette',
-    visible: () => isGuest.value,
+    visible: () => isAuthenticated.value,
     command: () => { logout() },
   },
   {
     label: 'Login',
     icon: 'pi pi-palette',
-    visible: () => isAuthenticated.value,
+    visible: () => isGuest.value,
     route: { name: 'login' },
   },
   // {

@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, computed } from 'vue';
 import type { AxiosResponse } from "axios"
 import { usePlayerCharacterRequests, type PlayerCharacterIndexResponse } from '@/composables/usePlayerCharacterRequests';
 import type { PlayerCharacter } from '@/types/PlayerCharacter';
-import PlayerCharacterSelectCard from '@/components/playerCharacterSelect/PlayerCharacterSelectCard.vue';
+import PlayerCharacterSelectCard from '@/components/playerCharacter/PlayerCharacterSelectCard.vue';
+import { usePlayerCharacterStore } from '@/store/playerCharacter';
 
-const playerCharacters = ref<PlayerCharacter[]>([]);
+const store = usePlayerCharacterStore();
+
+const playerCharacters = computed<PlayerCharacter[]>(() => store._playerCharacters);
 
 onMounted(() => {
   const characterRequests = usePlayerCharacterRequests();
   characterRequests.all()
     .then(({ data }: AxiosResponse<PlayerCharacterIndexResponse>) => {
-      playerCharacters.value = data.player_characters;
+      store.setPlayerCharacters(data.player_characters)
     });
 });
 </script>

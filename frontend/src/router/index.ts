@@ -5,6 +5,7 @@ import PlayerCharacterListPage from '@/pages/playerCharacters/PlayerCharacterLis
 import IndexPage from '@/pages/IndexPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import { useMainStore } from '@/store'
+import DailyAdventurePage from '@/pages/adventure/DailyAdventurePage.vue'
 
 const routes = [
   {
@@ -45,6 +46,14 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: '/daily-adventure',
+    name: 'daily-adventure',
+    component: DailyAdventurePage,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
@@ -57,7 +66,6 @@ router.beforeEach(async (to, _) => {
   if (!store.isInitialized) {
     await store.initApp()
   }
-  console.log('typescript', store.isAuthenticated, store.user);
   if (to.meta.requiresAuth && !store.isAuthenticated) {
     return { name: 'login' };
   }

@@ -26,10 +26,6 @@ interface State {
   user: Nullable<User>;
 }
 
-interface AuthParams {
-  redirectTo: string;
-}
-
 export const useMainStore = defineStore('main', {
   state: (): State => ({
     debug: import.meta.env.MODE === 'development',
@@ -44,7 +40,6 @@ export const useMainStore = defineStore('main', {
       await this.authenticate();
 
       this.isInitialized = true
-      console.log('app initialized!')
       return true;
     },
 
