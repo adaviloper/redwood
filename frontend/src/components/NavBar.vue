@@ -76,7 +76,7 @@ const logout = async () => {
 </script>
 
 <template>
-  <nav class="bg-white shadow dark:bg-gray-800">
+  <nav class="bg-white shadow dark:bg-gray-800 mb-6">
     <div class="card">
       <Menubar :model="items">
         <template #item="{ item, props, hasSubmenu }">

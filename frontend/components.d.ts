@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AbilityScoreBlock: typeof import('./src/components/AbilityScoreBlock.vue')['default']
     CharacterSelectCard: typeof import('./src/components/characterSelect/CharacterSelectCard.vue')['default']
+    DailyScene: typeof import('./src/components/scene/DailyScene.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     ImageCard: typeof import('./src/components/layout/ImageCard.vue')['default']
     Inventory: typeof import('./src/components/Inventory.vue')['default']
@@ -17,6 +18,7 @@ declare module 'vue' {
     PlayerCharacterSideBar: typeof import('./src/components/playerCharacter/PlayerCharacterSideBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Scene: typeof import('./src/components/scene/Scene.vue')['default']
+    ScenarioOptions: typeof import('./src/components/scene/ScenarioOptions.vue')['default']
+    ScenarioSteps: typeof import('./src/components/scene/ScenarioSteps.vue')['default']
   }
 }
