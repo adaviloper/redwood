@@ -1,14 +1,30 @@
 <script setup lang="ts">
-import type { Step } from '@/types/Scenario';
+import type { Step, StepId, StepsList } from '@/types/Scenario';
+import ScenarioStep from './ScenarioStep.vue';
+import ScenarioOption from './ScenarioOption.vue';
 
 type Props = {
-  steps: Step[];
+  steps: StepsList;
   indent?: number;
+  startingStep: StepId;
 };
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   indent: 0,
 });
+
+const getSteps = (key: StepId): Step[] => {
+  if (props.steps[`${key}`] === null) {
+    return [];
+  }
+  const stepsList = [];
+  stepsList.push(props.steps[`${key}`])
+  const nextKey = props.steps[`${key}`].next
+  if (nextKey && props.steps[`${nextKey}`]) {
+    stepsList.push(props.steps[`${nextKey}`])
+  }
+  return stepsList;
+};
 </script>
 
 <template>
@@ -18,29 +34,18 @@ withDefaults(defineProps<Props>(), {
       :class="`ml-${indent} pl-${indent}`"
     >
       <div
-        v-for="(step, stepIndex) in steps"
-        :key="`step-${stepIndex}`"
+        v-for="(step, stepId) in getSteps(props.startingStep)"
+        :key="`step-${stepId}`"
       >
-        <div v-if="step.options.length === 1">
-          {{ stepIndex + 1 }}: {{ step.options[0].copy }}
-        </div>
-
-        <div v-else>
-          <div
-            v-for="(option, optionIndex) in step.options"
-            :key="`option-${optionIndex}`"
-          >
-            <div v-if="option.copy">
-              {{ stepIndex === 1 ? `${stepIndex + 1}.` : '' }}{{ optionIndex + 1 }}: {{ option.copy }}
-            </div>
-
-            <ScenarioSteps
-              v-if="option.steps"
-              :steps="option.steps"
-              :indent="stepIndex + 2"
-            />
-          </div>
-        </div>
+        <ScenarioOption
+          v-if="step.options"
+          :step-id="startingStep"
+          :step="step"
+        />
+        <ScenarioStep
+          v-if="!step.options"
+          :step="step"
+        />
       </div>
     </div>
   </div>

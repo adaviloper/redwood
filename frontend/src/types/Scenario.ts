@@ -1,15 +1,25 @@
 import type { Nullable } from "./utilities";
 
+export type StepId = string;
+
 export type Step = {
-  options: [Option] | Option[];
+  label: string;
+  copy: string;
+  options?: Option[];
+  next?: StepId;
+};
+
+export type StepsList = {
+  [key: StepId]: Step;
 };
 
 export type Option = {
-  copy?: Nullable<string>;
-  steps?: Nullable<Step[]>;
+  copy: Nullable<string>;
+  next?: StepId;
 };
 
 export type Scenario = {
   narrative: string;
-  steps: Step[];
+  steps: StepsList;
+  startingStep: StepId;
 };

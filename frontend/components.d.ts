@@ -18,7 +18,9 @@ declare module 'vue' {
     PlayerCharacterSideBar: typeof import('./src/components/playerCharacter/PlayerCharacterSideBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScenarioOption: typeof import('./src/components/scene/ScenarioOption.vue')['default']
     ScenarioOptions: typeof import('./src/components/scene/ScenarioOptions.vue')['default']
+    ScenarioStep: typeof import('./src/components/scene/ScenarioStep.vue')['default']
     ScenarioSteps: typeof import('./src/components/scene/ScenarioSteps.vue')['default']
   }
 }

@@ -9,39 +9,52 @@ const router = useRouter();
 
 const scene: Scenario = {
   narrative: 'Some story',
-  steps: [
-    {
+  startingStep: 'bb',
+  steps: {
+    aa: { // Step 1
+      label: 'Step 1',
+      copy: 'Step 1 options',
       options: [
         {
-          copy: 'Option 1',
+          copy: 'Option A',
         },
         {
-          copy: 'Option 2',
-          steps: [
-            {
-              options: [
-                {
-                  copy: 'Step 2.1',
-                  steps: [
-                    {
-                      options: [
-                        {
-                          copy: 'Option 2.1.1'
-                        }
-                      ]
-                    }
-                  ],
-                },
-                {
-                  copy: 'Step 2.2'
-                }
-              ],
-            }
-          ]
+          copy: 'Option B',
+          next: 'bb',
         },
-      ]
-    }
-  ],
+      ],
+      next: 'dd',
+    },
+    bb: {
+      label: 'Option B steps',
+      copy: 'Some copy',
+      options: [
+        {
+          copy: 'Option 1.B.1',
+          next: 'cc',
+        },
+        {
+          copy: 'Option 1.B.2',
+        },
+      ],
+    },
+    cc: {
+      label: 'Steps 1.B.1',
+      copy: 'Copylkjsdf',
+      options: [
+        {
+          copy: 'Option 1.B.1.1',
+        },
+        {
+          copy: 'Option 1.B.1.2',
+        }
+      ],
+    },
+    dd: {
+      label: 'Step 2',
+      copy: 'Copylkjsdf',
+    },
+  },
 };
 
 if (store.selectedPlayerCharacter === null) {

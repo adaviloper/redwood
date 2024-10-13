@@ -29,7 +29,10 @@ const beginTodaysAdventure = () => {
         {{ scenario.narrative }}
       </div>
       <div class="scene-steps">
-        <ScenarioSteps :steps="scenario.steps" />
+        <ScenarioSteps
+          :steps="scenario.steps"
+          :starting-step="scenario.startingStep"
+        />
       </div>
     </div>
   </div>
