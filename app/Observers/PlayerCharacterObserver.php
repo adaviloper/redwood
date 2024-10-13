@@ -9,7 +9,7 @@ class PlayerCharacterObserver
 {
     public function creating(PlayerCharacter $playerCharacter): void
     {
-        $playerCharacter->max_hp = $playerCharacter->maxHealthAtLevel(1);
+        $playerCharacter->max_hp = $playerCharacter->getChildClass()->maxHealthAtLevel(1);
         $playerCharacter->hp = $playerCharacter->max_hp;
     }
 
@@ -22,7 +22,7 @@ class PlayerCharacterObserver
             $playerCharacter->abilities()->create([
                 'name' => $ability->value,
                 'type' => $ability->type(),
-                'value' => $playerCharacter->abilityValueFor($ability),
+                'value' => $playerCharacter->getChildClass()->abilityValueFor($ability),
             ]);
         }
     }

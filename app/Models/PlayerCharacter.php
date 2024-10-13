@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Exception;
+use Illuminate\Support\Str;
 use Parental\HasChildren;
 
 /**
@@ -53,6 +54,12 @@ class PlayerCharacter extends Model implements NewPlayerContract
         'default' => self::class,
     ];
 
+    public function getChildClass(): PlayerCharacter
+    {
+        $class = $this->childTypes[Str::slug($this->character->class->value)];
+        return new $class;
+    }
+
     public function abilities(): HasMany
     {
         return $this->hasMany(Ability::class);
@@ -70,11 +77,11 @@ class PlayerCharacter extends Model implements NewPlayerContract
 
     public function abilityValueFor(Abilities $ability): int
     {
-        throw new Exception('Method [abilityValueFor] must be defined in [' . get_class(self::class) . ']');
+        throw new Exception('Method [abilityValueFor] must be defined in [' . self::class . ']');
     }
 
     public function maxHealthAtLevel(int $level): int
     {
-        throw new Exception('Method [maxHealthAtLevel] must be defined in [' . get_class(self::class) . ']');
+        throw new Exception('Method [maxHealthAtLevel] must be defined in [' . self::class . ']');
     }
 }

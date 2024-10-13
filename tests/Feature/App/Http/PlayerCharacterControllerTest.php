@@ -3,7 +3,6 @@
 namespace Tests\Feature\App\Http;
 
 use App\Enums\Abilities;
-use App\Enums\CharacterClasses;
 use App\Models\Character;
 use App\Models\PlayerCharacter;
 use App\Models\User;
