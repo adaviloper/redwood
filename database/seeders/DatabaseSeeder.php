@@ -14,15 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $this->call(RolesSeeder::class);
+        $this->call(PermissionsSeeder::class);
+        /** @var User $user */
+        $user = User::factory()->create([
             'username' => 'user',
             'password' => Hash::make('password'),
         ]);
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $user->assignRole('admin');
 
         $this->call(ItemSeeder::class);
         $this->call(CharacterSeeder::class);

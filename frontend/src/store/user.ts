@@ -56,8 +56,8 @@ export const useUserStore = defineStore('user', {
     hasPermission: (state) => {
       return (permissionName: string) => {
         state.user
-          ?.permissions
-          .find(permission => permission.name === permissionName)?.value
+          ?.all_permissions
+          .find(permission => permission.name === permissionName)
       }
     },
   },

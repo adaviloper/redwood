@@ -5,6 +5,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PlayerCharacterController;
 use App\Http\Controllers\ScenarioController;
 use App\Models\Scenario;
+use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +33,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->can('delete', 'scenario');
 });
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return response($request->user());
+Route::middleware(['auth:sanctum'])->name('authenticated-user')->get('/user', function (Request $request) {
+    /** @var User $user */
+    $user = $request->user();
+    $user->setAttribute('all_permissions', $user->getAllPermissions());
+
+    return response($user);
 });

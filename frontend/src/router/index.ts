@@ -55,6 +55,14 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: '/admin/scenarios',
+    name: 'admin.scenarios',
+    component: DailyAdventurePage,
+    meta: {
+      requiresPermission: 'view-any-scenario',
+    },
+  },
 ];
 
 const router = createRouter({
@@ -73,6 +81,13 @@ router.beforeEach(async (to, _) => {
   }
   if (to.meta.requiresGuest && !userStore.isGuest) {
     return { name: 'home' };
+  }
+
+  if (to.meta.requiresPermission) {
+    console.log('typescript:86', to.meta.requiresPermission);
+    if (userStore.hasPermission(to.meta.requiresPermission)) {
+      //
+    }
   }
 })
 
