@@ -23,14 +23,14 @@
 <script setup lang="ts">
 import { FormKit } from '@formkit/vue';
 import { useRouter } from 'vue-router';
-import { useMainStore } from '@/store';
+import { useUserStore } from '@/store/user';
 
 interface LoginRequest {
     username: string;
     email: string;
 }
 
-const store = useMainStore();
+const store = useUserStore();
 const router = useRouter();
 
 const login = async (payload: LoginRequest) => {

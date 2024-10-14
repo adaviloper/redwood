@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from 'vue-router';
 import { computed, ref } from "vue";
-import { useMainStore } from '@/store';
 import Menubar from 'primevue/menubar';
+import { useUserStore } from '@/store/user';
 
 const router = useRouter();
-const store = useMainStore();
+const store = useUserStore();
 
 const isAuthenticated = computed(() => {
   return store.isAuthenticated;

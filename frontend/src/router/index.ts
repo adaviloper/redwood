@@ -6,6 +6,7 @@ import IndexPage from '@/pages/IndexPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import { useMainStore } from '@/store'
 import DailyAdventurePage from '@/pages/adventure/DailyAdventurePage.vue'
+import { useUserStore } from '@/store/user'
 
 const routes = [
   {
@@ -62,14 +63,15 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _) => {
-  const store = useMainStore();
-  if (!store.isInitialized) {
-    await store.initApp()
+  const appStore = useMainStore();
+  const userStore = useUserStore();
+  if (!appStore.isInitialized) {
+    await appStore.initApp()
   }
-  if (to.meta.requiresAuth && !store.isAuthenticated) {
+  if (to.meta.requiresAuth && !userStore.isAuthenticated) {
     return { name: 'login' };
   }
-  if (to.meta.requiresGuest && !store.isGuest) {
+  if (to.meta.requiresGuest && !userStore.isGuest) {
     return { name: 'home' };
   }
 })
