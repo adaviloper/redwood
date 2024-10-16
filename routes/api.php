@@ -36,7 +36,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::middleware(['auth:sanctum'])->name('authenticated-user')->get('/user', function (Request $request) {
     /** @var User $user */
     $user = $request->user();
-    $user->setAttribute('all_permissions', $user->getAllPermissions());
+    $permissions = $user->getAllPermissions();
 
-    return response($user);
+    $userResponse = $user->toArray();
+    data_set($userResponse, 'permissions', $permissions);
+
+    return response($userResponse);
 });

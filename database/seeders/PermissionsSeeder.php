@@ -12,10 +12,16 @@ class PermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $permission = Permission::create([
-            'name' => 'view-any-scenario',
-        ]);
+        collect([
+            'view-any-scenario',
+            'view-scenario',
+            'update-scenarios',
+        ])->each(function (string $permissionName) {
+                $permission = Permission::create([
+                    'name' => $permissionName,
+                ]);
 
-        $permission->assignRole('admin');
+                $permission->assignRole('admin');
+            });
     }
 }

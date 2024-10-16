@@ -23,7 +23,9 @@ class UserRequestTest extends TestCase
         $this->actingAs($user);
 
         $response = $this->getJson(route('authenticated-user'));
-        $permissions = collect($response->json('all_permissions'))->pluck('name');
+        $permissions = collect($response->json('permissions'))
+            ->pluck('name')
+        ;
 
         $this->assertContains('view-any-scenarios', $permissions);
     }

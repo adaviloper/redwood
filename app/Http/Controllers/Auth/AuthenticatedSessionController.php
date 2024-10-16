@@ -24,8 +24,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = $request->user();
+        $permissions = $user->getAllPermissions();
+
+        $userResponse = $user->toArray();
+        data_set($userResponse, 'permissions', $permissions);
+
         return response([
-            'user' => $request->user(),
+            'user' => $userResponse,
         ]);
     }
 
