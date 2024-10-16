@@ -2,7 +2,6 @@
 import { onMounted, ref } from 'vue';
 import Inventory from '@/components/Inventory.vue';
 import AbilityScoreBlock from '@/components/AbilityScoreBlock.vue';
-import type { Character } from '@/types/Character';
 import type { AxiosResponse } from 'axios';
 import type { Nullable } from '@/types/utilities';
 import { useRouter } from 'vue-router';

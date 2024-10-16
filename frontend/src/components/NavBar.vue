@@ -34,6 +34,16 @@ const items = ref([
     visible: () => isAuthenticated.value,
   },
   {
+    label: 'Admin',
+    visible: () => isAuthenticated.value,
+    items: [
+      {
+        label: 'Scenarios',
+        route: { name: 'admin.scenarios.index' },
+      }
+    ],
+  },
+  {
     label: 'Logout',
     icon: 'pi pi-palette',
     visible: () => isAuthenticated.value,

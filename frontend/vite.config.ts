@@ -1,6 +1,7 @@
-import vue from '@vitejs/plugin-vue'
-import { fileURLToPath, URL } from 'node:url'
-import Components from 'unplugin-vue-components/vite'
+import vue from '@vitejs/plugin-vue';
+import { fileURLToPath, URL } from 'node:url';
+import Components from 'unplugin-vue-components/vite';
+import { PrimeVueResolver } from 'unplugin-vue-components/resolvers';
 import { defineConfig } from 'vite'
 import { version as pkgVersion } from './package.json'
 
@@ -14,6 +15,7 @@ export default defineConfig({
     vue(),
     Components({
       dts: 'components.d.ts',
+      resolvers: [ PrimeVueResolver() ],
     }),
   ],
   resolve: {

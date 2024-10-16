@@ -6,6 +6,8 @@ import IndexPage from '@/pages/IndexPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import { useMainStore } from '@/store'
 import DailyAdventurePage from '@/pages/adventure/DailyAdventurePage.vue'
+import ScenarioListPage from '@/pages/admin/scenarios/ScenarioListPage.vue'
+import ScenarioEditPage from '@/pages/admin/scenarios/ScenarioEditPage.vue'
 import { useUserStore } from '@/store/user'
 
 const routes = [
@@ -57,10 +59,19 @@ const routes = [
   },
   {
     path: '/admin/scenarios',
-    name: 'admin.scenarios',
-    component: DailyAdventurePage,
+    name: 'admin.scenarios.index',
+    component: ScenarioListPage,
     meta: {
       requiresPermission: 'view-any-scenario',
+    },
+  },
+  {
+    path: '/admin/scenarios/:scenarioId/edit',
+    name: 'admin.scenarios.edit',
+    props: true,
+    component: ScenarioEditPage,
+    meta: {
+      requiresPermission: 'update-scenarios',
     },
   },
 ];
@@ -84,7 +95,6 @@ router.beforeEach(async (to, _) => {
   }
 
   if (to.meta.requiresPermission) {
-    console.log('typescript:86', to.meta.requiresPermission);
     if (userStore.hasPermission(to.meta.requiresPermission)) {
       //
     }

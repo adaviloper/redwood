@@ -53,10 +53,10 @@ export const useUserStore = defineStore('user', {
       return state.user !== null;
     },
 
-    hasPermission: (state) => {
+    hasPermission: (state): (permissionName: string) => boolean => {
       return (permissionName: string) => {
-        state.user
-          ?.all_permissions
+        return !!state.user
+          ?.permissions
           .find(permission => permission.name === permissionName)
       }
     },

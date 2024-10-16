@@ -1,34 +1,48 @@
-import type { Scenario } from "@/types/Scenario";
+import type { Scenario, ScenarioId } from "@/types/Scenario";
 import axiosInstance from "@/utilities/api"
 import type { AxiosResponse } from "axios"
 
-export interface PlayerCharacterIndexResponse {
-  player_characters: Scenario[];
+export interface ScenarioIndexResponse {
+  scenarios: Scenario[];
 }
 
-export interface ShowPlayerCharacterResponse {
+export interface ShowScenarioResponse {
   scenario: Scenario;
 }
 
-export interface StorePlayerCharacterRequest {
-  character_id: number;
+export interface StoreScenarioRequest {
+  scenario_id: ScenarioId;
 }
 
-export interface StorePlayerCharacterResponse {
+export interface StoreScenarioResponse {
   scenario: Scenario;
 }
 
-export function usePlayerCharacterRequests() {
+export interface UpdateScenarioRequest {
+  scenarioId: ScenarioId;
+  data: Partial<Scenario>;
+}
+
+export interface UpdateScenarioResponse {
+  scenario: Scenario;
+}
+
+export function useScenarioRequests() {
   return {
-    all(): Promise<AxiosResponse<PlayerCharacterIndexResponse>> {
+    all(): Promise<AxiosResponse<ScenarioIndexResponse>> {
       return axiosInstance.get('/scenarios')
     },
-    find(id: number): Promise<AxiosResponse<ShowPlayerCharacterResponse>> {
+    find(id: ScenarioId): Promise<AxiosResponse<ShowScenarioResponse>> {
       return axiosInstance.get(`/scenarios/${id}`)
     },
-    create(payload: StorePlayerCharacterRequest): Promise<AxiosResponse<StorePlayerCharacterResponse>> {
+    create(payload: StoreScenarioRequest): Promise<AxiosResponse<StoreScenarioResponse>> {
       return axiosInstance.post('/scenarios', {
-        character_id: payload.character_id
+        scenario_id: payload.scenario_id
+      })
+    },
+    update(payload: UpdateScenarioRequest): Promise<AxiosResponse<StoreScenarioResponse>> {
+      return axiosInstance.put(`/scenarios/${payload.scenarioId}`, {
+        ...payload.data
       })
     },
   }
