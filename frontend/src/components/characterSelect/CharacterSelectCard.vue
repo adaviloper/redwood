@@ -34,26 +34,27 @@ const selectCharacter = () => {
         type="form"
         @submit="selectCharacter"
       >
-      <div>
-        <span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
-          {{ character.class }}
-        </span>
+        <div>
+          <span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
+            {{ character.class }}
+          </span>
 
-        <a
-          href="#"
-          class="block mt-2 text-xl font-semibold transition-colors duration-300 transform hover:text-gray-600 hover:underline"
-          tabindex="0"
-          role="link"
-        >
-          {{ character.name }}
-        </a>
+          <a
+            href="#"
+            class="block mt-2 text-xl font-semibold transition-colors duration-300 transform hover:text-gray-600 hover:underline"
+            tabindex="0"
+            role="link"
+          >
+            {{ character.name }}
+          </a>
 
-        <AbilityScoreBlock
-          :abilities="character.abilities"
-        />
+          <AbilityScoreBlock
+            v-if="character.abilities"
+            :abilities="character.abilities"
+          />
 
           <p>{{ character.description }}</p>
-      </div>
+        </div>
       </FormKit>
     </ImageCard>
   </div>
