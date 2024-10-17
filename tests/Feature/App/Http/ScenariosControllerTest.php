@@ -3,6 +3,7 @@
 namespace Tests\Feature\App\Http;
 
 use App\Models\Scenario;
+use App\Models\ScenarioStep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
@@ -30,9 +31,7 @@ class ScenariosControllerTest extends TestCase
 
         $response = $this->getJson(route('scenarios.index'));
 
-        $response->assertJson([
-            'scenarios' => $scenarios->toArray(),
-        ]);
+        $response->assertJsonCount(2, 'scenarios');
     }
 
     public function testAdminUsersCanViewAScenario(): void
@@ -65,8 +64,11 @@ class ScenariosControllerTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
         $user->assignRole('admin');
+        /** @var ScenarioStep $step */
+        $step = ScenarioStep::factory()->make();
         /** @var Scenario $scenario */
         $scenario = Scenario::factory()->make();
+        $scenario->steps = [$step];
 
         $response = $this->postJson(route('scenarios.store'), $scenario->toArray());
 

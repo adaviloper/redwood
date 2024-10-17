@@ -49,7 +49,7 @@ const getFormattedSteps = (steps: Step[], id: unknown) => {
       <FormKit
         v-if="rootRepeaterValues?.steps && Array.isArray(rootRepeaterValues.steps) && rootRepeaterValues.steps.length > 1"
         type="dropdown"
-        name="reference"
+        name="scenario_step_id"
         label="Referenced Step"
         :options="getFormattedSteps(rootRepeaterValues.steps, currentStep.id)"
       >

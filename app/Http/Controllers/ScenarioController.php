@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreScenarioRequest;
+use App\Data\Scenario\StoreScenarioData;
+use App\Http\Requests\Scenario\StoreScenarioRequest;
 use App\Http\Requests\UpdateScenarioRequest;
 use App\Models\Scenario;
+use App\Services\ScenarioService;
+use Illuminate\Http\Request;
 
 class ScenarioController extends Controller
 {
@@ -21,9 +24,14 @@ class ScenarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreScenarioRequest $request)
+    public function store(StoreScenarioRequest $request, ScenarioService $scenarioService)
     {
-        $scenario = Scenario::query()->create($request->validated());
+        $scenario = Scenario::query()->create(
+            $request->only(['narrative', 'date'])
+        );
+        $scenarioService->store($scenario, StoreScenarioData::validateAndCreate([
+            'steps' => $request->input('steps'),
+        ]));
         return $scenario;
     }
 

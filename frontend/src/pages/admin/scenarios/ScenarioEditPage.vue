@@ -107,9 +107,9 @@ const stepTypes = [
         </FormKit>
       </div>
 
-      <pre>
-        {{ value }}
-      </pre>
+      <!-- <pre> -->
+      <!--   {{ value }} -->
+      <!-- </pre> -->
     </FormKit>
   </div>
 </template>

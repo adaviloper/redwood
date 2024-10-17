@@ -1,0 +1,61 @@
+{
+  "date": "Perferendis voluptate.",
+  "narrative": "Delectus itaque quam hic velit dicta. Cumque quia est quis. Ut accusantium nihil sint consectetur nihil suscipit vero. Velit velit non rerum voluptates occaecati ex rerum.\n\nTempore dolorum nemo aut delectus. Voluptatem velit voluptatibus dolore dolore.",
+  "steps": [
+    {
+      "id": "f0fdee38-8a6c-42bd-8007-d8bdb18b7f50",
+      "type": "step",
+      "copy": "Step 1",
+      "action": {
+        "type": "roll",
+        "dice": "d20",
+        "ability": "strength"
+      },
+      "scenario_step_id": "ae0110d3-22c9-490f-aee1-dcc46de72927"
+    },
+    {
+      "id": "ae0110d3-22c9-490f-aee1-dcc46de72927",
+      "type": "option",
+      "copy": "Step 2",
+      "scenario_step_id": "2f20bcde-c022-4a90-ac2a-838db36ed456",
+      "options": [
+        {
+          "reference": "a7f9ef6e-84f3-4343-a5b7-ebb8f2e37fec"
+        },
+        {
+          "reference": "f3e944c9-6b05-4f17-93d3-dad0d6106648"
+        }
+      ]
+    },
+    {
+      "id": "a7f9ef6e-84f3-4343-a5b7-ebb8f2e37fec",
+      "type": "step",
+      "copy": "Option 2.A",
+      "action": {
+        "type": "roll",
+        "dice": "d20",
+        "ability": "strength"
+      }
+    },
+    {
+      "id": "f3e944c9-6b05-4f17-93d3-dad0d6106648",
+      "type": "step",
+      "copy": "Option 2.B",
+      "action": {
+        "type": "roll",
+        "dice": "d20",
+        "ability": "strength"
+      }
+    },
+    {
+      "id": "2f20bcde-c022-4a90-ac2a-838db36ed456",
+      "type": "step",
+      "copy": "Step 3",
+      "action": {
+        "type": "roll",
+        "dice": "d20",
+        "ability": "strength"
+      }
+    }
+  ]
+}

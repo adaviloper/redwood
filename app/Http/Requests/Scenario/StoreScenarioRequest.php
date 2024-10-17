@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Scenario;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,6 +24,7 @@ class StoreScenarioRequest extends FormRequest
         return [
             'date' => ['required', 'string'],
             'narrative' => ['required', 'string'],
+            'steps' => ['required', 'array'],
         ];
     }
 }
