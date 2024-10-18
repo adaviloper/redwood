@@ -11,4 +11,10 @@ class ScenarioService
     {
         $scenario->steps()->createMany($data->steps->toArray());
     }
+
+    public function update(Scenario $scenario, StoreScenarioData $data): void
+    {
+        $scenario->steps()->delete();
+        $scenario->steps()->createMany($data->steps->toArray());
+    }
 }

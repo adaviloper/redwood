@@ -48,8 +48,11 @@ class ScenarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateScenarioRequest $request, Scenario $scenario)
+    public function update(UpdateScenarioRequest $request, Scenario $scenario, ScenarioService $scenarioService)
     {
+        $scenarioService->update($scenario, StoreScenarioData::validateAndCreate([
+            'steps' => $request->input('steps'),
+        ]));
         $scenario->update($request->validated());
         return $scenario;
     }

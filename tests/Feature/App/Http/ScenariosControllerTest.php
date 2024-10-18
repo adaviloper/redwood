@@ -80,6 +80,7 @@ class ScenariosControllerTest extends TestCase
 
     public function testAdminUsersCanUpdateAScenario(): void
     {
+        $this->withoutExceptionHandling();
         $role = Role::create(['name' => 'admin']);
         $permission = Permission::create(['name' => 'update-scenarios']);
         $role->givePermissionTo($permission);
@@ -92,6 +93,7 @@ class ScenariosControllerTest extends TestCase
 
         $response = $this->putJson(route('scenarios.update', ['scenario' => $scenario]), [
             'narrative' => 'updated text',
+            'steps' => [],
         ]);
 
         $this->assertDatabaseHas('scenarios', [
