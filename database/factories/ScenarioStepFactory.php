@@ -68,4 +68,13 @@ class ScenarioStepFactory extends Factory
             ];
         });
     }
+
+    public function terminalStep(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'scenario_step_id' => null,
+            ];
+        });
+    }
 }

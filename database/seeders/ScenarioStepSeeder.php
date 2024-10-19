@@ -19,18 +19,21 @@ class ScenarioStepSeeder extends Seeder
         $scenarios->each(function (Scenario $scenario) {
             $step3 = ScenarioStep::factory()
                 ->action()
+                ->terminalStep()
                 ->make([
                     'copy' => 'Step 3',
                     'scenario_id' => $scenario->id,
                 ]);
             $optionA = ScenarioStep::factory()
                 ->action()
+                ->terminalStep()
                 ->make([
                     'copy' => 'Option 2A',
                     'scenario_id' => $scenario->id,
                 ]);
             $optionB = ScenarioStep::factory()
                 ->action()
+                ->terminalStep()
                 ->make([
                     'copy' => 'Option 2B',
                     'scenario_id' => $scenario->id,
