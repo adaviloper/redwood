@@ -17,22 +17,22 @@ class ScenarioStepSeeder extends Seeder
         $scenarios = Scenario::query()->get();
 
         $scenarios->each(function (Scenario $scenario) {
+            $step3 = ScenarioStep::factory()
+                ->action()
+                ->make([
+                    'copy' => 'Step 3',
+                    'scenario_id' => $scenario->id,
+                ]);
             $optionA = ScenarioStep::factory()
                 ->action()
-                ->create([
+                ->make([
                     'copy' => 'Option 2A',
                     'scenario_id' => $scenario->id,
                 ]);
             $optionB = ScenarioStep::factory()
                 ->action()
-                ->create([
+                ->make([
                     'copy' => 'Option 2B',
-                    'scenario_id' => $scenario->id,
-                ]);
-            $step3 = ScenarioStep::factory()
-                ->action()
-                ->create([
-                    'copy' => 'Step 3',
                     'scenario_id' => $scenario->id,
                 ]);
             $step2 = ScenarioStep::factory()
@@ -45,17 +45,22 @@ class ScenarioStepSeeder extends Seeder
                     ],
                 ])
                 ->next($step3->id)
-                ->create([
+                ->make([
                     'copy' => 'Step 2',
                     'scenario_id' => $scenario->id,
                 ]);
             $step1 = ScenarioStep::factory()
                 ->action()
                 ->next($step2->id)
-                ->create([
+                ->make([
                     'copy' => 'Step 1',
                     'scenario_id' => $scenario->id,
                 ]);
+            $step1->save();
+            $step2->save();
+            $optionA->save();
+            $optionB->save();
+            $step3->save();
         });
     }
 }
