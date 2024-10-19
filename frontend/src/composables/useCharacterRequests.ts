@@ -11,6 +11,7 @@ export function useCharacterRequests() {
     all(): Promise<AxiosResponse<CharacterResponse>> {
       return axiosInstance.get('/characters')
     },
+
     find(id: number): Promise<AxiosResponse<Character>> {
       return axiosInstance.get(`/characters/${id}`)
     },

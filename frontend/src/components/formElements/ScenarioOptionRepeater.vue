@@ -16,17 +16,6 @@ type Props = {
 
 defineProps<Props>();
 
-const stepTypes = [
-  {
-    label: 'Step',
-    value: 'step',
-  },
-  {
-    label: 'Option',
-    value: 'option',
-  },
-];
-
 const getFormattedSteps = (steps: Step[], id: unknown) => {
   return steps.filter(step => step.id !== id && step.next !== id).map(step => {
     return {

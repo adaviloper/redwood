@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { useAbilityConstants } from '@/composables/useAbilityConstants';
+import type { AbilityName } from '@/types/Ability';
 import { FormKit } from '@formkit/vue';
 
 type Action = {
   type: 'roll',
   dice: 'd4' | 'd6' | 'd8' | 'd10' | 'd12' | 'd20'
-  ability: 'strength' | 'constitution' | 'dexterity' | 'wisdom' | 'intelligence' | 'charisma'
+  ability: AbilityName
 };
 
 type Props = {
@@ -12,6 +14,8 @@ type Props = {
 };
 
 defineProps<Props>();
+
+const abilityConstants = useAbilityConstants();
 </script>
 
 <template>
@@ -70,32 +74,7 @@ defineProps<Props>();
         label="Ability"
         name="ability"
         :value="action.ability"
-        :options="[
-          {
-            value: 'strength',
-            label: 'Strength',
-          },
-          {
-            value: 'dexterity',
-            label: 'Dexterity',
-          },
-          {
-            value: 'constitution',
-            label: 'Constitution',
-          },
-          {
-            value: 'wisdom',
-            label: 'Wisdom',
-          },
-          {
-            value: 'intelligence',
-            label: 'Intelligence',
-          },
-          {
-            value: 'charisma',
-            label: 'Charisma',
-          },
-        ]"
+        :options="abilityConstants.dropdownOptions()"
       />
 
     </div>
