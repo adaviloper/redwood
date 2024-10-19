@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Abilities;
 use App\Enums\StepTypes;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,9 +20,52 @@ class ScenarioStepFactory extends Factory
     {
         return [
             'id' => $this->faker->uuid(),
-            'type' => StepTypes::STEP,
+            'type' => StepTypes::STEP->value,
+            'action' => [],
             'copy' => $this->faker->sentence(4),
             'scenario_step_id' => $this->faker->uuid(),
         ];
+    }
+
+    public function action(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => StepTypes::STEP->value,
+                'options' => null,
+                'action' => [
+                    'type' => 'roll',
+                    'dice' => $this->faker->randomElement([
+                        'd4',
+                        'd6',
+                        'd8',
+                        'd10',
+                        'd12',
+                        'd20',
+                    ]),
+                    'ability' => $this->faker->randomElement(Abilities::values()),
+                ],
+            ];
+        });
+    }
+
+    public function options(array $references): self
+    {
+        return $this->state(function (array $attributes) use ($references) {
+            return [
+                'action' => null,
+                'type' => StepTypes::OPTION->value,
+                'options' => $references,
+            ];
+        });
+    }
+
+    public function next(string $id): self
+    {
+        return $this->state(function (array $attributes) use ($id) {
+            return [
+                'scenario_step_id' => $id,
+            ];
+        });
     }
 }

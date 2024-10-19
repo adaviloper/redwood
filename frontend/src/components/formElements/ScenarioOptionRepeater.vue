@@ -51,6 +51,7 @@ const getFormattedSteps = (steps: Step[], id: unknown) => {
         type="dropdown"
         name="scenario_step_id"
         label="Referenced Step"
+        :value="value.reference"
         :options="getFormattedSteps(rootRepeaterValues.steps, currentStep.id)"
       >
         <option

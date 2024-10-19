@@ -17,7 +17,7 @@ class ScenarioController extends Controller
     public function index()
     {
         return response([
-            'scenarios' => Scenario::query()->get()
+            'scenarios' => Scenario::query()->with('steps')->get()
         ]);
     }
 
@@ -41,7 +41,7 @@ class ScenarioController extends Controller
     public function show(Scenario $scenario)
     {
         return response()->json([
-            'scenario' => $scenario,
+            'scenario' => $scenario->load('steps'),
         ]);
     }
 

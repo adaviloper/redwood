@@ -36,7 +36,7 @@ const getFormattedSteps = (steps: Step[], id: unknown) => {
       name="action"
       label="Action to take"
     >
-      <ActionStepGroup />
+      <ActionStepGroup :action="currentStep.action" />
     </FormKit>
 
     <FormKit
@@ -44,6 +44,7 @@ const getFormattedSteps = (steps: Step[], id: unknown) => {
       type="dropdown"
       name="next"
       label="Next Step"
+      :value="currentStep.scenario_step_id"
       :options="getFormattedSteps(rootRepeaterValues.steps, currentStep?.id)"
     >
       <option
@@ -60,9 +61,10 @@ const getFormattedSteps = (steps: Step[], id: unknown) => {
       :root-repeater-values="rootRepeaterValues"
       :current-step="currentStep"
     />
-    <!---->
+
     <!-- <pre> -->
     <!--   {{ currentStep }} -->
     <!-- </pre> -->
+
   </div>
 </template>

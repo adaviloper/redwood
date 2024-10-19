@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemSeeder::class);
         $this->call(CharacterSeeder::class);
         $this->call(ScenarioSeeder::class);
+        $this->call(ScenarioStepSeeder::class);
     }
 }

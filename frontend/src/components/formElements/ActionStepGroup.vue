@@ -1,6 +1,17 @@
-<script setup>
+<script setup lang="ts">
 import { FormKit } from '@formkit/vue';
 
+type Action = {
+  type: 'roll',
+  dice: 'd4' | 'd6' | 'd8' | 'd10' | 'd12' | 'd20'
+  ability: 'strength' | 'constitution' | 'dexterity' | 'wisdom' | 'intelligence' | 'charisma'
+};
+
+type Props = {
+  action: Action;
+};
+
+defineProps<Props>();
 </script>
 
 <template>
@@ -11,8 +22,8 @@ import { FormKit } from '@formkit/vue';
       <FormKit
         type="dropdown"
         label="Type"
-        value="roll"
         name="type"
+        :value="action?.type"
         :options="[
           {
             value: 'roll',
@@ -24,7 +35,7 @@ import { FormKit } from '@formkit/vue';
       <FormKit
         type="dropdown"
         label="Dice"
-        value="d20"
+        :value="action.dice"
         name="dice"
         :options="[
           {
@@ -58,7 +69,7 @@ import { FormKit } from '@formkit/vue';
         type="dropdown"
         label="Ability"
         name="ability"
-        value="strength"
+        :value="action.ability"
         :options="[
           {
             value: 'strength',

@@ -74,6 +74,7 @@ const stepTypes = [
           name="steps"
           type="repeater"
           label="Steps"
+          :value="scenario.steps"
           :insert-control="true"
           :remove-control="false"
         >
@@ -107,9 +108,6 @@ const stepTypes = [
         </FormKit>
       </div>
 
-      <!-- <pre> -->
-      <!--   {{ value }} -->
-      <!-- </pre> -->
     </FormKit>
   </div>
 </template>

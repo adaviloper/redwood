@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('type', StepTypes::values());
             $table->text('copy');
             $table->json('action')->nullable();
+            $table->json('options')->nullable();
             $table->foreignUuid('scenario_id')
                 ->references('id')
                 ->on('scenarios');
