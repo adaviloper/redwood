@@ -36,7 +36,6 @@ onMounted(() => {
         <PlayerCharacterSideBar :player-character="store.selectedPlayerCharacter" />
       </div>
       <div class="grow-[4] bg-sky-50 content-center">
-        <h1>{{ scenario.date }}</h1>
         <DailyScene :scenario="scenario" />
       </div>
     </div>
