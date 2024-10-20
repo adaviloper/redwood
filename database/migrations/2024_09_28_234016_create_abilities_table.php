@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('abilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('player_character_id')->constrained();
+            $table->foreignId('player_character_id')->constrained()->onDelete('cascade');
             $table->enum('name', Abilities::values());
             $table->string('type');
             $table->integer('value');
