@@ -13,7 +13,6 @@ const props = defineProps<Props>();
 
 const getAbility = (abilityName: AbilityName): Nullable<Ability> => {
   const ability = props.playerCharacter.abilities.find(ability => ability.name === abilityName);
-  console.log('PlayerCharacterSideBar.vue:16', ability);
   if (ability === undefined) {
     return null;
   }

@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Step, StepId } from '@/types/Scenario';
+import type { Step } from '@/types/Scenario';
 import Button from 'primevue/button';
 
 type Props = {
   step: Step;
-  stepId: StepId;
 };
 
 const selected = ref<boolean>(false);
@@ -18,17 +17,17 @@ defineProps<Props>();
 
 <template>
   <div>
-    {{ step.label }}
-    <Button :class="`select-options-${stepId}`" @click="select">Select</Button>
+    {{ step.copy }}
+    <Button :class="`select-options-${step.id}`" @click="select">Select</Button>
     <div
-      v-if="selected || !step.next"
+      v-if="selected || !step.scenario_step_id"
       class="ml-4"
     >
       <div
         v-for="(option, index) in step.options"
         :key="`option-${index}`"
       >
-        {{ option.copy }}
+        {{ option.reference }}
         <Button type="submit">Select</Button>
       </div>
     </div>

@@ -32,14 +32,21 @@ export function useScenarioRequests() {
     all(): Promise<AxiosResponse<ScenarioIndexResponse>> {
       return axiosInstance.get('/scenarios')
     },
+
     find(id: ScenarioId): Promise<AxiosResponse<ShowScenarioResponse>> {
       return axiosInstance.get(`/scenarios/${id}`)
     },
+
+    daily(): Promise<AxiosResponse<ShowScenarioResponse>> {
+      return axiosInstance.get('/scenarios/daily')
+    },
+
     create(payload: StoreScenarioRequest): Promise<AxiosResponse<StoreScenarioResponse>> {
       return axiosInstance.post('/scenarios', {
         scenario_id: payload.scenario_id
       })
     },
+
     update(payload: UpdateScenarioRequest): Promise<AxiosResponse<StoreScenarioResponse>> {
       return axiosInstance.put(`/scenarios/${payload.scenarioId}`, {
         ...payload.data

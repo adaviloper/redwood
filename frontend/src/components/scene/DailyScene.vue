@@ -31,7 +31,6 @@ const beginTodaysAdventure = () => {
       <div class="scene-steps">
         <ScenarioSteps
           :steps="scenario.steps"
-          :starting-step="scenario.startingStep"
         />
       </div>
     </div>

@@ -14,6 +14,7 @@ type Step = {
 type Props = {
   rootRepeaterValues: FormKitGroupValue;
   currentStep?: Record<string, any>;
+  order: number;
 };
 
 defineProps<Props>();
@@ -44,7 +45,7 @@ const getFormattedSteps = (steps: Step[], id: unknown) => {
       type="dropdown"
       name="next"
       label="Next Step"
-      :value="currentStep.scenario_step_id"
+      :value="currentStep?.scenario_step_id"
       :options="getFormattedSteps(rootRepeaterValues.steps, currentStep?.id)"
     >
       <option

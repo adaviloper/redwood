@@ -1,29 +1,49 @@
 <script setup lang="ts">
-import type { Step, StepId, StepsList } from '@/types/Scenario';
-import ScenarioStep from './ScenarioStep.vue';
-import ScenarioOption from './ScenarioOption.vue';
+import { computed, ref } from 'vue';
+import Button from 'primevue/button';
+import type { Option, Step, StepId } from '@/types/Scenario';
+import ActionStep from './ActionStep.vue';
+import type { Nullable } from '@/types/utilities';
+import OptionStep from './OptionStep.vue';
+import OptionStepList from './OptionStepList.vue';
 
 type Props = {
-  steps: StepsList;
-  indent?: number;
-  startingStep: StepId;
+  steps: Step[];
 };
 
-const props = withDefaults(defineProps<Props>(), {
-  indent: 0,
-});
+const props = defineProps<Props>();
+const currentStep = ref<Step>(props.steps[0]);
 
-const getSteps = (key: StepId): Step[] => {
-  if (props.steps[`${key}`] === null) {
-    return [];
+const hasPreviousStep = (targetId: Nullable<StepId>): boolean => {
+  return !!props.steps.find(step => step.scenario_step_id === targetId)
+};
+
+const previousStep = (): Step | undefined => {
+  const previous = props.steps.find(step => step.scenario_step_id === currentStep.value.id);
+  console.log('ScenarioSteps.vue:18', previous);
+
+  if (previous) {
+    currentStep.value = previous;
   }
-  const stepsList = [];
-  stepsList.push(props.steps[`${key}`])
-  const nextKey = props.steps[`${key}`].next
-  if (nextKey && props.steps[`${nextKey}`]) {
-    stepsList.push(props.steps[`${nextKey}`])
+
+  return previous;
+};
+
+const nextStep = (targetId: Nullable<StepId>): void => {
+  currentStep.value = props.steps.find(step => step.id === targetId) ?? currentStep.value;
+};
+
+const options = (options: Option[]): Step[] => {
+  return props.steps
+    .filter(step => options.find(option => option.reference === step.id))
+};
+
+const buttonJustification = (step: Step) => {
+  if (hasPreviousStep(step.id)) {
+    return 'justify-between';
   }
-  return stepsList;
+
+  return 'justify-end';
 };
 </script>
 
@@ -31,21 +51,43 @@ const getSteps = (key: StepId): Step[] => {
   <div class="content-center">
     <div
       class="scene-steps"
-      :class="`ml-${indent} pl-${indent}`"
     >
-      <div
-        v-for="(step, stepId) in getSteps(props.startingStep)"
-        :key="`step-${stepId}`"
-      >
-        <ScenarioOption
-          v-if="step.options"
-          :step-id="startingStep"
-          :step="step"
+      <div>
+        <h2>
+          {{ currentStep.copy }}
+        </h2>
+
+        <ActionStep
+          v-if="currentStep.type === 'step'"
+          :step="currentStep"
         />
-        <ScenarioStep
-          v-if="!step.options"
-          :step="step"
+
+        <OptionStepList
+          v-if="currentStep.type === 'option'"
+          :step="currentStep"
+          :option-steps="options(currentStep.options)"
         />
+
+        <div
+          class="flex flex-row"
+          :class="buttonJustification(currentStep)"
+        >
+
+          <Button
+            v-if="hasPreviousStep(currentStep.id)"
+            @click="previousStep"
+          >
+            Previous Step
+          </Button>
+
+          <Button
+            v-if="currentStep.scenario_step_id"
+            @click="nextStep(currentStep.scenario_step_id)"
+          >
+            Next Step
+          </Button>
+        </div>
+
       </div>
     </div>
   </div>

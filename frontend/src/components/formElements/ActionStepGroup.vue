@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { useAbilityConstants } from '@/composables/useAbilityConstants';
-import type { AbilityName } from '@/types/Ability';
+import type { Action } from '@/types/Scenario';
 import { FormKit } from '@formkit/vue';
-
-type Action = {
-  type: 'roll',
-  dice: 'd4' | 'd6' | 'd8' | 'd10' | 'd12' | 'd20'
-  ability: AbilityName
-};
 
 type Props = {
   action: Action;

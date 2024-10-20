@@ -14,7 +14,6 @@ export const usePlayerCharacterStore = defineStore('player-character', {
   }),
   actions: {
     setPlayerCharacters(playerCharacters: PlayerCharacter[]) {
-      console.log('typescript', playerCharacters);
       this._playerCharacters = playerCharacters;
     },
     selectPlayerCharacter(id: number) {
@@ -26,8 +25,9 @@ export const usePlayerCharacterStore = defineStore('player-character', {
     playerCharacters: (state) => {
       return state._playerCharacters;
     },
-    selectedPlayerCharacter: (state) => {
-      return state._selectedPlayerCharacter;
+
+    selectedPlayerCharacter(): Nullable<PlayerCharacter> {
+      return this._selectedPlayerCharacter;
     },
   },
 });

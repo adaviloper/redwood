@@ -4,6 +4,7 @@ import type { Scenario, ScenarioId } from '@/types/Scenario';
 import { useScenarioRequests } from '@/composables/useScenarioRequests';
 import type { Nullable } from '@/types/utilities';
 import { FormKit } from '@formkit/vue';
+import { type FormKitGroupValue } from '@formkit/core';
 import { v4 as uuidV4 } from 'uuid';
 
 type Props = {
@@ -70,7 +71,7 @@ const stepTypes = [
       <div>
         <FormKit
           id="step-repeater"
-          v-slot="{ value: currentStep }"
+          v-slot="{ value: currentStep, index }"
           name="steps"
           type="repeater"
           label="Steps"
@@ -102,8 +103,9 @@ const stepTypes = [
 
 
           <ScenarioStepRepeater
-            :root-repeater-values="value"
+            :root-repeater-values="value as FormKitGroupValue"
             :current-step="currentStep"
+            :order="index + 1"
           />
         </FormKit>
       </div>

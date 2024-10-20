@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AbilityScoreBlock: typeof import('./src/components/AbilityScoreBlock.vue')['default']
+    ActionStep: typeof import('./src/components/scene/ActionStep.vue')['default']
     ActionStepGroup: typeof import('./src/components/formElements/ActionStepGroup.vue')['default']
     Button: typeof import('primevue/button')['default']
     CharacterSelectCard: typeof import('./src/components/characterSelect/CharacterSelectCard.vue')['default']
@@ -20,6 +21,8 @@ declare module 'vue' {
     Inventory: typeof import('./src/components/Inventory.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     NextStepList: typeof import('./src/components/formElements/NextStepList.vue')['default']
+    OptionStep: typeof import('./src/components/scene/OptionStep.vue')['default']
+    OptionStepList: typeof import('./src/components/scene/OptionStepList.vue')['default']
     PlayerCharacterSelectCard: typeof import('./src/components/playerCharacter/PlayerCharacterSelectCard.vue')['default']
     PlayerCharacterSideBar: typeof import('./src/components/playerCharacter/PlayerCharacterSideBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
