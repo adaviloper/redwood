@@ -7,6 +7,7 @@ use Database\Factories\ScenarioStepFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -35,4 +36,9 @@ class ScenarioStep extends Model
         'options' => 'json',
         'type' => StepTypes::class,
     ];
+
+    public function scenario(): BelongsTo
+    {
+        return $this->belongsTo(Scenario::class);
+    }
 }

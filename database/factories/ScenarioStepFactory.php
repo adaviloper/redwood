@@ -22,6 +22,7 @@ class ScenarioStepFactory extends Factory
             'id' => $this->faker->uuid(),
             'type' => StepTypes::STEP->value,
             'action' => [],
+            'order' => $this->faker->numberBetween(1, 100),
             'copy' => $this->faker->sentence(4),
             'scenario_step_id' => $this->faker->uuid(),
         ];

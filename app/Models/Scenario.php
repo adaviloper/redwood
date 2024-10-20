@@ -25,6 +25,7 @@ class Scenario extends Model
 
     public function steps(): HasMany
     {
-        return $this->hasMany(ScenarioStep::class);
+        return $this->hasMany(ScenarioStep::class)
+            ->orderBy('order', 'asc');
     }
 }

@@ -64,4 +64,13 @@ class ScenarioController extends Controller
     {
         return $scenario->delete();
     }
+
+    public function daily()
+    {
+        return response([
+            'scenario' => Scenario::query()
+                ->with('steps')
+                ->first(),
+        ]);
+    }
 }

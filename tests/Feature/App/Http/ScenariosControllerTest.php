@@ -123,4 +123,24 @@ class ScenariosControllerTest extends TestCase
             'narrative' => $scenario->narrative,
         ]);
     }
+
+    public function testDailyAdventureScenarioCanBeRetrieved(): void
+    {
+        $this->withoutExceptionHandling();
+        $this->signIn();
+        $scenario = Scenario::factory()->create();
+        $step = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+
+        $response = $this->getJson(route('scenarios.daily'));
+
+        $response->assertJsonStructure([
+            'scenario' => [
+                'steps' => [
+                    [
+                        'type'
+                    ]
+                ]
+            ]
+        ]);
+    }
 }

@@ -19,6 +19,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('scenarios', [ScenarioController::class, 'index'])
         ->name('scenarios.index')
         ->can('viewAny', Scenario::class);
+    Route::get('scenarios/daily', [ScenarioController::class, 'daily'])
+        ->name('scenarios.daily');
     Route::get('scenarios/{scenario}', [ScenarioController::class, 'show'])
         ->name('scenarios.show')
         ->can('view', 'scenario');
