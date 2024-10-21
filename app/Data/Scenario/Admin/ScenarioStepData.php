@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Scenario;
+namespace App\Data\Scenario\Admin;
 
 use App\Data\Scenario\StepActionData;
 use App\Data\Scenario\StepOptionData;

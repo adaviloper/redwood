@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Data\Scenario\StoreScenarioData;
+use App\Data\Scenario\Admin\StoreScenarioData;
 use App\Models\Scenario;
 
 class ScenarioService

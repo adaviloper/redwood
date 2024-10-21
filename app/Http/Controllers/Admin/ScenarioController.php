@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Data\Scenario\StoreScenarioData;
-use App\Http\Requests\Scenario\StoreScenarioRequest;
+use App\Data\Scenario\Admin\StoreScenarioData;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Scenario\Admin\StoreScenarioRequest;
 use App\Http\Requests\UpdateScenarioRequest;
 use App\Models\Scenario;
 use App\Services\ScenarioService;
-use Illuminate\Http\Request;
 
 class ScenarioController extends Controller
 {

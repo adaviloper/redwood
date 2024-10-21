@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Services;
 
-use App\Data\Scenario\StoreScenarioData;
+use App\Data\Scenario\Admin\StoreScenarioData;
 use App\Enums\StepTypes;
 use App\Models\Scenario;
 use App\Models\ScenarioStep;

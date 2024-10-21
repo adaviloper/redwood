@@ -47,6 +47,10 @@ const buttonJustification = (step: Step) => {
 
   return 'justify-end';
 };
+
+const saveProgress = () => {
+  console.log('ScenarioSteps.vue:52', 'saving progress');
+}
 </script>
 
 <template>
@@ -88,6 +92,14 @@ const buttonJustification = (step: Step) => {
             @click="nextStep(currentStep.scenario_step_id)"
           >
             Next Step
+          </Button>
+
+          <Button
+            v-else
+            :disabled="!scenarioStore.hasRolledFor(currentStep.id)"
+            @click="saveProgress"
+          >
+            Save Progress
           </Button>
         </div>
 

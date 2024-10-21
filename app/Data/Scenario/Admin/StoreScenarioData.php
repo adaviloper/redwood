@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Data\Scenario;
+namespace App\Data\Scenario\Admin;
 
-use App\Data\Scenario\ScenarioStepData;
+use App\Data\Scenario\Admin\ScenarioStepData;
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Data;
 

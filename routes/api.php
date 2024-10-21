@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\ItemController;
+use App\Http\Controllers\Admin\ScenarioController;
 use App\Http\Controllers\CharacterController;
-use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PlayerCharacterController;
-use App\Http\Controllers\ScenarioController;
 use App\Models\Scenario;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
