@@ -65,7 +65,7 @@ class ScenariosControllerTest extends TestCase
         $this->actingAs($user);
         $user->assignRole('admin');
         /** @var ScenarioStep $step */
-        $step = ScenarioStep::factory()->make();
+        $step = ScenarioStep::factory()->action()->make();
         /** @var Scenario $scenario */
         $scenario = Scenario::factory()->make();
         $scenario->steps = [$step];
@@ -128,7 +128,7 @@ class ScenariosControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->signIn();
-        $scenario = Scenario::factory()->create();
+        $scenario = Scenario::factory()->today()->create();
         $step = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
 
         $response = $this->getJson(route('scenarios.daily'));
@@ -142,5 +142,31 @@ class ScenariosControllerTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    public function testDailAdventureScenarioPullsTodaysScenario(): void
+    {
+        $this->withoutExceptionHandling();
+        $this->signIn();
+        $yesterdaysScenario = Scenario::factory()->create([
+            'date' => today()->subDay()->format('Y-m-d'),
+        ]);
+        $todaysScenario = Scenario::factory()->create([
+            'date' => today()->format('Y-m-d'),
+        ]);
+        $step = ScenarioStep::factory()->create(['scenario_id' => $todaysScenario->id]);
+
+        $response = $this->getJson(route('scenarios.daily'));
+
+        $response->assertJsonStructure([
+            'scenario' => [
+                'steps' => [
+                    [
+                        'type'
+                    ]
+                ]
+            ]
+        ]);
+        $this->assertEquals(today()->format('Y-m-d'), $response->json('scenario.date'));
     }
 }

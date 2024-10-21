@@ -17,6 +17,7 @@ class ScenarioStepData extends Data
         public readonly string $id,
         public readonly StepTypes $type,
         public readonly string $copy,
+        public readonly int $order,
         /** @var Collection<int, StepOptionData> $options  */
         public readonly ?Collection $options,
         public readonly ?StepActionData $action,

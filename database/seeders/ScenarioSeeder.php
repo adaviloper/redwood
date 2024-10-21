@@ -13,6 +13,12 @@ class ScenarioSeeder extends Seeder
      */
     public function run(): void
     {
-        Scenario::factory()->count(50)->create();
+        $date = today()->subDays(10);
+        for ($i = 0; $i < 50; $i++) {
+            Scenario::factory()->create([
+                'date' => $date->format('Y-m-d'),
+            ]);
+            $date = $date->addDay();
+        }
     }
 }

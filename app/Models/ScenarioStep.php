@@ -22,13 +22,14 @@ class ScenarioStep extends Model
     use HasUuids;
 
     public $fillable = [
-        'id',
-        'type',
-        'copy',
         'action',
+        'copy',
+        'id',
         'options',
+        'order',
         'scenario_id',
         'scenario_step_id',
+        'type',
     ];
 
     public $casts = [

@@ -31,6 +31,7 @@ class ScenarioServiceTest extends TestCase
                     'id' => 'f0fdee38-8a6c-42bd-8007-d8bdb18b7f51',
                     'type' => $step->type,
                     'copy' => $step->copy,
+                    'order' => 1,
                     'scenario_step_id' => $step->scenario_step_id,
                 ]
             ],

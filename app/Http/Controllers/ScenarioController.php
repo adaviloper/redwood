@@ -70,6 +70,7 @@ class ScenarioController extends Controller
         return response([
             'scenario' => Scenario::query()
                 ->with('steps')
+                ->where('date', today()->format('Y-m-d'))
                 ->first(),
         ]);
     }

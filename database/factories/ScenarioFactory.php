@@ -21,4 +21,13 @@ class ScenarioFactory extends Factory
             'narrative' => $this->faker->paragraphs(2, true),
         ];
     }
+
+    public function today(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'date' => today()->format('Y-m-d'),
+            ];
+        });
+    }
 }
