@@ -41,7 +41,7 @@ const getFormattedSteps = (steps: Step[], id: unknown) => {
         name="scenario_step_id"
         label="Referenced Step"
         :value="value.reference"
-        :options="getFormattedSteps(rootRepeaterValues.steps, currentStep.id)"
+        :options="getFormattedSteps(rootRepeaterValues.steps, currentStep?.id)"
       >
         <option
           v-for="option in rootRepeaterValues.steps"

@@ -8,7 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AbilityScoreBlock: typeof import('./src/components/AbilityScoreBlock.vue')['default']
-    ActionStep: typeof import('./src/components/scene/ActionStep.vue')['default']
+    ActionStep: typeof import('./src/components/scene/steps/ActionStep.vue')['default']
     ActionStepGroup: typeof import('./src/components/formElements/ActionStepGroup.vue')['default']
     Button: typeof import('primevue/button')['default']
     CharacterSelectCard: typeof import('./src/components/characterSelect/CharacterSelectCard.vue')['default']
@@ -21,18 +21,17 @@ declare module 'vue' {
     Inventory: typeof import('./src/components/Inventory.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     NextStepList: typeof import('./src/components/formElements/NextStepList.vue')['default']
-    OptionStep: typeof import('./src/components/scene/OptionStep.vue')['default']
-    OptionStepList: typeof import('./src/components/scene/OptionStepList.vue')['default']
+    OptionStep: typeof import('./src/components/scene/steps/OptionStep.vue')['default']
+    OptionStepList: typeof import('./src/components/scene/steps/OptionStepList.vue')['default']
     PlayerCharacterSelectCard: typeof import('./src/components/playerCharacter/PlayerCharacterSelectCard.vue')['default']
     PlayerCharacterSideBar: typeof import('./src/components/playerCharacter/PlayerCharacterSideBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScenarioList: typeof import('./src/components/admin/scenarios/ScenarioList.vue')['default']
-    ScenarioOption: typeof import('./src/components/scene/ScenarioOption.vue')['default']
     ScenarioOptionRepeater: typeof import('./src/components/formElements/ScenarioOptionRepeater.vue')['default']
     ScenarioOptions: typeof import('./src/components/formElements/ScenarioOptions.vue')['default']
-    ScenarioStep: typeof import('./src/components/scene/ScenarioStep.vue')['default']
+    ScenarioStep: typeof import('./src/components/scene/steps/ScenarioStep.vue')['default']
     ScenarioStepRepeater: typeof import('./src/components/formElements/ScenarioStepRepeater.vue')['default']
-    ScenarioSteps: typeof import('./src/components/scene/ScenarioSteps.vue')['default']
+    ScenarioSteps: typeof import('./src/components/scene/steps/ScenarioSteps.vue')['default']
   }
 }

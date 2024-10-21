@@ -23,7 +23,7 @@ export type TActionStep = {
   scenario_step_id: Nullable<StepId>;
 }
 
-export type OptionStep = {
+export type TOptionStep = {
   id: StepId;
   copy: string;
   type: 'option';
@@ -31,9 +31,22 @@ export type OptionStep = {
   scenario_step_id: Nullable<StepId>;
 }
 
-export type Step = TActionStep | OptionStep;;
+export type Step = TActionStep | TOptionStep;;
 
 export type ScenarioId = string | number;
+
+export type Bonus = {
+  value: number;
+};
+
+export type Roll = {
+  step_id: StepId;
+  total: number;
+  dieResult: number;
+  ability: AbilityName;
+  modifierValue: number;
+  bonuses: Bonus[];
+};
 
 export type Scenario = {
   id: ScenarioId;

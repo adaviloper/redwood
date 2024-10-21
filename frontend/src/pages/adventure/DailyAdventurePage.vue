@@ -1,29 +1,24 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import DailyScene from '@/components/scene/DailyScene.vue';
-import { useScenarioRequests, type ShowScenarioResponse } from '@/composables/useScenarioRequests';
 import { usePlayerCharacterStore } from '@/store/playerCharacter';
-import type { Scenario } from '@/types/Scenario';
-import type { Nullable } from '@/types/utilities';
-import type { AxiosResponse } from 'axios';
 import { useRouter } from 'vue-router';
+import { useDailyScenarioStore } from '@/store/dailyScenario';
 
 const store = usePlayerCharacterStore();
 const router = useRouter();
-const scenarioRequests = useScenarioRequests();
+const dailyScenarioStore = useDailyScenarioStore();
 
-const scenario = ref<Nullable<Scenario>>();
+dailyScenarioStore.setScenario();
+
+const scenario = computed(() => {
+  return dailyScenarioStore.scenario;
+});
 
 if (store.selectedPlayerCharacter === null) {
   router.push({ name: 'player-character-list' })
 }
 
-onMounted(() => {
-  scenarioRequests.daily()
-    .then(({ data }: AxiosResponse<ShowScenarioResponse>) => {
-      scenario.value = data.scenario
-    });
-});
 </script>
 
 <template>

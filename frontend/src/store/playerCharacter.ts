@@ -1,6 +1,6 @@
 import type { PlayerCharacter } from '@/types/PlayerCharacter';
 import type { Nullable } from '@/types/utilities';
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 interface State {
   _playerCharacters: PlayerCharacter[];
@@ -16,6 +16,7 @@ export const usePlayerCharacterStore = defineStore('player-character', {
     setPlayerCharacters(playerCharacters: PlayerCharacter[]) {
       this._playerCharacters = playerCharacters;
     },
+
     selectPlayerCharacter(id: number) {
       const pc = this._playerCharacters.find(pc => pc.id === id);
       this._selectedPlayerCharacter = pc || null;

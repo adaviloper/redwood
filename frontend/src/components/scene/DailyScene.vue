@@ -1,26 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import Button from 'primevue/button';
-import type { Scenario } from '@/types/Scenario';
-import ScenarioSteps from '@/components/scene/ScenarioSteps.vue';
+import { ref } from 'vue'
+import Button from 'primevue/button'
+import type { Scenario } from '@/types/Scenario'
+import ScenarioSteps from '@/components/scene/steps/ScenarioSteps.vue'
 
-const hasStarted = ref<boolean>(false);
+const hasStarted = ref<boolean>(false)
 
 type Props = {
-  scenario: Scenario;
-};
+  scenario: Scenario
+}
 
-defineProps<Props>();
+defineProps<Props>()
 
 const beginTodaysAdventure = () => {
-  hasStarted.value = true;
-};
-
+  hasStarted.value = true
+}
 </script>
 
 <template>
   <div class="content-center p-6">
-
     <div v-if="!hasStarted" class="grid place-items-center">
       <Button class="begin-scene-button" @click="beginTodaysAdventure">Begin</Button>
     </div>
@@ -32,17 +30,11 @@ const beginTodaysAdventure = () => {
         {{ scenario.narrative }}
       </div>
 
-      <div
-        class="scene-steps"
-      >
-        <ScenarioSteps
-          :steps="scenario.steps"
-        />
+      <div class="scene-steps">
+        <ScenarioSteps :steps="scenario.steps" />
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

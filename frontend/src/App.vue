@@ -84,7 +84,11 @@ h6 {
   @apply text-lg
 }
 
+h1, h2, h3, h4, h5, h6 {
+  @apply mb-3
+}
+
 p {
-  @apply text-base
+  @apply text-base mb-1
 }
 </style>

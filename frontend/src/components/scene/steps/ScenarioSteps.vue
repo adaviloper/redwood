@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import Button from 'primevue/button';
 import type { Option, Step, StepId } from '@/types/Scenario';
 import ActionStep from './ActionStep.vue';
 import type { Nullable } from '@/types/utilities';
-import OptionStep from './OptionStep.vue';
 import OptionStepList from './OptionStepList.vue';
+import { useDailyScenarioStore } from '@/store/dailyScenario';
 
 type Props = {
   steps: Step[];
@@ -13,6 +13,8 @@ type Props = {
 
 const props = defineProps<Props>();
 const currentStep = ref<Step>(props.steps[0]);
+
+const scenarioStore = useDailyScenarioStore();
 
 const hasPreviousStep = (targetId: Nullable<StepId>): boolean => {
   return !!props.steps.find(step => step.scenario_step_id === targetId)
@@ -50,12 +52,12 @@ const buttonJustification = (step: Step) => {
 <template>
   <div class="content-center">
     <div
-      class="scene-steps"
+      class="scene-steps mt-4"
     >
       <div>
-        <h2>
-          {{ currentStep.copy }}
-        </h2>
+        <h4 class="font-bold">
+          Follow these steps:
+        </h4>
 
         <ActionStep
           v-if="currentStep.type === 'step'"
@@ -82,6 +84,7 @@ const buttonJustification = (step: Step) => {
 
           <Button
             v-if="currentStep.scenario_step_id"
+            :disabled="!scenarioStore.hasRolledFor(currentStep.id)"
             @click="nextStep(currentStep.scenario_step_id)"
           >
             Next Step

@@ -1,21 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { OptionStep, Step } from '@/types/Scenario';
-import Button from 'primevue/button';
-import type { Nullable } from '@/types/utilities';
+import { useDailyScenarioStore } from '@/store/dailyScenario';
+import type { TOptionStep, Step, StepId, Roll } from '@/types/Scenario';
 
 type Props = {
-  step: OptionStep;
+  step: TOptionStep;
   optionSteps: Step[];
 };
 
-
 defineProps<Props>();
+const scenarioStore = useDailyScenarioStore();
 
-const rollResult= ref<Nullable<number>>(null);
-
-const select = (step: Step) => {
-  rollResult.value = Math.ceil(Math.random() * 20);
+const optionSelected = (stepId: StepId, roll: Roll) => {
+  console.log('OptionStepList.vue:14');
+  scenarioStore.setStepResult(stepId, roll);
 };
 </script>
 
@@ -31,6 +28,7 @@ const select = (step: Step) => {
 
       <OptionStep
         :step="optionStep"
+        :select-handler="optionSelected"
       />
 
     </div>
