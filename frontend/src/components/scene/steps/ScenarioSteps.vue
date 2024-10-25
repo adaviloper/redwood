@@ -6,6 +6,7 @@ import ActionStep from './ActionStep.vue';
 import type { Nullable } from '@/types/utilities';
 import OptionStepList from './OptionStepList.vue';
 import { useDailyScenarioStore } from '@/store/dailyScenario';
+import { useDailyAdventureRequests } from '@/composables/useDailyAdventureRequests';
 
 type Props = {
   steps: Step[];
@@ -15,6 +16,7 @@ const props = defineProps<Props>();
 const currentStep = ref<Step>(props.steps[0]);
 
 const scenarioStore = useDailyScenarioStore();
+const adventureRequests = useDailyAdventureRequests();
 
 const hasPreviousStep = (targetId: Nullable<StepId>): boolean => {
   return !!props.steps.find(step => step.scenario_step_id === targetId)
@@ -49,7 +51,10 @@ const buttonJustification = (step: Step) => {
 };
 
 const saveProgress = () => {
-  console.log('ScenarioSteps.vue:52', 'saving progress');
+  console.info('ScenarioSteps.vue:52', 'saving progress');
+  console.log(scenarioStore.rolls);
+  adventureRequests.create({ rolls: scenarioStore.rolls });
+  console.info('ScenarioSteps.vue:52', 'progress saved');
 }
 </script>
 

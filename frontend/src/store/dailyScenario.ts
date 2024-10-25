@@ -67,7 +67,7 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
 
     getRollFor(): (stepId: StepId) => Roll | undefined {
       return (stepId) => {
-        return this._rolls.find(roll => roll.step_id === stepId);
+        return this._rolls.find(roll => roll.scenario_step_id === stepId);
       };
     },
 
@@ -79,6 +79,10 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
         }
         return !!state._stepMap[`${stepId}`].result;
       };
+    },
+
+    rolls: (state): Roll[] => {
+      return state._rolls;
     },
 
     scenario(): Nullable<Scenario> {

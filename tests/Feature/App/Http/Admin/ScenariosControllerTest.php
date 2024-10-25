@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http;
+namespace Tests\Feature\App\Http\Admin;
 
 use App\Models\Scenario;
 use App\Models\ScenarioStep;
@@ -122,51 +122,5 @@ class ScenariosControllerTest extends TestCase
             'id' => $scenario->id,
             'narrative' => $scenario->narrative,
         ]);
-    }
-
-    public function testDailyAdventureScenarioCanBeRetrieved(): void
-    {
-        $this->withoutExceptionHandling();
-        $this->signIn();
-        $scenario = Scenario::factory()->today()->create();
-        $step = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
-
-        $response = $this->getJson(route('scenarios.daily'));
-
-        $response->assertJsonStructure([
-            'scenario' => [
-                'steps' => [
-                    [
-                        'type'
-                    ]
-                ]
-            ]
-        ]);
-    }
-
-    public function testDailAdventureScenarioPullsTodaysScenario(): void
-    {
-        $this->withoutExceptionHandling();
-        $this->signIn();
-        $yesterdaysScenario = Scenario::factory()->create([
-            'date' => today()->subDay()->format('Y-m-d'),
-        ]);
-        $todaysScenario = Scenario::factory()->create([
-            'date' => today()->format('Y-m-d'),
-        ]);
-        $step = ScenarioStep::factory()->create(['scenario_id' => $todaysScenario->id]);
-
-        $response = $this->getJson(route('scenarios.daily'));
-
-        $response->assertJsonStructure([
-            'scenario' => [
-                'steps' => [
-                    [
-                        'type'
-                    ]
-                ]
-            ]
-        ]);
-        $this->assertEquals(today()->format('Y-m-d'), $response->json('scenario.date'));
     }
 }

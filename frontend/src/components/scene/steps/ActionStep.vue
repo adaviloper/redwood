@@ -41,7 +41,7 @@ const select = () => {
   rollResult.value = Math.ceil(Math.random() * 20);
   hasRolled.value = true;
   dailyScenarioStore.setStepResult(props.step.id, {
-    step_id: props.step.id,
+    scenario_step_id: props.step.id,
     total: totalRoll.value,
     dieResult: rollResult.value ?? 0,
     ability: props.step.action.ability,

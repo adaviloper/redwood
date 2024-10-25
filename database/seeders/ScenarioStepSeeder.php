@@ -28,7 +28,7 @@ class ScenarioStepSeeder extends Seeder
                 ->action()
                 ->terminalStep()
                 ->make([
-                    'copy' => 'Option 2A',
+                    // 'copy' => 'Option 2A',
                     'order' => 3,
                     'scenario_id' => $scenario->id,
                 ]);

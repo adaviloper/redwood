@@ -40,7 +40,7 @@ export type Bonus = {
 };
 
 export type Roll = {
-  step_id: StepId;
+  scenario_step_id: StepId;
   total: number;
   dieResult: number;
   ability: AbilityName;
