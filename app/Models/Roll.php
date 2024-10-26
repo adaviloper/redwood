@@ -17,6 +17,7 @@ class Roll extends Model
         'ability',
         'scenario_step_id',
         'user_id',
+        'player_character_id',
         'total',
     ];
 }

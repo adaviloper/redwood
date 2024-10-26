@@ -24,7 +24,7 @@ use Parental\HasChildren;
 /**
  * @property int $id
  * @property int $user_id
- * @property int $character_id
+ * @property int $player_character_id
  * @property int $hp
  * @property int $max_hp
  * @property int $level

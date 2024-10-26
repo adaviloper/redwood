@@ -26,6 +26,7 @@ class StoreDailyAdventureRequest extends FormRequest
     {
         return [
             'rolls.*.scenario_step_id' => ['required', 'exists:scenario_steps,id'],
+            'rolls.*.player_character_id' => ['required', 'exists:player_characters,id'],
             'rolls.*.total' => ['required', 'numeric'],
             'rolls.*.ability' => ['required', Rule::in(Abilities::values())],
         ];

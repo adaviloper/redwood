@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignUuid('scenario_step_id')->constrained();
+            $table->foreignId('player_character_id')->constrained();
             $table->integer('total');
             $table->enum('ability', Abilities::values());
             $table->timestamps();

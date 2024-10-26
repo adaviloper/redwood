@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\App\Http\Daily;
 
+use App\Models\Character;
+use App\Models\PlayerCharacter;
 use App\Models\Roll;
 use App\Models\Scenario;
 use App\Models\ScenarioStep;
@@ -76,11 +78,22 @@ class DailyAdventureControllerTest extends TestCase
         $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $this->actingAs($user);
+        $character = Character::factory()->create();
+        $playerCharacter = PlayerCharacter::factory()->create([
+            'character_id' => $character->id,
+            'user_id' => $user->id,
+        ]);
         $scenario = Scenario::factory()->today()->create();
         $step1 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
         $step2 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
-        $roll1 = Roll::factory()->make(['scenario_step_id' => $step1->id]);
-        $roll2 = Roll::factory()->make(['scenario_step_id' => $step2->id]);
+        $roll1 = Roll::factory()->make([
+            'scenario_step_id' => $step1->id,
+            'player_character_id' => $playerCharacter->id,
+        ]);
+        $roll2 = Roll::factory()->make([
+            'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step2->id,
+        ]);
 
         $this->postJson(route('daily.store'), [
             'rolls' => [
@@ -94,6 +107,7 @@ class DailyAdventureControllerTest extends TestCase
             'total' => $roll1->total,
             'ability' => $roll1->ability,
             'user_id' => $user->id,
+            'player_character_id' => $playerCharacter->id,
         ]);
     }
 
