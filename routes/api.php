@@ -15,6 +15,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('player-characters', PlayerCharacterController::class);
     Route::apiResource('inventory', ItemController::class);
 
+    Route::apiResource('scenarios/daily', DailyAdventureController::class)->parameters(['daily' => 'scenario']);
 
     Route::prefix('admin')->group(function () {
         Route::get('scenarios', [ScenarioController::class, 'index'])
@@ -33,8 +34,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             ->name('scenarios.destroy')
             ->can('delete', 'scenario');
     });
-
-    Route::apiResource('scenarios/daily', DailyAdventureController::class);
 });
 
 Route::middleware(['auth:sanctum'])->name('authenticated-user')->get('/user', function (Request $request) {

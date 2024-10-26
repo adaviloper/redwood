@@ -18,8 +18,7 @@ class DailyAdventureController extends Controller
         return response([
             'scenario' => Scenario::query()
                 ->with('steps')
-                ->where('date', today()->format('Y-m-d'))
-                ->first(),
+                ->get(),
         ]);
     }
 
@@ -39,7 +38,9 @@ class DailyAdventureController extends Controller
      */
     public function show(Scenario $scenario)
     {
-        //
+        return response([
+            'scenario' => $scenario->load('steps'),
+        ]);
     }
 
     /**

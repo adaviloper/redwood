@@ -16,14 +16,26 @@ class DailyAdventureControllerTest extends TestCase
     public function testDailyAdventureScenarioCanBeRetrieved(): void
     {
         $this->withoutExceptionHandling();
-        $this->signIn();
+        $user = User::factory()->create();
+        $this->actingAs($user);
         $scenario = Scenario::factory()->today()->create();
         $step = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+        $roll = Roll::factory()->create([
+            'user_id' => $user->id,
+            'scenario_step_id' => $step->id,
+        ]);
 
         $response = $this->getJson(route('daily.index'));
 
         $response->assertJsonStructure([
             'scenario' => [
+                'rolls' => [
+                    [
+                        'total',
+                        'scenario_step_id',
+                        'ability',
+                    ]
+                ],
                 'steps' => [
                     [
                         'type'
@@ -83,5 +95,16 @@ class DailyAdventureControllerTest extends TestCase
             'ability' => $roll1->ability,
             'user_id' => $user->id,
         ]);
+    }
+
+    public function testDailyScenariosAreRetrievedByTheirDate(): void
+    {
+        $this->signIn();
+        $scenario = Scenario::factory()->create([
+            'date' => today()->format('Y-m-d'),
+        ]);
+
+        $this->getJson("/scenarios/daily/{$scenario->date}")
+            ->assertOk();
     }
 }

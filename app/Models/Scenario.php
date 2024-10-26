@@ -25,6 +25,11 @@ class Scenario extends Model
         'narrative',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'date';
+    }
+
     public function steps(): HasMany
     {
         return $this->hasMany(ScenarioStep::class)

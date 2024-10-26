@@ -1,4 +1,5 @@
-import { useScenarioRequests, type ShowScenarioResponse } from '@/composables/useScenarioRequests';
+import { type ShowScenarioResponse } from '@/composables/useScenarioRequests';
+import { useDailyAdventureRequests } from '@/composables/useDailyAdventureRequests';
 import type { Roll, Scenario, Step, StepId } from '@/types/Scenario';
 import type { Nullable } from '@/types/utilities';
 import type { AxiosResponse } from 'axios';
@@ -26,7 +27,7 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
       if (this._scenario !== null) {
         return
       }
-      const scenarioRequests = useScenarioRequests();
+      const scenarioRequests = useDailyAdventureRequests();
       scenarioRequests.daily()
         .then(({ data }: AxiosResponse<ShowScenarioResponse>) => {
           this._scenario = data.scenario

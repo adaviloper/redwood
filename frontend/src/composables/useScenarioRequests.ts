@@ -37,10 +37,6 @@ export function useScenarioRequests() {
       return axiosInstance.get(`/scenarios/${id}`)
     },
 
-    daily(): Promise<AxiosResponse<ShowScenarioResponse>> {
-      return axiosInstance.get('/scenarios/daily')
-    },
-
     create(payload: StoreScenarioRequest): Promise<AxiosResponse<StoreScenarioResponse>> {
       return axiosInstance.post('/scenarios', {
         scenario_id: payload.scenario_id
