@@ -20,24 +20,23 @@ class DailyAdventureControllerTest extends TestCase
         $this->withoutExceptionHandling();
         $user = User::factory()->create();
         $this->actingAs($user);
+        $character = Character::factory()->create();
+        $playerCharacter = PlayerCharacter::factory()->create([
+            'character_id' => $character,
+            'user_id' => $user->id,
+        ]);
         $scenario = Scenario::factory()->today()->create();
         $step = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
         $roll = Roll::factory()->create([
             'user_id' => $user->id,
+            'player_character_id' => $playerCharacter->id,
             'scenario_step_id' => $step->id,
         ]);
 
-        $response = $this->getJson(route('daily.index'));
+        $response = $this->getJson(route('daily.show', ['scenario' => $scenario]));
 
         $response->assertJsonStructure([
             'scenario' => [
-                'rolls' => [
-                    [
-                        'total',
-                        'scenario_step_id',
-                        'ability',
-                    ]
-                ],
                 'steps' => [
                     [
                         'type'
@@ -59,17 +58,8 @@ class DailyAdventureControllerTest extends TestCase
         ]);
         $step = ScenarioStep::factory()->create(['scenario_id' => $todaysScenario->id]);
 
-        $response = $this->getJson(route('daily.index'));
+        $response = $this->getJson(route('daily.show', ['scenario' => $todaysScenario]));
 
-        $response->assertJsonStructure([
-            'scenario' => [
-                'steps' => [
-                    [
-                        'type'
-                    ]
-                ]
-            ]
-        ]);
         $this->assertEquals(today()->format('Y-m-d'), $response->json('scenario.date'));
     }
 
@@ -87,8 +77,8 @@ class DailyAdventureControllerTest extends TestCase
         $step1 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
         $step2 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
         $roll1 = Roll::factory()->make([
-            'scenario_step_id' => $step1->id,
             'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step1->id,
         ]);
         $roll2 = Roll::factory()->make([
             'player_character_id' => $playerCharacter->id,

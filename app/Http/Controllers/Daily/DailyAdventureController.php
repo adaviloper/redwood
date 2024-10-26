@@ -29,7 +29,6 @@ class DailyAdventureController extends Controller
     {
         foreach ($request->input('rolls', []) as $roll) {
             $roll['user_id'] = $request->user()->id;
-            $roll['player_character_id'] = $request->user()->id;
             Roll::query()->create($roll);
         }
     }
