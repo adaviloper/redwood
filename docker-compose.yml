@@ -18,7 +18,7 @@ services:
     container_name: redwood_db
     environment:
       MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: laravel
+      MARIADB_DATABASE: redwood
       MARIADB_USER: laravel
       MARIADB_PASSWORD: password
     ports:
