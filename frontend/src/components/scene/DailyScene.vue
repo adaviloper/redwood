@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { format } from 'date-fns';
 import Button from 'primevue/button'
 import type { Scenario } from '@/types/Scenario'
 import ScenarioSteps from '@/components/scene/steps/ScenarioSteps.vue'
@@ -24,7 +25,7 @@ const beginTodaysAdventure = () => {
     </div>
 
     <div v-if="scenario && hasStarted">
-      <h1>{{ scenario.date }}</h1>
+      <h1>{{ format(scenario.date, 'EEEE, MMMM do, yyyy') }}</h1>
 
       <div class="scene-narrative">
         {{ scenario.narrative }}
