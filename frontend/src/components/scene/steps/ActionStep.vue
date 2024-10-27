@@ -57,6 +57,7 @@ const select = () => {
       <p class="font-bold">
         {{ step.copy }}
       </p>
+
       <p>
         {{ step.action.type.charAt(0).toUpperCase() + step.action.type.slice(1) }} a {{ step.action.dice }} and add your [{{ step.action.ability.slice(0, 3).toUpperCase() }} ({{ modifier(step.action.ability)?.value }})] modifier
       </p>
