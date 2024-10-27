@@ -33,7 +33,6 @@ module.exports = {
       "args": "after-used",
       "caughtErrors": "all",
       "ignoreRestSiblings": false,
-      // "reportUsedIgnorePattern": false
     }],
     "sort-imports": ["error", {
       "ignoreCase": false,
