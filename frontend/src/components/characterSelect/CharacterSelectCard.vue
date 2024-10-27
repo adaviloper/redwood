@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 import type { Character } from '@/types/Character';
 import type { AxiosResponse } from 'axios';
-import { usePlayerCharacterRequests, type StorePlayerCharacterResponse } from '@/composables/usePlayerCharacterRequests';
+import { type StorePlayerCharacterResponse, usePlayerCharacterRequests } from '@/composables/usePlayerCharacterRequests';
 
 interface Props {
   character: Character;

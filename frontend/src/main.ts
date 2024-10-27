@@ -5,7 +5,7 @@ import 'primeicons/primeicons.css';
 import './assets/index.postcss';
 import { router } from './router';
 import App from './App.vue';
-import { plugin, defaultConfig } from '@formkit/vue';
+import { defaultConfig, plugin } from '@formkit/vue';
 import formkitConfig from '../formkit.config';
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';

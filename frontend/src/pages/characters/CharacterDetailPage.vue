@@ -5,7 +5,7 @@ import AbilityScoreBlock from '@/components/AbilityScoreBlock.vue';
 import type { AxiosResponse } from 'axios';
 import type { Nullable } from '@/types/utilities';
 import { useRouter } from 'vue-router';
-import { usePlayerCharacterRequests, type ShowPlayerCharacterResponse } from '@/composables/usePlayerCharacterRequests';
+import { type ShowPlayerCharacterResponse, usePlayerCharacterRequests } from '@/composables/usePlayerCharacterRequests';
 import type { PlayerCharacter } from '@/types/PlayerCharacter';
 
 interface Props {

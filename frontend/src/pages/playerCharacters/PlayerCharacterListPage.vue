@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import type { AxiosResponse } from "axios"
-import { usePlayerCharacterRequests, type PlayerCharacterIndexResponse } from '@/composables/usePlayerCharacterRequests';
+import { type PlayerCharacterIndexResponse, usePlayerCharacterRequests } from '@/composables/usePlayerCharacterRequests';
 import type { PlayerCharacter } from '@/types/PlayerCharacter';
 import PlayerCharacterSelectCard from '@/components/playerCharacter/PlayerCharacterSelectCard.vue';
 import { usePlayerCharacterStore } from '@/store/playerCharacter';

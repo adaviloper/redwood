@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import type { AxiosResponse } from "axios"
 import type { Character } from '@/types/Character';
 import CharacterSelectCard from '@/components/characterSelect/CharacterSelectCard.vue';
-import { useCharacterRequests, type CharacterResponse } from '@/composables/useCharacterRequests';
+import { type CharacterResponse, useCharacterRequests } from '@/composables/useCharacterRequests';
 
 const characters = ref<Character[]>([] as Character[]);
 

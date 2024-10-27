@@ -1,4 +1,4 @@
-import { createTestingPinia, type TestingOptions } from '@pinia/testing'
+import { type TestingOptions, createTestingPinia } from '@pinia/testing'
 import { config } from '@vue/test-utils'
 import { cloneDeep } from 'lodash-es'
 import { afterAll, beforeAll } from 'vitest'

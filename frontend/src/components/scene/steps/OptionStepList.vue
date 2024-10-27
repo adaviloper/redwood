@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDailyScenarioStore } from '@/store/dailyScenario';
-import type { TOptionStep, Step, StepId, Roll } from '@/types/Scenario';
+import type { Roll, Step, StepId, TOptionStep } from '@/types/Scenario';
 
 type Props = {
   step: TOptionStep;
