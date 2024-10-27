@@ -68,7 +68,7 @@ class ScenariosControllerTest extends TestCase
         $step = ScenarioStep::factory()->action()->make();
         /** @var Scenario $scenario */
         $scenario = Scenario::factory()->make();
-        $scenario->steps = [$step];
+        $scenario->setAttribute('steps', [$step]);
 
         $response = $this->postJson(route('scenarios.store'), $scenario->toArray());
 

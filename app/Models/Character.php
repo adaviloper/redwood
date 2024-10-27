@@ -6,10 +6,12 @@ use App\Enums\CharacterClasses;
 use Database\Factories\CharacterFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * @property int $id
  * @property string $name
+ * @property int $user_id
  * @property CharacterClasses $class
  * @property int $level
  * @property int $strength
@@ -21,7 +23,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $image_url
  * @property string $description
  *
- * @method CharacterFactory factory()
+ * @property Collection<int, Ability> $abilities
+ *
+ * @method static CharacterFactory factory()
  */
 class Character extends Model
 {

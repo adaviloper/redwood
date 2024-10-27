@@ -6,6 +6,9 @@ use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Character
+ */
 class CharacterResource extends JsonResource
 {
     public $collection = Character::class;

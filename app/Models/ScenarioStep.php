@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property int $id
- * @property string $type
+ * @property string $id
+ * @property StepTypes $type
  * @property string $copy
  * @property string $scenario_step_id
- * @method ScenarioStepFactory factory()
+ * @method static ScenarioStepFactory factory()
  */
 class ScenarioStep extends Model
 {

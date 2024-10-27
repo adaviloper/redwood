@@ -15,6 +15,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int $id
  * @property string $username
  * @property string $email
+ *
+ * @mixin \Illuminate\Contracts\Auth\MustVerifyEmail
  */
 class User extends Authenticatable
 {

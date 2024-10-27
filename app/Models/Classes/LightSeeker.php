@@ -34,12 +34,12 @@ class LightSeeker extends PlayerCharacter
     public function maxHealthAtLevel(int $level): int
     {
        return match($level) {
-            1 => self::LEVEL_1_MAX_HEALTH,
-            2 => self::LEVEL_2_MAX_HEALTH,
-            3 => self::LEVEL_3_MAX_HEALTH,
-            4 => self::LEVEL_4_MAX_HEALTH,
-            5 => self::LEVEL_5_MAX_HEALTH,
             6 => self::LEVEL_6_MAX_HEALTH,
+            5 => self::LEVEL_5_MAX_HEALTH,
+            4 => self::LEVEL_4_MAX_HEALTH,
+            3 => self::LEVEL_3_MAX_HEALTH,
+            2 => self::LEVEL_2_MAX_HEALTH,
+            default => self::LEVEL_1_MAX_HEALTH,
         };
     }
 }

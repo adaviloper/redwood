@@ -22,7 +22,7 @@ class ScenarioServiceTest extends TestCase
         $step = ScenarioStep::factory()->make();
         /** @var Scenario $scenario */
         $scenario = Scenario::factory()->create();
-        $scenario->steps = [$step];
+        $scenario->setAttribute('steps', [$step]);
         $scenarioService = new ScenarioService();
 
         $scenarioService->store($scenario, StoreScenarioData::validateAndCreate([

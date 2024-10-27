@@ -25,8 +25,9 @@ class PlayerCharacterControllerTest extends TestCase
 
     public function testCreatedPlayerCharactersCanBeFetched(): void
     {
-        /** @var Character $character */
+        /** @var Character $characterA */
         $characterA = Character::factory()->windChaser()->create();
+        /** @var Character $characterB */
         $characterB = Character::factory()->thornWeaver()->create();
         $playerCharacterA = PlayerCharacter::factory()->create([
             'user_id' => $this->user->id,

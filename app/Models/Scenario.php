@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $id
  * @property string $date
  * @property string $narrative
- * @method ScenarioFactory factory()
+ * @method static ScenarioFactory factory()
  */
 class Scenario extends Model
 {

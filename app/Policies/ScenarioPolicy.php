@@ -53,7 +53,7 @@ class ScenarioPolicy
      */
     public function restore(User $user, Scenario $scenario): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -61,6 +61,6 @@ class ScenarioPolicy
      */
     public function forceDelete(User $user, Scenario $scenario): bool
     {
-        //
+        return false;
     }
 }

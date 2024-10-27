@@ -12,6 +12,6 @@ class PlayerCharacterSeeder extends Seeder
      */
     public function run(): void
     {
-        PlayerCharacter::factory()->
+        // PlayerCharacter::factory()->
     }
 }

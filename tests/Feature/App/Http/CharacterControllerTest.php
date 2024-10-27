@@ -27,7 +27,7 @@ class CharacterControllerTest extends TestCase
     public function testCharactersCanBeFetched(): void
     {
         $this->withExceptionHandling();
-        /** @var Character $characters */
+        /** @var Character $character */
         $character = Character::factory()->create();
         $response = $this->getJson(route('characters.index'));
 
