@@ -47,7 +47,7 @@ export const useMainStore = defineStore('main', {
           const store = useUserStore();
           store.setUser(data)
         })
-        .catch(_ => {
+        .catch(() => {
           router.push('login');
         });
     },

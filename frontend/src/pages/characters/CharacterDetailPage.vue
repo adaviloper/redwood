@@ -23,7 +23,7 @@ onMounted(() => {
     .then(({ data }: AxiosResponse<ShowPlayerCharacterResponse>) => {
       playerCharacter.value = data.player_character;
     })
-    .catch(_ => {
+    .catch(() => {
       router.push({ name: 'home' })
     });
 });

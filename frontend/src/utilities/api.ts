@@ -41,7 +41,7 @@ const onRequest = (config: InternalAxiosRequestConfig) => {
       config.method == 'delete'
   ) && !Cookies.get('XSRF-TOKEN')) {
     return setCSRFToken()
-      .then(_ => {
+      .then(() => {
         return config;
       });
   }
