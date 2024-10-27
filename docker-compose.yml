@@ -8,6 +8,7 @@ services:
       - ./:/var/www/html
       - ./docker/nginx/api.conf:/etc/nginx/conf.d/api.conf
       - ./docker/nginx/frontend.conf:/etc/nginx/conf.d/frontend.conf
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
     ports:
       - "80:80"
       - "443:443"
