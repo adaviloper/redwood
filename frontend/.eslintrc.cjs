@@ -3,6 +3,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
+
   extends: [
     'plugin:vue/vue3-recommended',
     'eslint:recommended',
@@ -11,28 +12,50 @@ module.exports = {
     'plugin:security/recommended-legacy',
     './.eslintrc-auto-import.json',
   ],
+
   overrides: [
     {
       files: ['tests/e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
       extends: ['plugin:playwright/recommended'],
     },
   ],
+
   parserOptions: {
     ecmaVersion: 'latest',
   },
+
   rules: {
     'no-var': 'error',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    "sort-imports": ["error", {
+      "ignoreCase": false,
+      "ignoreDeclarationSort": false,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+      "allowSeparatedGroups": false
+    }],
     'comma-dangle': ['error', 'only-multiline'],
-    'id-length': [2, { exceptions: ['i', 'j', '_'] }],
+    'id-length': [2, { exceptions: ['i', 'j', 'x', 'y', '_'] }],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '_' }],
+    "vue/padding-line-between-tags": ["error", [
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "*",
+      }
+    ]],
   },
+
   globals: {
     defineProps: 'readonly',
     defineEmits: 'readonly',
     defineExpose: 'readonly',
     withDefaults: 'readonly',
   },
-  ignorePatterns: ['tests/e2e/**/*.ts'],
+
+  ignorePatterns: [
+    'tests/e2e/**/*.ts',
+    'formkit.theme.ts'
+  ],
 }

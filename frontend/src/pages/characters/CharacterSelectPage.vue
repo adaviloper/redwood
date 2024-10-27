@@ -19,6 +19,7 @@ onMounted(() => {
 <template>
   <div class="px-6">
     <h1 class="text-4xl">Characters</h1>
+
     <div class="columns-3">
       <div
         v-for="character in characters"

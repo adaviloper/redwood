@@ -21,6 +21,7 @@ defineProps<Props>();
         class="grow"
       >
         <p class="text-center text-2xl">{{ ability.value }}</p>
+
         <p class="text-center">{{  ability.name.substring(0, 3)  }}</p>
       </div>
     </div>

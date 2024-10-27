@@ -19,6 +19,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     ImageCard: typeof import('./src/components/layout/ImageCard.vue')['default']
     Inventory: typeof import('./src/components/Inventory.vue')['default']
+    InventoryList: typeof import('./src/components/InventoryList.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     NextStepList: typeof import('./src/components/formElements/NextStepList.vue')['default']
     OptionStep: typeof import('./src/components/scene/steps/OptionStep.vue')['default']
