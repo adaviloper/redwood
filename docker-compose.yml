@@ -1,9 +1,8 @@
 services:
-  app:
+  redwood_api:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
-    container_name: redwood-api
     volumes:
       - ./:/var/www/html
       - ./docker/nginx/api.conf:/etc/nginx/conf.d/api.conf
@@ -14,9 +13,8 @@ services:
       - "443:443"
     networks:
       - laravel
-  db:
+  redwood_db:
     image: bitnami/mariadb
-    container_name: redwood_db
     environment:
       MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: redwood
@@ -31,8 +29,7 @@ services:
     volumes:
       - './docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'
       - db_data:/bitnami/mariadb
-  frontend:
-    container_name: redwood-ui
+  redwood_ui:
     build:
       context: .
       dockerfile: ./docker/node/Dockerfile
