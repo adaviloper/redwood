@@ -8,5 +8,4 @@ enum Roles: string
 
     case ADMIN = 'Admin';
 
-
 }

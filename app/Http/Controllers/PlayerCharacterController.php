@@ -37,7 +37,6 @@ class PlayerCharacterController extends Controller
             'level' => 1,
         ]);
 
-
         return response([
             'player_character' => $playerCharacter->load([
                 'abilities',

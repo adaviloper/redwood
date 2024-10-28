@@ -35,7 +35,6 @@ class CharacterFactory extends Factory
         });
     }
 
-
     public function bladeDancer(): Factory
     {
         return $this->state(function (array $attributes) {

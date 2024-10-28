@@ -49,7 +49,7 @@ return (new PhpCsFixer\Config())
         // whitespace
         'array_indentation' => true,
         'method_chaining_indentation' => true,
-
+        'no_extra_blank_lines' => true,
     ])
     ->setFinder($finder)
 ;
