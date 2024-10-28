@@ -24,26 +24,37 @@ module.exports = {
     ecmaVersion: 'latest',
   },
 
+  plugins: [
+    'eslint-plugin-unused-imports',
+  ],
+
   rules: {
     'no-var': 'error',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    "no-unused-vars": ["error", {
-      "vars": "all",
-      "args": "after-used",
-      "caughtErrors": "all",
-      "ignoreRestSiblings": false,
-    }],
-    "sort-imports": ["error", {
-      "ignoreCase": false,
-      "ignoreDeclarationSort": false,
-      "ignoreMemberSort": false,
-      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-      "allowSeparatedGroups": false
-    }],
+
     'comma-dangle': ['error', 'only-multiline'],
     'id-length': [2, { exceptions: ['i', 'j', 'x', 'y', '_'] }],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '_' }],
+    'vue/block-order': ['error', {
+      'order': [ 'script', 'template', 'style' ],
+    }],
+
+    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_",
+      },
+    ],
+    "vue/no-unused-vars": ["error", {
+      "ignorePattern": "^_",
+    }],
+
     "vue/padding-line-between-tags": ["error", [
       {
         "blankLine": "always",
