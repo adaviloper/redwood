@@ -39,10 +39,10 @@ class DailyAdventureControllerTest extends TestCase
             'scenario' => [
                 'steps' => [
                     [
-                        'type'
-                    ]
-                ]
-            ]
+                        'type',
+                    ],
+                ],
+            ],
         ]);
     }
 
@@ -89,7 +89,7 @@ class DailyAdventureControllerTest extends TestCase
             'rolls' => [
                 $roll1->toArray(),
                 $roll2->toArray(),
-            ]
+            ],
         ]);
 
         $this->assertDatabaseHas('rolls', [

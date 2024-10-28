@@ -33,7 +33,7 @@ class CharacterControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'characters' => [$character->toArray()]
+                'characters' => [$character->toArray()],
             ]);
     }
 }

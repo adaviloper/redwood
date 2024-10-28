@@ -10,7 +10,5 @@ class StepActionData extends Data
         public readonly string $type,
         public readonly string $dice,
         public readonly string $ability,
-    )
-    {
-    }
+    ) {}
 }

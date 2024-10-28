@@ -11,7 +11,5 @@ class StepOptionData extends Data
 {
     public function __construct(
         public readonly string $reference,
-    )
-    {
-    }
+    ) {}
 }

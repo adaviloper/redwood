@@ -51,7 +51,7 @@ class PlayerCharacterControllerTest extends TestCase
         $character = Character::factory()->create();
 
         $response = $this->postJson(route('player-characters.store'), [
-            'character_id' => $character->id
+            'character_id' => $character->id,
         ]);
 
         $this->assertDatabaseHas('player_characters', [
@@ -69,7 +69,7 @@ class PlayerCharacterControllerTest extends TestCase
         $character = Character::factory()->create();
 
         $response = $this->postJson(route('player-characters.store'), [
-            'character_id' => $character->id
+            'character_id' => $character->id,
         ]);
 
         /** @var PlayerCharacter $pc */
@@ -121,7 +121,7 @@ class PlayerCharacterControllerTest extends TestCase
                     Abilities::INTELLIGENCE->value => -2,
                     Abilities::WISDOM->value => 0,
                     Abilities::CHARISMA->value => -2,
-                ]
+                ],
             ],
             'thorn-weaver' => [
                 'thornWeaver',
@@ -132,7 +132,7 @@ class PlayerCharacterControllerTest extends TestCase
                     Abilities::INTELLIGENCE->value => 2,
                     Abilities::WISDOM->value => -2,
                     Abilities::CHARISMA->value => 0,
-                ]
+                ],
             ],
             'spell-keeper' => [
                 'spellKeeper',
@@ -143,7 +143,7 @@ class PlayerCharacterControllerTest extends TestCase
                     Abilities::INTELLIGENCE->value => 2,
                     Abilities::WISDOM->value => 2,
                     Abilities::CHARISMA->value => -1,
-                ]
+                ],
             ],
             'blade-dancer' => [
                 'bladeDancer',
@@ -154,7 +154,7 @@ class PlayerCharacterControllerTest extends TestCase
                     Abilities::INTELLIGENCE->value => -1,
                     Abilities::WISDOM->value => -1,
                     Abilities::CHARISMA->value => 2,
-                ]
+                ],
             ],
             'shadow-weaver' => [
                 'shadowWeaver',
@@ -165,7 +165,7 @@ class PlayerCharacterControllerTest extends TestCase
                     Abilities::INTELLIGENCE->value => -2,
                     Abilities::WISDOM->value => -1,
                     Abilities::CHARISMA->value => 1,
-                ]
+                ],
             ],
             'light-seeker' => [
                 'lightSeeker',
@@ -176,7 +176,7 @@ class PlayerCharacterControllerTest extends TestCase
                     Abilities::INTELLIGENCE->value => -1,
                     Abilities::WISDOM->value => -1,
                     Abilities::CHARISMA->value => -1,
-                ]
+                ],
             ],
         ];
     }

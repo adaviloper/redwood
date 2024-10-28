@@ -19,7 +19,7 @@ class VerifyEmailController extends Controller
         $user = $request->user();
         if ($user->hasVerifiedEmail()) {
             return redirect()->intended(
-                config('app.frontend_url').'/dashboard?verified=1'
+                config('app.frontend_url') . '/dashboard?verified=1'
             );
         }
 
@@ -28,7 +28,7 @@ class VerifyEmailController extends Controller
         }
 
         return redirect()->intended(
-            config('app.frontend_url').'/dashboard?verified=1'
+            config('app.frontend_url') . '/dashboard?verified=1'
         );
     }
 }

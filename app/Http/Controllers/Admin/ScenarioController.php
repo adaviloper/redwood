@@ -17,7 +17,7 @@ class ScenarioController extends Controller
     public function index()
     {
         return response([
-            'scenarios' => Scenario::query()->with('steps')->get()
+            'scenarios' => Scenario::query()->with('steps')->get(),
         ]);
     }
 

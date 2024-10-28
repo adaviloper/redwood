@@ -33,7 +33,7 @@ class ScenarioServiceTest extends TestCase
                     'copy' => $step->copy,
                     'order' => 1,
                     'scenario_step_id' => $step->scenario_step_id,
-                ]
+                ],
             ],
         ]));
 
@@ -53,7 +53,7 @@ class ScenarioServiceTest extends TestCase
         $scenarioService = new ScenarioService();
         $scenarioData = Utils::jsonDecode(file_get_contents(base_path('tests/Stubs/scenario-create-data.json')), true);
         $data = StoreScenarioData::validateAndCreate([
-            'steps' => $scenarioData['steps']
+            'steps' => $scenarioData['steps'],
         ]);
 
         $scenarioService->store(
@@ -68,7 +68,7 @@ class ScenarioServiceTest extends TestCase
                 'type' => 'roll',
                 'dice' => 'd20',
                 'ability' => 'strength',
-            ])
+            ]),
         ]);
         $this->assertEquals(4, $scenario->steps()->where('type', StepTypes::STEP->value)->count());
         $this->assertEquals(5, $scenario->steps()->count());
@@ -82,7 +82,7 @@ class ScenarioServiceTest extends TestCase
         $scenarioService = new ScenarioService();
         $scenarioData = Utils::jsonDecode(file_get_contents(base_path('tests/Stubs/scenario-create-data.json')), true);
         $data = StoreScenarioData::validateAndCreate([
-            'steps' => $scenarioData['steps']
+            'steps' => $scenarioData['steps'],
         ]);
 
         $scenarioService->store(
@@ -97,7 +97,7 @@ class ScenarioServiceTest extends TestCase
                 'type' => 'roll',
                 'dice' => 'd20',
                 'ability' => 'strength',
-            ])
+            ]),
         ]);
         $this->assertEquals(5, $scenario->steps()->count());
         $this->assertEquals(1, $scenario->steps()->where('type', StepTypes::OPTION->value)->count());

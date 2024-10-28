@@ -57,7 +57,7 @@ class PlayerCharacter extends Model implements NewPlayerContract
     public function getChildClass(): PlayerCharacter
     {
         $class = $this->childTypes[Str::slug($this->character->class->value)];
-        return new $class;
+        return new $class();
     }
 
     public function abilities(): HasMany

@@ -15,7 +15,7 @@ enum Abilities: string
 
     public function type(): string
     {
-        return match($this) {
+        return match ($this) {
             self::STRENGTH => 'physical',
             self::DEXTERITY => 'physical',
             self::CONSTITUTION => 'physical',

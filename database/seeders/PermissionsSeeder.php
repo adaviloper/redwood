@@ -17,11 +17,11 @@ class PermissionsSeeder extends Seeder
             'view-scenario',
             'update-scenarios',
         ])->each(function (string $permissionName) {
-                $permission = Permission::create([
-                    'name' => $permissionName,
-                ]);
+            $permission = Permission::create([
+                'name' => $permissionName,
+            ]);
 
-                $permission->assignRole('admin');
-            });
+            $permission->assignRole('admin');
+        });
     }
 }

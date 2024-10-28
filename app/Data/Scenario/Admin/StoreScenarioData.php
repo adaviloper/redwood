@@ -11,7 +11,5 @@ class StoreScenarioData extends Data
     public function __construct(
         /** @var Collection<int, ScenarioStepData> $steps  */
         public readonly Collection $steps,
-    )
-    {
-    }
+    ) {}
 }

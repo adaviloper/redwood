@@ -81,4 +81,3 @@ class CharacterFactory extends Factory
         });
     }
 }
-

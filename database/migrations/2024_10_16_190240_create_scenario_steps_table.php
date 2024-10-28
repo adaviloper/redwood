@@ -5,8 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -27,7 +26,7 @@ return new class extends Migration
 
         Schema::table('scenario_steps', function (Blueprint $table) {
             $table->foreignUuid('scenario_step_id');
-                // ->constrained();
+            // ->constrained();
             $table->uuid('scenario_step_id')
                 ->change()
                 ->nullable();

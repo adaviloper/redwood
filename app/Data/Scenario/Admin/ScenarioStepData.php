@@ -22,7 +22,5 @@ class ScenarioStepData extends Data
         public readonly ?Collection $options,
         public readonly ?StepActionData $action,
         public readonly ?string $scenarioStepId,
-    )
-    {
-    }
+    ) {}
 }

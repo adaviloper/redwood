@@ -18,7 +18,7 @@ class PlayerCharacterController extends Controller
             'player_characters' => PlayerCharacter::query()
                 ->where('user_id', $request->user()->id)
                 ->with(['character', 'abilities'])
-                ->get()
+                ->get(),
         ]);
     }
 
@@ -42,7 +42,7 @@ class PlayerCharacterController extends Controller
             'player_character' => $playerCharacter->load([
                 'abilities',
                 'character',
-            ])
+            ]),
         ]);
     }
 
