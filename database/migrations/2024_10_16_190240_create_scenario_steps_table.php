@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class () extends Migration {
     /**
      * Run the migrations.
      */
@@ -20,7 +20,8 @@ return new class extends Migration {
             $table->json('options')->nullable();
             $table->foreignUuid('scenario_id')
                 ->references('id')
-                ->on('scenarios');
+                ->on('scenarios')
+            ;
             $table->timestamps();
         });
 
@@ -29,7 +30,8 @@ return new class extends Migration {
             // ->constrained();
             $table->uuid('scenario_step_id')
                 ->change()
-                ->nullable();
+                ->nullable()
+            ;
         });
     }
 

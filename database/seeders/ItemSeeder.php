@@ -14,6 +14,7 @@ class ItemSeeder extends Seeder
     {
         Item::factory()
             ->count(20)
-            ->create();
+            ->create()
+        ;
     }
 }

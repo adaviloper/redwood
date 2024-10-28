@@ -20,19 +20,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('scenarios', [ScenarioController::class, 'index'])
             ->name('scenarios.index')
-            ->can('viewAny', Scenario::class);
+            ->can('viewAny', Scenario::class)
+        ;
         Route::get('scenarios/{scenario}', [ScenarioController::class, 'show'])
             ->name('scenarios.show')
-            ->can('view', 'scenario');
+            ->can('view', 'scenario')
+        ;
         Route::post('scenarios', [ScenarioController::class, 'store'])
             ->name('scenarios.store')
-            ->can('create', Scenario::class);
+            ->can('create', Scenario::class)
+        ;
         Route::put('scenarios/{scenario}', [ScenarioController::class, 'update'])
             ->name('scenarios.update')
-            ->can('update', 'scenario');
+            ->can('update', 'scenario')
+        ;
         Route::delete('scenarios/{scenario}', [ScenarioController::class, 'destroy'])
             ->name('scenarios.destroy')
-            ->can('delete', 'scenario');
+            ->can('delete', 'scenario')
+        ;
     });
 });
 

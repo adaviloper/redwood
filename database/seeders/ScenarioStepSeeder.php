@@ -23,7 +23,8 @@ class ScenarioStepSeeder extends Seeder
                     // 'copy' => 'Step 3',
                     'order' => 5,
                     'scenario_id' => $scenario->id,
-                ]);
+                ])
+            ;
             $optionA = ScenarioStep::factory()
                 ->action()
                 ->terminalStep()
@@ -31,7 +32,8 @@ class ScenarioStepSeeder extends Seeder
                     // 'copy' => 'Option 2A',
                     'order' => 3,
                     'scenario_id' => $scenario->id,
-                ]);
+                ])
+            ;
             $optionB = ScenarioStep::factory()
                 ->action()
                 ->terminalStep()
@@ -39,7 +41,8 @@ class ScenarioStepSeeder extends Seeder
                     // 'copy' => 'Option 2B',
                     'order' => 4,
                     'scenario_id' => $scenario->id,
-                ]);
+                ])
+            ;
             $step2 = ScenarioStep::factory()
                 ->options([
                     [
@@ -54,7 +57,8 @@ class ScenarioStepSeeder extends Seeder
                     // 'copy' => 'Step 2',
                     'order' => 2,
                     'scenario_id' => $scenario->id,
-                ]);
+                ])
+            ;
             $step1 = ScenarioStep::factory()
                 ->action()
                 ->next($step2->id)
@@ -62,7 +66,8 @@ class ScenarioStepSeeder extends Seeder
                     // 'copy' => 'Step 1',
                     'order' => 1,
                     'scenario_id' => $scenario->id,
-                ]);
+                ])
+            ;
             $step1->save();
             $step2->save();
             $optionA->save();

@@ -109,6 +109,7 @@ class DailyAdventureControllerTest extends TestCase
         ]);
 
         $this->getJson("/scenarios/daily/{$scenario->date}")
-            ->assertOk();
+            ->assertOk()
+        ;
     }
 }

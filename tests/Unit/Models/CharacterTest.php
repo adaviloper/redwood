@@ -12,7 +12,8 @@ class CharacterTest extends TestCase
     {
         $character = Character::factory()
             ->windChaser()
-            ->make();
+            ->make()
+        ;
 
         $this->assertInstanceOf(CharacterClasses::class, $character->class);
     }

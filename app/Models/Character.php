@@ -9,19 +9,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 /**
- * @property int $id
- * @property string $name
- * @property int $user_id
+ * @property int              $id
+ * @property string           $name
+ * @property int              $user_id
  * @property CharacterClasses $class
- * @property int $level
- * @property int $strength
- * @property int $constitution
- * @property int $dexterity
- * @property int $wisdom
- * @property int $intelligence
- * @property int $charisma
- * @property string $image_url
- * @property string $description
+ * @property int              $level
+ * @property int              $strength
+ * @property int              $constitution
+ * @property int              $dexterity
+ * @property int              $wisdom
+ * @property int              $intelligence
+ * @property int              $charisma
+ * @property string           $image_url
+ * @property string           $description
  *
  * @property Collection<int, Ability> $abilities
  *
