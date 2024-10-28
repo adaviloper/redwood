@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted } from 'vue';
 import type { AxiosResponse } from "axios"
 import { type PlayerCharacterIndexResponse, usePlayerCharacterRequests } from '@/composables/usePlayerCharacterRequests';
 import type { PlayerCharacter } from '@/types/PlayerCharacter';
