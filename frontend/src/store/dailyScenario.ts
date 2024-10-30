@@ -39,12 +39,10 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
         });
     },
 
-    setStepResult(stepId: StepId, roll: Roll, playerCharacterId: number) {
-      roll.player_character_id = playerCharacterId;
+    setStepResult(stepId: StepId, roll: Roll) {
       this._rolls.push(roll);
       this._stepMap[`${stepId}`].result = roll.total;
       const parent = this.getParentStep(stepId);
-      console.log('dailyScenario', roll);
       if (parent) {
         this._stepMap[`${parent.id}`].result = roll.total
       }
@@ -87,8 +85,8 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
       return state._rolls;
     },
 
-    scenario(): Nullable<Scenario> {
-      return this._scenario;
+    scenario(): Scenario {
+      return this._scenario as Scenario;
     },
   },
 });

@@ -27,8 +27,8 @@ export const usePlayerCharacterStore = defineStore('player-character', {
       return state._playerCharacters;
     },
 
-    selectedPlayerCharacter(): Nullable<PlayerCharacter> {
-      return this._selectedPlayerCharacter;
+    selectedPlayerCharacter(): PlayerCharacter {
+      return this._selectedPlayerCharacter as PlayerCharacter;
     },
   },
 });

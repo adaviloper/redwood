@@ -47,6 +47,7 @@ const select = () => {
     ability: props.step.action.ability,
     modifierValue: modifier(props.step.action.ability)?.value,
     bonuses: [],
+    player_character_id: playerCharacter?.id
   });
 };
 </script>

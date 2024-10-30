@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import DailyScene from '@/components/scene/DailyScene.vue';
 import { usePlayerCharacterStore } from '@/store/playerCharacter';
-import { useRouter } from 'vue-router';
+import { RouterView, useRouter } from 'vue-router';
 import { useDailyScenarioStore } from '@/store/dailyScenario';
 
 const store = usePlayerCharacterStore();
@@ -31,8 +30,8 @@ if (store.selectedPlayerCharacter === null) {
         <PlayerCharacterSideBar :player-character="store.selectedPlayerCharacter" />
       </div>
 
-      <div class="grow-[4] bg-sky-50 content-center">
-        <DailyScene :scenario="scenario" />
+      <div class="grow-[4] bg-sky-50">
+        <router-view />
       </div>
     </div>
 

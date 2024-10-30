@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import Inventory from '@/components/Inventory.vue';
 import AbilityScoreBlock from '@/components/AbilityScoreBlock.vue';
 import type { AxiosResponse } from 'axios';
 import type { Nullable } from '@/types/utilities';
@@ -35,8 +34,6 @@ onMounted(() => {
       <h2>{{ playerCharacter.character.name }} ({{ playerCharacter.hp }}/{{playerCharacter.max_hp }})</h2>
 
       <AbilityScoreBlock :abilities="playerCharacter.abilities" />
-
-      <Inventory :items="playerCharacter.inventory" />
     </div>
   </div>
 </template>

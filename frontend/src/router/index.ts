@@ -6,9 +6,11 @@ import IndexPage from '@/pages/IndexPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
 import { useMainStore } from '@/store'
 import DailyAdventurePage from '@/pages/adventure/DailyAdventurePage.vue'
+import DailyAdventureSummary from '@/components/scene/DailySceneSummary.vue'
 import ScenarioListPage from '@/pages/admin/scenarios/ScenarioListPage.vue'
 import ScenarioEditPage from '@/pages/admin/scenarios/ScenarioEditPage.vue'
 import { useUserStore } from '@/store/user'
+import DailyScene from '@/components/scene/DailyScene.vue'
 
 const routes = [
   {
@@ -51,11 +53,28 @@ const routes = [
   },
   {
     path: '/daily-adventure',
-    name: 'daily-adventure',
     component: DailyAdventurePage,
     meta: {
       requiresAuth: true,
     },
+    children: [
+      {
+        path: '/',
+        name: 'daily-adventure',
+        component: DailyScene,
+        meta: {
+          requiresAuth: true,
+        },
+      },
+      {
+        path: '/summary',
+        name: 'daily-adventure-summary',
+        component: DailyAdventureSummary,
+        meta: {
+          requiresAuth: true,
+        },
+      },
+    ],
   },
   {
     path: '/admin/scenarios',

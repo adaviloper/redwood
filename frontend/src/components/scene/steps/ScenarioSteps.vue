@@ -7,12 +7,14 @@ import type { Nullable } from '@/types/utilities';
 import OptionStepList from './OptionStepList.vue';
 import { useDailyScenarioStore } from '@/store/dailyScenario';
 import { useDailyAdventureRequests } from '@/composables/useDailyAdventureRequests';
+import { useRouter } from 'vue-router';
 
 type Props = {
   steps: Step[];
 };
 
 const props = defineProps<Props>();
+const router = useRouter();
 const currentStep = ref<Step>(props.steps[0]);
 
 const scenarioStore = useDailyScenarioStore();
@@ -51,10 +53,11 @@ const buttonJustification = (step: Step) => {
 };
 
 const saveProgress = () => {
-  console.info('ScenarioSteps.vue:52', 'saving progress');
-  console.log(scenarioStore.rolls);
-  adventureRequests.create({ rolls: scenarioStore.rolls });
-  console.info('ScenarioSteps.vue:52', 'progress saved');
+  adventureRequests.create({
+    rolls: scenarioStore.rolls,
+  });
+
+  router.push({ name: 'daily-adventure-summary' });
 }
 </script>
 
