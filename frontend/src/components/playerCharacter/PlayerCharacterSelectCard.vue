@@ -14,7 +14,7 @@ const store = usePlayerCharacterStore();
 
 const selectCharacter = () => {
   store.selectPlayerCharacter(props.playerCharacter.id)
-  router.push({ name: 'daily-adventure' })
+  router.push({ name: 'daily-adventure-list' })
 };
 </script>
 

@@ -28,7 +28,7 @@ const mappedSteps = steps.reduce((acc: Record<StepId, Step>, step) => {
       <Card>
         <template #content>
           {{ mappedSteps[`${roll.scenario_step_id}`].copy }} <br />
-          {{ roll.dieResult }} + {{ roll.modifierValue }}({{ roll.ability.slice(0, 3).toUpperCase() }}) = {{ roll.total }}
+          {{ roll.dieResult }} + {{ roll.modifierValue }}({{ roll.ability.slice(0, 3) }}) = {{ roll.total }}
         </template>
       </Card>
     </div>

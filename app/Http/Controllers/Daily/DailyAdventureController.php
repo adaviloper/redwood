@@ -16,7 +16,9 @@ class DailyAdventureController extends Controller
     public function index()
     {
         return response([
-            'scenario' => Scenario::query()
+            'scenarios' => Scenario::query()
+                ->available()
+                ->orderBy('date', 'desc')
                 ->with('steps')
                 ->get(),
         ]);
@@ -40,6 +42,7 @@ class DailyAdventureController extends Controller
     {
         return response([
             'scenario' => $scenario->load('steps'),
+            // 'progress' =>
         ]);
     }
 

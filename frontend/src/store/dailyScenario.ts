@@ -1,13 +1,11 @@
-import { type ShowScenarioResponse } from '@/composables/useScenarioRequests';
-import { useDailyAdventureRequests } from '@/composables/useDailyAdventureRequests';
 import type { Roll, Scenario, Step, StepId } from '@/types/Scenario';
 import type { Nullable } from '@/types/utilities';
-import type { AxiosResponse } from 'axios';
 import { defineStore } from 'pinia';
 
 type StepMap = Record<StepId, Step & { result?: number }>;
 
 interface State {
+  _scenarios: Scenario[];
   _scenario: Nullable<Scenario>;
   _hasStarted: boolean;
   _stepMap: StepMap;
@@ -16,6 +14,7 @@ interface State {
 
 export const useDailyScenarioStore = defineStore('daily-scenario', {
   state: (): State => ({
+    _scenarios: [],
     _scenario: null,
     _hasStarted: false,
     _stepMap: {} as StepMap,
@@ -23,20 +22,21 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
   }),
 
   actions: {
-    setScenario() {
-      if (this._scenario !== null) {
-        return
-      }
-      const scenarioRequests = useDailyAdventureRequests();
-      scenarioRequests.daily()
-        .then(({ data }: AxiosResponse<ShowScenarioResponse>) => {
-          this._scenario = data.scenario
-          this._stepMap = this._scenario.steps.reduce((acc: StepMap, step: Step) => {
-            acc[`${step.id}`] = step;
+    setScenarios(scenarios: Scenario[]) {
+      this._scenarios = scenarios;
 
-            return acc
-          }, this._stepMap);
-        });
+      return this._scenario;
+    },
+
+    setScenario(scenario: Scenario) {
+      this._scenario = scenario
+      this._stepMap = this._scenario.steps.reduce((acc: StepMap, step: Step) => {
+        acc[`${step.id}`] = step;
+
+        return acc
+      }, this._stepMap);
+
+      return this._scenario;
     },
 
     setStepResult(stepId: StepId, roll: Roll) {
@@ -83,6 +83,10 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
 
     rolls: (state): Roll[] => {
       return state._rolls;
+    },
+
+    scenarios(): Scenario[] {
+      return this._scenarios;
     },
 
     scenario(): Scenario {

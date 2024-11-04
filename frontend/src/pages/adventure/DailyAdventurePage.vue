@@ -8,10 +8,8 @@ const store = usePlayerCharacterStore();
 const router = useRouter();
 const dailyScenarioStore = useDailyScenarioStore();
 
-dailyScenarioStore.setScenario();
-
 const scenario = computed(() => {
-  return dailyScenarioStore.scenario;
+  return dailyScenarioStore.scenarios;
 });
 
 if (store.selectedPlayerCharacter === null) {

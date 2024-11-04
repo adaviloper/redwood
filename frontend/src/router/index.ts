@@ -10,6 +10,7 @@ import DailyAdventureSummary from '@/components/scene/DailySceneSummary.vue'
 import ScenarioListPage from '@/pages/admin/scenarios/ScenarioListPage.vue'
 import ScenarioEditPage from '@/pages/admin/scenarios/ScenarioEditPage.vue'
 import { useUserStore } from '@/store/user'
+import DailyScenarioList from '@/components/scene/DailyScenarioList.vue'
 import DailyScene from '@/components/scene/DailyScene.vue'
 
 const routes = [
@@ -59,20 +60,20 @@ const routes = [
     },
     children: [
       {
-        path: '/',
+        path: '',
+        name: 'daily-adventure-list',
+        component: DailyScenarioList,
+      },
+      {
+        path: '/daily-adventure/:date',
         name: 'daily-adventure',
+        props: true,
         component: DailyScene,
-        meta: {
-          requiresAuth: true,
-        },
       },
       {
         path: '/summary',
         name: 'daily-adventure-summary',
         component: DailyAdventureSummary,
-        meta: {
-          requiresAuth: true,
-        },
       },
     ],
   },

@@ -112,4 +112,23 @@ class DailyAdventureControllerTest extends TestCase
             ->assertOk()
         ;
     }
+
+    public function testOnlyNonFutureScenariosAreListed(): void
+    {
+        $this->signIn();
+        $yesterday = Scenario::factory()->create([
+            'date' => today()->subDay()->format('Y-m-d'),
+        ]);
+        $today = Scenario::factory()->create([
+            'date' => today()->format('Y-m-d'),
+        ]);
+        $tomorrow = Scenario::factory()->create([
+            'date' => today()->addDay()->format('Y-m-d'),
+        ]);
+
+        $response = $this->getJson(route('daily.index'))
+            ->json();
+
+        $this->assertCount(2, $response['scenarios']);
+    }
 }

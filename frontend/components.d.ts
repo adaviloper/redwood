@@ -14,6 +14,7 @@ declare module 'vue' {
     Card: typeof import('primevue/card')['default']
     CharacterSelectCard: typeof import('./src/components/characterSelect/CharacterSelectCard.vue')['default']
     Column: typeof import('primevue/column')['default']
+    DailyScenarioList: typeof import('./src/components/scene/DailyScenarioList.vue')['default']
     DailyScene: typeof import('./src/components/scene/DailyScene.vue')['default']
     DailySceneSummary: typeof import('./src/components/scene/DailySceneSummary.vue')['default']
     DataTable: typeof import('primevue/datatable')['default']
