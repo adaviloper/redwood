@@ -57,6 +57,8 @@ const saveProgress = () => {
     rolls: scenarioStore.rolls,
   });
 
+  scenarioStore.completeScenario();
+
   router.push({ name: 'daily-adventure-summary' });
 }
 </script>

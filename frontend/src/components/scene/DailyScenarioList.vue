@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router';
 import DataTable, { type DataTableRowSelectEvent } from 'primevue/datatable'
 import { useDailyScenarioStore } from '@/store/dailyScenario';
-import { Scenario } from '@/types/Scenario';
+import { type Scenario } from '@/types/Scenario';
 import { useDailyAdventureRequests } from '@/composables/useDailyAdventureRequests';
 
 type Props = {
@@ -15,13 +15,17 @@ const router = useRouter();
 
 const dailyScenarioStore = useDailyScenarioStore();
 
-const scenarios = ref<Scenario[]>([]);
+const scenarios = dailyScenarioStore.scenarios;
 const scenarioRequests = useDailyAdventureRequests();
-scenarioRequests.all()
-  .then(({ data }) => {
-    scenarios.value = data.scenarios;
-    dailyScenarioStore.setScenarios(scenarios.value);
-  });
+
+onMounted(() => {
+  if (!dailyScenarioStore.scenarios.length) {
+    scenarioRequests.all()
+      .then(({ data }) => {
+        dailyScenarioStore.setScenarios(data.scenarios);
+      });
+  }
+});
 
 const startAdventure = (event: DataTableRowSelectEvent) => {
   const scenario = event.data as Scenario;
@@ -29,7 +33,6 @@ const startAdventure = (event: DataTableRowSelectEvent) => {
   dailyScenarioStore.setScenario(scenario);
   router.push({ name: 'daily-adventure', params: { date: scenario.date } })
 };
-
 </script>
 
 <template>
@@ -44,16 +47,16 @@ const startAdventure = (event: DataTableRowSelectEvent) => {
       >
         <Column field="date" header="Date" />
 
-        <Column header="Completed?">
-          <template #body>
-            lkjsdf
+        <Column field="complete" header="Complete?">
+          <template #body="{ data }">
+            <FormKit
+              type="checkbox"
+              decorator-icon="check"
+              :value="data.complete"
+            />
           </template>
         </Column>
       </DataTable>
-
-      <div v-for="scenario in scenarios" :key="`scenario-${scenario.id}`">
-        {{ scenario }}
-      </div>
     </div>
 
   </div>

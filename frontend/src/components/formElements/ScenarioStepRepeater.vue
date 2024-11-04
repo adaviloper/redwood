@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { FormKit } from '@formkit/vue';
 import { type FormKitGroupValue } from '@formkit/core';
 import ScenarioOptionRepeater from './ScenarioOptionRepeater.vue';
 import ActionStepGroup from './ActionStepGroup.vue';

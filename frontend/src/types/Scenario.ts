@@ -54,4 +54,5 @@ export type Scenario = {
   date: string;
   narrative: string;
   steps: Step[];
+  complete: boolean;
 };

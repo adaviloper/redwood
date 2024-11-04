@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { FormKit } from '@formkit/vue';
 import { type FormKitGroupValue } from '@formkit/core';
 
 type Step = {

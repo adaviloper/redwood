@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { FormKit } from '@formkit/vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/user';
 

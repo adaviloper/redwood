@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useAbilityConstants } from '@/composables/useAbilityConstants';
 import type { Action } from '@/types/Scenario';
-import { FormKit } from '@formkit/vue';
 
 type Props = {
   action: Action;

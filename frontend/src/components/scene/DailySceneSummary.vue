@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import { useDailyScenarioStore } from '@/store/dailyScenario';
 import type { Step, StepId } from '@/types/Scenario';
 import Card from 'primevue/card';
@@ -7,6 +8,7 @@ type Props = {
 };
 
 defineProps<Props>();
+const router = useRouter();
 const dailyScenarioStore = useDailyScenarioStore();
 
 const rolls = dailyScenarioStore.rolls;
@@ -16,7 +18,9 @@ const mappedSteps = steps.reduce((acc: Record<StepId, Step>, step) => {
   return acc;
 }, {});
 
-
+const viewList = () => {
+  router.push({ name: 'daily-adventure-list' });
+};
 </script>
 
 <template>
@@ -32,6 +36,10 @@ const mappedSteps = steps.reduce((acc: Record<StepId, Step>, step) => {
         </template>
       </Card>
     </div>
+
+    <Button @click="viewList">
+      View List
+    </Button>
   </div>
 </template>
 

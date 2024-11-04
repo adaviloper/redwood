@@ -3,7 +3,6 @@ import { onMounted, ref, watch } from 'vue';
 import type { Scenario, ScenarioId } from '@/types/Scenario';
 import { useScenarioRequests } from '@/composables/useScenarioRequests';
 import type { Nullable } from '@/types/utilities';
-import { FormKit } from '@formkit/vue';
 import { type FormKitGroupValue } from '@formkit/core';
 import { v4 as uuidV4 } from 'uuid';
 
