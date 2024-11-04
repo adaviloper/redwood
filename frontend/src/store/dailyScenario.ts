@@ -33,10 +33,11 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
       if (!this._rolls[`${this._scenario.id}`]) {
         this._rolls[`${this._scenario.id}`] = [];
       }
+
       if (!this._stepMap[`${this._scenario.id}`]) {
         this._stepMap[`${this._scenario.id}`] = {};
       }
-      console.log('dailyScenario.ts:33', this._stepMap[this._scenario.id]);
+
       this._stepMap[this._currentScenarioRecordIndex] = this._scenario
         .steps
         .reduce((acc: StepMap, step: Step) => {
