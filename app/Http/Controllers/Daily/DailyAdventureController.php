@@ -7,6 +7,7 @@ use App\Http\Requests\DailyAdventure\StoreDailyAdventureRequest;
 use App\Models\Roll;
 use App\Models\Scenario;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DailyAdventureController extends Controller
 {
@@ -46,7 +47,7 @@ class DailyAdventureController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDailyAdventureRequest $request)
+    public function store(StoreDailyAdventureRequest $request): void
     {
         foreach ($request->input('rolls', []) as $roll) {
             $roll['user_id'] = $request->user()->id;
@@ -57,7 +58,7 @@ class DailyAdventureController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Scenario $scenario)
+    public function show(Scenario $scenario): Response
     {
         return response([
             'scenario' => $scenario->load('steps'),
@@ -68,7 +69,7 @@ class DailyAdventureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Scenario $scenario)
+    public function update(Request $request, Scenario $scenario): void
     {
         //
     }
@@ -76,7 +77,7 @@ class DailyAdventureController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Scenario $scenario)
+    public function destroy(Scenario $scenario): void
     {
         //
     }
