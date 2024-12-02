@@ -9,6 +9,7 @@ use App\Models\Scenario;
 use App\Models\ScenarioStep;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
 class DailyAdventureControllerTest extends TestCase
@@ -130,5 +131,79 @@ class DailyAdventureControllerTest extends TestCase
             ->json();
 
         $this->assertCount(2, $response['scenarios']);
+    }
+
+    public function testProgressPerScenarioMustBeUnique(): void
+    {
+        $this->withoutExceptionHandling();
+        $this->expectException(ValidationException::class);
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $character = Character::factory()->create();
+        $playerCharacter = PlayerCharacter::factory()->create([
+            'character_id' => $character->id,
+            'user_id' => $user->id,
+        ]);
+        $scenario = Scenario::factory()->today()->create();
+        $step1 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+        $step2 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+        $roll1 = Roll::factory()->make([
+            'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step1->id,
+            'user_id' => $user->id,
+        ]);
+        $roll2 = Roll::factory()->make([
+            'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step2->id,
+            'user_id' => $user->id,
+        ]);
+
+        $roll1->save();
+        $roll2->save();
+
+        $response = $this->postJson(route('daily.store'), [
+            'rolls' => [
+                $roll1->toArray(),
+                $roll2->toArray(),
+            ],
+        ]);
+
+        $this->assertDatabaseCount('rolls', 2);
+    }
+
+    public function testScenariosAreReturnedWithProgress(): void
+    {
+        $this->withoutExceptionHandling();
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $character = Character::factory()->create();
+        $playerCharacter = PlayerCharacter::factory()->create([
+            'character_id' => $character->id,
+            'user_id' => $user->id,
+        ]);
+        $scenario = Scenario::factory()->today()->create();
+        $step1 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+        $step2 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+        $roll1 = Roll::factory()->create([
+            'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step1->id,
+            'user_id' => $user->id,
+        ]);
+        $roll2 = Roll::factory()->create([
+            'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step2->id,
+            'user_id' => $user->id,
+        ]);
+
+        $response = $this->getJson( route('daily.index') . '?player_character_id=' . $playerCharacter->id);
+
+        $response->assertJsonStructure([
+            'scenarios' => [
+                [
+                    'steps',
+                ]
+            ],
+            'rolls',
+        ]);
     }
 }

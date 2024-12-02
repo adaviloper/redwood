@@ -13,14 +13,33 @@ class DailyAdventureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): Response
     {
-        return response([
-            'scenarios' => Scenario::query()
+        $playerCharacterId = $request->input('player_character_id');
+        $scenarios = Scenario::query()
                 ->available()
                 ->orderBy('date', 'desc')
-                ->with('steps')
-                ->get(),
+                ->with([
+                    'steps'
+                ])
+                ->get();
+        $progress = Roll::query()
+            ->where([
+                'player_character_id' => $playerCharacterId,
+                'user_id' => auth()->id(),
+            ])
+            ->with('scenarioStep')
+            ->get()
+            ->groupBy('scenarioStep.scenario_id');
+        $progress->each(function ($rolls, $scenarioId) use ($scenarios) {
+            $scenarios->where('id', $scenarioId)
+                ->first()
+                ?->setAttribute('complete', true);
+        });
+
+        return response([
+            'scenarios' => $scenarios,
+            'rolls' => $progress,
         ]);
     }
 
