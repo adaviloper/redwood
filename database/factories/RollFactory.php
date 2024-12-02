@@ -21,6 +21,7 @@ class RollFactory extends Factory
             'total' => $this->faker->numberBetween(1, 20),
             'scenario_step_id' => $this->faker->uuid(),
             'ability' => $this->faker->randomElement(Abilities::values()),
+            'die_result' => $this->faker->numberBetween(1, 20),
         ];
     }
 }
