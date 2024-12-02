@@ -3,7 +3,8 @@
 namespace App\Http\Requests\DailyAdventure;
 
 use App\Enums\Abilities;
-use App\Models\ScenarioStep;
+use App\Rules\NoProgressExists;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,7 +26,11 @@ class StoreDailyAdventureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rolls.*.scenario_step_id' => ['required', 'exists:scenario_steps,id'],
+            'rolls.*.scenario_step_id' => [
+                'required',
+                'exists:scenario_steps,id',
+                new NoProgressExists(),
+            ],
             'rolls.*.player_character_id' => ['required', 'exists:player_characters,id'],
             'rolls.*.total' => ['required', 'numeric'],
             'rolls.*.ability' => ['required', Rule::in(Abilities::values())],

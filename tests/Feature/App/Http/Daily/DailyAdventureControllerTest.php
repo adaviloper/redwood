@@ -102,6 +102,51 @@ class DailyAdventureControllerTest extends TestCase
         ]);
     }
 
+    public function testRollResultsCanNotBeSavedForAScenarioMultipleTimes(): void
+    {
+        $this->withoutExceptionHandling();
+        $this->expectException(ValidationException::class);
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $character = Character::factory()->create();
+        $playerCharacter = PlayerCharacter::factory()->create([
+            'character_id' => $character->id,
+            'user_id' => $user->id,
+        ]);
+        $scenario = Scenario::factory()->today()->create();
+        $step1 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+        $step2 = ScenarioStep::factory()->create(['scenario_id' => $scenario->id]);
+        $roll1 = Roll::factory()->make([
+            'user_id' => $user->id,
+            'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step1->id,
+        ]);
+        $roll2 = Roll::factory()->make([
+            'user_id' => $user->id,
+            'player_character_id' => $playerCharacter->id,
+            'scenario_step_id' => $step2->id,
+        ]);
+
+        $roll1->save();
+        $roll2->save();
+
+
+        $this->postJson(route('daily.store'), [
+            'rolls' => [
+                $roll1->toArray(),
+                $roll2->toArray(),
+            ],
+        ]);
+
+        $this->assertDatabaseHas('rolls', [
+            'scenario_step_id' => $step1->id,
+            'total' => $roll1->total,
+            'ability' => $roll1->ability,
+            'user_id' => $user->id,
+            'player_character_id' => $playerCharacter->id,
+        ]);
+    }
+
     public function testDailyScenariosAreRetrievedByTheirDate(): void
     {
         $this->signIn();
