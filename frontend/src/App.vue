@@ -38,7 +38,7 @@ const thisYear = new Date().getFullYear()
       class="absolute inset-0 bg-[url(/img/grid.svg)] bg-top [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"
     />
 
-    <div class="container relative mx-auto bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="relative mx-auto bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
       <header class="px-4 pt-6 prose-sm md:px-6">
         <NavBar />
       </header>
