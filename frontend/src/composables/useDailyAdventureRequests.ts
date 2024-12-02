@@ -1,10 +1,15 @@
-import type { Roll, Scenario } from '@/types/Scenario'
+import type { Roll, Scenario, ScenarioId } from '@/types/Scenario'
 import axiosInstance from '@/utilities/api'
 import type { AxiosResponse } from 'axios'
 import { format } from 'date-fns';
 
+export type ShowDailyAdventureListRequest = {
+  playerCharacterId: number;
+};
+
 export type ShowDailyAdventureListResponse = {
   scenarios: Scenario[];
+  rolls: Record<ScenarioId, Roll[]>;
 };
 
 export type ShowDailyAdventureResponse = {
@@ -22,8 +27,12 @@ export type StoreRollResponse = {
 
 export function useDailyAdventureRequests() {
   return {
-    all(): Promise<AxiosResponse<ShowDailyAdventureListResponse>> {
-      return axiosInstance.get('/scenarios/daily/');
+    all({ playerCharacterId }: ShowDailyAdventureListRequest): Promise<AxiosResponse<ShowDailyAdventureListResponse>> {
+      return axiosInstance.get('/scenarios/daily/', {
+        params: {
+          player_character_id: playerCharacterId,
+        }
+      });
     },
 
     daily(): Promise<AxiosResponse<ShowDailyAdventureResponse>> {

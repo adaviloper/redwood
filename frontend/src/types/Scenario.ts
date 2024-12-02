@@ -43,9 +43,9 @@ export type Roll = {
   scenario_step_id: StepId;
   player_character_id: number;
   total: number;
-  dieResult: number;
+  die_result: number;
   ability: AbilityName;
-  modifierValue: number;
+  modifier_value: number;
   bonuses: Bonus[];
 };
 

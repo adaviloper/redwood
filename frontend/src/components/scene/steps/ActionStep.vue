@@ -43,9 +43,9 @@ const select = () => {
   dailyScenarioStore.setStepResult(props.step.id, {
     scenario_step_id: props.step.id,
     total: totalRoll.value,
-    dieResult: rollResult.value ?? 0,
+    die_result: rollResult.value ?? 0,
     ability: props.step.action.ability,
-    modifierValue: modifier(props.step.action.ability)?.value,
+    modifier_value: modifier(props.step.action.ability)?.value,
     bonuses: [],
     player_character_id: playerCharacter?.id
   });
@@ -66,7 +66,7 @@ const select = () => {
       <div
         v-if="step.type === 'step' && finalRoll"
       >
-        {{ finalRoll.dieResult }} + {{ finalRoll.modifierValue }} = {{ finalRoll.total }}
+        {{ finalRoll.die_result }} + {{ finalRoll.modifier_value }} = {{ finalRoll.total }}
       </div>
     </div>
 

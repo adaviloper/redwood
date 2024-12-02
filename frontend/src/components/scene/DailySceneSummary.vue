@@ -32,7 +32,7 @@ const viewList = () => {
       <Card>
         <template #content>
           {{ mappedSteps[`${roll.scenario_step_id}`].copy }} <br />
-          {{ roll.dieResult }} + {{ roll.modifierValue }}({{ roll.ability.slice(0, 3) }}) = {{ roll.total }}
+          {{ roll.die_result }} + {{ roll.modifier_value }}({{ roll.ability.slice(0, 3) }}) = {{ roll.total }}
         </template>
       </Card>
     </div>

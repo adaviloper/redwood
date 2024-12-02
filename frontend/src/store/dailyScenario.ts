@@ -25,7 +25,13 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
     setScenarios(scenarios: Scenario[]) {
       this._scenarios = scenarios;
 
-      return this._scenario;
+      return this._scenarios;
+    },
+
+    setRolls(rolls: Record<ScenarioId, Roll[]>) {
+      this._rolls = rolls;
+
+      return this._rolls
     },
 
     setScenario(scenario: Scenario) {
