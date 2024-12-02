@@ -45,8 +45,3 @@ class Scenario extends Model
     }
 }
 
-
-
-
-
-
