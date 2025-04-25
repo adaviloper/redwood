@@ -1,8 +1,9 @@
+.DS_Store
 .env
 .env.backup
 .env.production
-.phpactor.json
 .php-cs-fixer.cache
+.phpactor.json
 .phpunit.result.cache
 /.fleet
 /.idea
