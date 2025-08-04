@@ -1,6 +1,7 @@
 import type { Scenario, ScenarioId } from "@/types/Scenario";
-import axiosInstance from "@/utilities/api"
-import type { AxiosResponse } from "axios"
+import axiosInstance from "@/utilities/api";
+import type { AxiosResponse } from "axios";
+import { indexRequest, showRequest, storeRequest, updateRequest } from "./requestFactory";
 
 export interface ScenarioIndexResponse {
   scenarios: Scenario[];
@@ -29,24 +30,15 @@ export interface UpdateScenarioResponse {
 
 export function useScenarioRequests() {
   return {
-    all(): Promise<AxiosResponse<ScenarioIndexResponse>> {
-      return axiosInstance.get('/scenarios')
-    },
+    all: indexRequest<ScenarioIndexResponse>('/scenarios'),
 
-    find(id: ScenarioId): Promise<AxiosResponse<ShowScenarioResponse>> {
-      return axiosInstance.get(`/scenarios/${id}`)
-    },
+    find: showRequest<ShowScenarioResponse>(`/scenarios`),
 
-    create(payload: StoreScenarioRequest): Promise<AxiosResponse<StoreScenarioResponse>> {
-      return axiosInstance.post('/scenarios', {
-        scenario_id: payload.scenario_id
-      })
-    },
+    create: storeRequest<StoreScenarioResponse, StoreScenarioRequest>('/scenarios'),
 
-    update(payload: UpdateScenarioRequest): Promise<AxiosResponse<StoreScenarioResponse>> {
-      return axiosInstance.put(`/scenarios/${payload.scenarioId}`, {
+    update: updateRequest<StoreScenarioResponse, UpdateScenarioRequest>(`/scenarios`, (payload: UpdateScenarioRequest) => ({
         ...payload.data
       })
-    },
+    ),
   }
 }

@@ -1,6 +1,5 @@
 import type { PlayerCharacter } from "@/types/PlayerCharacter";
-import axiosInstance from "@/utilities/api"
-import type { AxiosResponse } from "axios"
+import { destroyRequest, indexRequest, showRequest, storeRequest, updateRequest } from "./requestFactory";
 
 export interface PlayerCharacterIndexResponse {
   player_characters: PlayerCharacter[];
@@ -18,18 +17,19 @@ export interface StorePlayerCharacterResponse {
   player_character: PlayerCharacter;
 }
 
+export interface DestroyPlayerCharacterResponse {
+}
+
 export function usePlayerCharacterRequests() {
   return {
-    all(): Promise<AxiosResponse<PlayerCharacterIndexResponse>> {
-      return axiosInstance.get('/player-characters')
-    },
-    find(id: number): Promise<AxiosResponse<ShowPlayerCharacterResponse>> {
-      return axiosInstance.get(`/player-characters/${id}`)
-    },
-    create(payload: StorePlayerCharacterRequest): Promise<AxiosResponse<StorePlayerCharacterResponse>> {
-      return axiosInstance.post('/player-characters', {
-        character_id: payload.character_id
-      })
-    },
+    all: indexRequest<PlayerCharacterIndexResponse>('/player-characters'),
+
+    find: showRequest<ShowPlayerCharacterResponse>('/player-characters'),
+
+    create: storeRequest<StorePlayerCharacterResponse, StorePlayerCharacterRequest>('/player-characters'),
+
+    update: updateRequest<StorePlayerCharacterResponse, StorePlayerCharacterRequest>('/player-characters'),
+
+    destroy: destroyRequest<DestroyPlayerCharacterResponse>('/player-characters'),
   }
 }

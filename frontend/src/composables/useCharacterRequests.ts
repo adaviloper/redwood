@@ -1,6 +1,5 @@
 import type { Character } from "@/types/Character"
-import axiosInstance from "@/utilities/api"
-import type { AxiosResponse } from "axios"
+import { indexRequest, showRequest } from "./requestFactory";
 
 export interface CharacterResponse {
   characters: Character[];
@@ -8,12 +7,8 @@ export interface CharacterResponse {
 
 export function useCharacterRequests() {
   return {
-    all(): Promise<AxiosResponse<CharacterResponse>> {
-      return axiosInstance.get('/characters')
-    },
+    all: indexRequest<CharacterResponse>('/characters'),
 
-    find(id: number): Promise<AxiosResponse<Character>> {
-      return axiosInstance.get(`/characters/${id}`)
-    },
+    find: showRequest('/characters'),
   }
 }
