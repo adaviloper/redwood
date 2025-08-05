@@ -1,6 +1,4 @@
 import type { Scenario, ScenarioId } from "@/types/Scenario";
-import axiosInstance from "@/utilities/api";
-import type { AxiosResponse } from "axios";
 import { indexRequest, showRequest, storeRequest, updateRequest } from "./requestFactory";
 
 export interface ScenarioIndexResponse {
