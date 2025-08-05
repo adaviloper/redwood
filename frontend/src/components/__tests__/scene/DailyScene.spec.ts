@@ -1,4 +1,4 @@
-import ScenarioSteps from '@/components/scene/ScenarioSteps.vue';
+import ScenarioSteps from '@/components/scene/steps/ScenarioSteps.vue';
 import type { InstructionList } from '@/types/Scenario';
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'

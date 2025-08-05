@@ -56,3 +56,7 @@ export type Scenario = {
   steps: Step[];
   complete: boolean;
 };
+
+export type InstructionList = {
+
+};
