@@ -22,6 +22,9 @@ export const useDailyScenarioStore = defineStore('daily-scenario', {
   }),
 
   actions: {
+    /**
+     * 
+     */
     setScenarios(scenarios: Scenario[]) {
       this._scenarios = scenarios;
 

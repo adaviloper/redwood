@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineEmits, ref } from 'vue';
+import { computed, ref } from 'vue';
 import type { TActionStep } from '@/types/Scenario';
 import Button from 'primevue/button';
 import type { Nullable } from '@/types/utilities';
@@ -72,6 +72,7 @@ const select = () => {
 
     <div>
       <Button
+        :class="`select-options-${step.id}`"
         type="button"
         severity="info"
         :disabled="dailyScenarioStore.hasRolledFor(step.id)"

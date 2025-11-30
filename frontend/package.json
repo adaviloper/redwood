@@ -8,11 +8,12 @@
     "build-only": "vite build",
     "preview": "vite build && vite preview",
     "start": "pnpm dev & wait-on tcp:3000 -v",
-    "test": "vitest",
+    "test": "vitest run",
     "coverage": "vitest run --coverage",
     "test-e2e": "playwright test --headed",
     "test:ci": "vitest run --coverage",
     "test:ci-e2e": "playwright test",
+    "test:watch": "vitest",
     "lint": "eslint --fix . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
     "type-check": "vue-tsc --build --force"
   },

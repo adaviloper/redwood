@@ -8,7 +8,7 @@
     "formkit.theme.ts",
     "src/**/*",
     "src/**/*.vue"
-  ],
+, "tests/unit/components/scene/steps/ScenarioSteps.spec.ts"  ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,

@@ -31,7 +31,7 @@ export type TOptionStep = {
   scenario_step_id: Nullable<StepId>;
 }
 
-export type Step = TActionStep | TOptionStep;;
+export type Step = TActionStep | TOptionStep;
 
 export type ScenarioId = string | number;
 

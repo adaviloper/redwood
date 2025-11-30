@@ -26,7 +26,6 @@ const hasPreviousStep = (targetId: Nullable<StepId>): boolean => {
 
 const previousStep = (): Step | undefined => {
   const previous = props.steps.find(step => step.scenario_step_id === currentStep.value.id);
-  console.log('ScenarioSteps.vue:18', previous);
 
   if (previous) {
     currentStep.value = previous;
@@ -66,6 +65,7 @@ const saveProgress = () => {
 <template>
   <div class="content-center">
     <div
+      v-if="currentStep"
       class="scene-steps mt-4"
     >
       <div>
@@ -98,6 +98,7 @@ const saveProgress = () => {
 
           <Button
             v-if="currentStep.scenario_step_id"
+            class="next-step-button"
             :disabled="!scenarioStore.hasRolledFor(currentStep.id)"
             @click="nextStep(currentStep.scenario_step_id)"
           >
