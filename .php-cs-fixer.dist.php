@@ -14,8 +14,6 @@ $finder = (new PhpCsFixer\Finder())
 
 return (new PhpCsFixer\Config())
     ->setRules([
-        '@PER-CS' => true,
-        '@PHP83Migration' => true,
         '@PSR12' => true,
         'fully_qualified_strict_types' => true,
         'object_operator_without_whitespace' => true,
