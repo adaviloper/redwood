@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Character;
 
+use App\Enums\CharacterClasses;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCharacterRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class StoreCharacterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -30,6 +32,7 @@ class StoreCharacterRequest extends FormRequest
             'wisdom' => ['required', 'int', 'max:20', 'min:1'],
             'intelligence' => ['required', 'int', 'max:20', 'min:1'],
             'charisma' => ['required', 'int', 'max:20', 'min:1'],
+            'class' => [Rule::in(CharacterClasses::values())],
         ];
     }
 }
