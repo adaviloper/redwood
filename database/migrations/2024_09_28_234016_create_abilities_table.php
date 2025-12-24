@@ -26,6 +26,9 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('attributes');
+        Schema::table('abilities', function (Blueprint $table) {
+            $table->dropForeign(['player_character_id']);
+        });
+        Schema::dropIfExists('abilities');
     }
 };
