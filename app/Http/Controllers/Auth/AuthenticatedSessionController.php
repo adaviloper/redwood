@@ -20,20 +20,24 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): Response
     {
-        $request->authenticate();
+        try {
+            $request->authenticate();
 
-        $request->session()->regenerate();
+            $request->session()->regenerate();
 
-        $user = $request->user();
-        $permissions = $user->getAllPermissions();
+            $user = $request->user();
+            $permissions = $user->getAllPermissions();
 
-        $userResponse = $user->toArray();
-        data_set($userResponse, 'permissions', $permissions);
+            $userResponse = $user->toArray();
+            data_set($userResponse, 'permissions', $permissions);
 
-        return response([
-            'user' => $userResponse,
-            'token' => $user->createToken("{$user->email}-auth-token")->plainTextToken,
-        ]);
+            return response([
+                'user' => $userResponse,
+                'token' => $user->createToken("{$user->email}-auth-token")->plainTextToken,
+            ]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
