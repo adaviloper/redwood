@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.9",
         "spatie/laravel-data": "^4.10",
         "spatie/laravel-permission": "^6.9",
+        "spatie/laravel-query-builder": "^6.3",
         "tightenco/parental": "^1.4"
     },
     "require-dev": {

@@ -6,7 +6,7 @@ use App\Http\Requests\Character\StoreCharacterRequest;
 use App\Http\Requests\Character\UpdateCharacterRequest;
 use App\Http\Resources\CharacterResource;
 use App\Models\Character;
-use App\Models\User;
+use Spatie\QueryBuilder\QueryBuilder;
 use Illuminate\Http\Request;
 
 class CharacterController extends Controller
@@ -17,7 +17,11 @@ class CharacterController extends Controller
     public function index()
     {
         return [
-            'characters' => CharacterResource::collection(Character::query()->get()),
+            'characters' => CharacterResource::collection(
+                QueryBuilder::for(Character::class)
+                    ->allowedFilters(['class'])
+                    ->get()
+            ),
         ];
     }
 
